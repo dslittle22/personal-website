@@ -16,7 +16,7 @@ export default function Layout({ children, page }) {
           content={page ? `Danny Little - ${page}` : `Danny Little`}
           key='title'
         />
-        <link rel='icon' href='/favicon.ico' />
+        <link rel='icon' href='/public/favicon/favicon.ico' />
         <meta name='description' content='Danny Little - personal Website' />
       </Head>
       <MobileHeader />
