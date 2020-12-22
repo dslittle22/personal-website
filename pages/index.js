@@ -1,65 +1,140 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import Link from 'next/link';
+import path from 'path';
+import fs from 'fs';
+import matter from 'gray-matter';
+import Layout from '../components/layout';
+import styled from 'styled-components';
+import Image from 'next/image';
+import { projectsList } from '../content';
 
-export default function Home() {
-  return (
-    <div className={styles.container}>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+const Index = ({ filesWithFrontmatter }) => {
+  const renderBlogPosts = () => {
+    return filesWithFrontmatter.map(post => {
+      return (
+        <div key={post.frontmatter.date}>
+          <BlogPost>
+            <div>
+              <Link href={'/blog/' + post.slug}>
+                <a>{post.frontmatter.title + ':'}</a>
+              </Link>
+              {' ' + post.frontmatter.description}
+            </div>
+            <small>{`Written on ${post.frontmatter.date}`}</small>
+          </BlogPost>
         </div>
-      </main>
+      );
+    });
+  };
 
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
+  const renderProjects = () => {
+    return projectsList.map(project => (
+      <Link href={project.href} key={project.title}>
+        <a target='_blank'>
+          <div className='grid-item'>
+            <h3>{project.title}</h3>
+            <Image
+              src={project.imageURL}
+              alt={`Image of ${project.title}`}
+              width={140}
+              height={180}
+              objectFit='cover'
+            />
+          </div>
         </a>
-      </footer>
-    </div>
-  )
-}
+      </Link>
+    ));
+  };
+
+  return (
+    <Layout home>
+      <p>
+        Hi! I'm Danny Little. I'm a full stack web developer and a musician. I'm
+        also a Junior at Bowdoin College, where I'm double majoring in computer
+        science and music performance.
+      </p>
+      <p>
+        If you'd like to get in touch with me, my email is daniel.little715 (at)
+        gmail.com. You can also find my various social media profiles at bottom
+        of the page.
+      </p>
+      <section>
+        <h3>
+          Read my{' '}
+          <Link href='/blog'>
+            <a>blog:</a>
+          </Link>{' '}
+        </h3>
+        {renderBlogPosts()}
+      </section>
+      <section>
+        <h3>
+          Look at my{' '}
+          <Link href='/blog'>
+            <a>projects:</a>
+          </Link>
+        </h3>
+        <StyledProjectsGrid>{renderProjects()}</StyledProjectsGrid>
+      </section>
+    </Layout>
+  );
+};
+
+export default Index;
+
+export const getStaticProps = async () => {
+  const postsDirname = path.join('pages', 'blog', 'posts').toString();
+  const files = fs.readdirSync(postsDirname);
+
+  const filesWithFrontmatter = files.map(filename => {
+    const rawMarkdown = fs
+      .readFileSync(path.join(postsDirname, filename))
+      .toString();
+
+    const slug = filename.replace('.md', '');
+    const frontmatter = matter(rawMarkdown).data;
+    frontmatter.date = new Date(frontmatter.date)
+      .toISOString()
+      .substring(0, 10);
+    return { slug, frontmatter };
+  });
+  return {
+    props: {
+      filesWithFrontmatter: filesWithFrontmatter.sort((a, b) => {
+        return a.frontmatter.date > b.frontmatter.date ? -1 : 1;
+      }),
+    },
+  };
+};
+
+const BlogPost = styled.div`
+  padding-top: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+`;
+
+const StyledProjectsGrid = styled.div`
+  padding-top: 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 400px));
+  grid-gap: 10px;
+  align-items: center;
+
+  .grid-item {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    grid-template-rows: 0.25fr 1fr;
+    background: ${({ theme }) => theme.colors.white};
+    border-radius: 5px;
+    transition: transform 250ms;
+    padding: 10px;
+
+    :hover {
+      transform: scale(1.02);
+    }
+  }
+  a {
+    background: none;
+  }
+`;
