@@ -49,6 +49,7 @@ const StyledHeader = styled.header`
 
   display: flex;
   padding: 2rem 0;
+  top: 0;
   justify-content: center;
   flex-direction: column;
   align-items: center;

@@ -36,6 +36,7 @@ const GlobalStyle = css`
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    flex-shrink: 0;
   }
 
   p {

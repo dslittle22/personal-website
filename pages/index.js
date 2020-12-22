@@ -1,10 +1,10 @@
-import Link from 'next/link';
-import path from 'path';
-import fs from 'fs';
-import matter from 'gray-matter';
 import Layout from '../components/layout';
-import styled from 'styled-components';
 import Image from 'next/image';
+import styled from 'styled-components';
+import fs from 'fs';
+import path from 'path';
+import Link from 'next/link';
+import matter from 'gray-matter';
 import { projectsList } from '../content';
 
 const Index = ({ filesWithFrontmatter }) => {
@@ -46,17 +46,19 @@ const Index = ({ filesWithFrontmatter }) => {
   };
 
   return (
-    <Layout home>
-      <p>
-        Hi! I'm Danny Little. I'm a full stack web developer and a musician. I'm
-        also a Junior at Bowdoin College, where I'm double majoring in computer
-        science and music performance.
-      </p>
-      <p>
-        If you'd like to get in touch with me, my email is daniel.little715 (at)
-        gmail.com. You can also find my various social media profiles at bottom
-        of the page.
-      </p>
+    <Layout page='home'>
+      <section>
+        <p>
+          Hi! I'm Danny Little. I'm a full stack web developer and a musician.
+          I'm also a Junior at Bowdoin College, where I'm double majoring in
+          computer science and music performance.
+        </p>
+        <p>
+          If you'd like to get in touch with me, my email is daniel.little715
+          (at) gmail.com. You can also find my various social media profiles at
+          bottom of the page.
+        </p>
+      </section>
       <section>
         <h3>
           Read my{' '}
