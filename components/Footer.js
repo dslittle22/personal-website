@@ -30,20 +30,21 @@ export default DesktopHeader;
 
 const StyledFooter = styled.footer`
   font-size: 15px;
-  margin: 0 auto;
-  width: 100%;
   background: ${({ theme }) => theme.colors.mediumBlue};
-  margin-top: 1rem;
+  margin-top: 2rem;
   bottom: 0;
+  width: 100%;
   display: grid;
+  grid-template-columns: max(300px, 20%);
   align-items: center;
   justify-content: center;
   color: white;
   flex-shrink: 0;
 
   .inner-container {
+    display: flex;
+    flex-direction: column;
     padding: 3rem 0 2rem;
-    width: max(300px, 20%);
   }
   .header-row {
     display: flex;

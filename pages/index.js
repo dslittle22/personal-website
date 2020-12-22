@@ -121,6 +121,7 @@ const StyledProjectsGrid = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(200px, 400px));
   grid-gap: 10px;
   align-items: center;
+  justify-content: center;
 
   .grid-item {
     display: grid;
