@@ -71,7 +71,7 @@ const Index = ({ filesWithFrontmatter }) => {
       <section>
         <h3>
           Look at my{' '}
-          <Link href='/blog'>
+          <Link href='/projects'>
             <a>projects:</a>
           </Link>
         </h3>

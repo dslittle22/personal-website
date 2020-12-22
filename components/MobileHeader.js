@@ -54,12 +54,13 @@ const StyledHeader = styled.header`
   flex-direction: column;
   align-items: center;
   margin-bottom: ${({ open }) => (open ? '1rem' : 'none')};
-  background: ${({ open, theme }) =>
-    open ? theme.colors.backgroundAccent : 'none'};
+  background: ${({ open, theme }) => (open ? theme.colors.mediumBlue : 'none')};
 
   h1 {
     display: block;
-    color: ${({ theme }) => theme.colors.text};
+    /* color: ${({ theme }) => theme.colors.text}; */
+    color: ${({ open, theme }) =>
+      open ? theme.colors.white : theme.colors.text};
   }
 `;
 
@@ -88,8 +89,6 @@ const Hamburger = styled.div`
     position: relative;
     background: ${({ theme, open }) =>
       open ? theme.colors.background : theme.colors.text};
-    border: ${({ theme, open }) =>
-      open ? `1px solid ${theme.colors.text}` : 'none'};
   }
 `;
 
@@ -99,7 +98,7 @@ const MenuLinks = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  background: ${({ theme }) => theme.colors.backgroundAccent};
+  background: ${({ theme }) => theme.colors.mediumBlue};
 
   ul {
     list-style: none;
@@ -109,7 +108,7 @@ const MenuLinks = styled.div`
     margin-bottom: 0.75rem;
   }
   a {
-    color: ${({ theme }) => theme.colors.text};
+    color: ${({ theme }) => theme.colors.white};
     :hover {
       color: ${({ theme }) => theme.colors.link};
     }

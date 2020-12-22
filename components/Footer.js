@@ -32,7 +32,7 @@ const StyledFooter = styled.footer`
   font-size: 15px;
   margin: 0 auto;
   width: 100%;
-  background: rgb(80, 100, 200);
+  background: ${({ theme }) => theme.colors.mediumBlue};
   margin-top: 1rem;
   bottom: 0;
   display: grid;

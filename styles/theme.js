@@ -5,6 +5,7 @@ const theme = {
   },
   colors: {
     background: 'rgb(153, 207, 238)',
+    mediumBlue: 'rgb(80, 100, 200)',
     text: 'rgb(2, 31, 84)',
     link: 'rgb(228, 109, 109)',
     backgroundAccent: 'rgb(247, 204, 195)',
