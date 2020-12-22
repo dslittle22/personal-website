@@ -17,7 +17,6 @@ export default function App({ Component, pageProps }) {
           sizes='180x180'
           href='favicon/apple-touch-icon.png'
         />
-        <link rel='manifest' href='manifest.json' />
       </Head>
       <ThemeProvider theme={theme}>
         <Component {...pageProps} />

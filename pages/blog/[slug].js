@@ -20,11 +20,15 @@ const Post = ({ htmlString, frontmatter }) => {
             margin: '0 auto',
           }}
         >
-          <h1>{frontmatter.title}</h1>
-          <small>
-            Written by {frontmatter.author} on {frontmatter.date}
-          </small>
-          <div dangerouslySetInnerHTML={{ __html: htmlString }} />
+          <section>
+            <h1>{frontmatter.title}</h1>
+            <small>
+              Written by {frontmatter.author} on {frontmatter.date}
+            </small>
+          </section>
+          <section>
+            <div dangerouslySetInnerHTML={{ __html: htmlString }} />
+          </section>
         </div>
       </Layout>
     </>

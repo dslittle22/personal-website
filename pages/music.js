@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import Layout from '../components/layout';
 import Image from 'next/image';
 import styled from 'styled-components';
@@ -11,7 +10,7 @@ const Music = ({ photos }) => {
     return musicLinks.map(({ title, description, href }) => (
       <li key={href}>
         <a href={href} target='_blank'>
-          <h5>{title}</h5>
+          <h4>{title}</h4>
         </a>
         <small>{`- "${description}"`}</small>
       </li>
@@ -31,18 +30,18 @@ const Music = ({ photos }) => {
     ));
   };
 
-  const renderGallary = () => {
+  const renderGallery = () => {
     return photos.map(filename => {
       return (
         <div key={filename}>
           <Image
-            src={'/' + path.join('photos', filename)}
+            src={'/' + path.join('music-photos', filename)}
             height='400'
             width='300'
             objectFit='cover'
           />
           <Overlay>
-            <a href={'/' + path.join('photos', filename)} download>
+            <a href={'/' + path.join('music-photos', filename)} download>
               Download
             </a>
           </Overlay>
@@ -54,7 +53,7 @@ const Music = ({ photos }) => {
   return (
     <Layout page='Music'>
       <h2>Music</h2>
-      <div>
+      <section>
         <p>
           I'm tenor saxophone player, but I also play baritone/alto/soprano
           saxophones. I can get away with playing flute, drums, bass, or guitar,
@@ -64,19 +63,19 @@ const Music = ({ photos }) => {
           I'm a bit of a music theory nerd, and I enjoy arranging and
           transcribing music.
         </p>
-      </div>
-      <h3>Audio</h3>
-      Here's some stuff I've made.
-      <div>
+      </section>
+      <section>
+        <h3>Audio</h3>
+        Here's some stuff I've made.
         <EvenList>
           {renderLinks()}
           {renderAudioFiles()}
         </EvenList>
-      </div>
-      <div>
+      </section>
+      <section>
         <h3>Photos</h3>
-        <PhotoGallery>{renderGallary()}</PhotoGallery>
-      </div>
+        <PhotoGallery>{renderGallery()}</PhotoGallery>
+      </section>
     </Layout>
   );
 };
@@ -91,15 +90,6 @@ const EvenList = styled.ul`
   audio {
     margin-left: 1rem;
   }
-  /* div {
-    display: flex;
-    align-items: center;
-    ::before {
-      display: block;
-      content: '•';
-      margin-right: 0.25rem;
-    }
-  } */
 `;
 
 const Overlay = styled.div`
@@ -114,6 +104,7 @@ const Overlay = styled.div`
   display: grid;
   align-items: center;
   justify-content: center;
+  border-radius: 5px;
 `;
 
 const PhotoGallery = styled.div`
@@ -133,11 +124,11 @@ const PhotoGallery = styled.div`
 `;
 
 export const getStaticProps = async () => {
-  const photos = fs.readdirSync(path.join('public', 'photos'));
+  const photos = fs.readdirSync(path.join('public', 'music-photos'));
 
   return {
     props: {
-      photos: photos.filter(filename => filename.slice(0, 1) != '.'),
+      photos,
     },
   };
 };
