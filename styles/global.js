@@ -10,7 +10,7 @@ const GlobalStyle = css`
     background: ${theme.colors.background};
     color: ${theme.colors.text};
     letter-spacing: 0.3px;
-    font-size: clamp(14px, 1rem + 0.5vw, 19px);
+    font-size: clamp(14px, 1rem + 0.5vw, 18px);
     line-height: 1.4;
 
     /* for sticky bottom footer */
@@ -73,7 +73,7 @@ const GlobalStyle = css`
 
   :not(pre) > code[class*='language-'],
   pre[class*='language-'] {
-    font-size: clamp(13px, 1rem + 0.5vw, 17px);
+    font-size: clamp(13px, 1rem + 0.5vw, 15px);
   }
 
   section {

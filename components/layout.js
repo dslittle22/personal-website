@@ -17,7 +17,10 @@ export default function Layout({ children, page }) {
           key='title'
         />
         <link rel='icon' href='/favicon/favicon.ico' />
-        <meta name='description' content='Danny Little - personal Website' />
+        <meta
+          name='description'
+          content='Personal website of web developer Danny Little.'
+        />
       </Head>
       <MobileHeader />
       <DesktopHeader />
