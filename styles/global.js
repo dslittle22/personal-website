@@ -66,9 +66,10 @@ const GlobalStyle = css`
   code {
     font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
     font-size: clamp(12px, 1rem + 0.5vw, 16px);
-    color: ${theme.colors.background};
+    color: ${theme.colors.white};
     background: #272822;
-    padding: 0 0.25rem;
+    padding: 0 0.15rem;
+    margin: 0 0.1rem;
     border-radius: 5px;
   }
 
