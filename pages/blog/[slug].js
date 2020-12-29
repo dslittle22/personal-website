@@ -5,6 +5,7 @@ import matter from 'gray-matter';
 import Head from 'next/head';
 import Layout from '../../components/layout';
 import markdownToHTML from '../../lib/markdown';
+import styled from 'styled-components';
 
 const Post = ({ htmlString, frontmatter }) => {
   return (
@@ -14,22 +15,24 @@ const Post = ({ htmlString, frontmatter }) => {
         <meta title='description' content={frontmatter.description} />
       </Head>
       <Layout page={frontmatter.title}>
-        <div
-          style={{
-            maxWidth: '800px',
-            margin: '0 auto',
-          }}
-        >
-          <section>
-            <h1>{frontmatter.title}</h1>
-            <small>
-              Written by {frontmatter.author} on {frontmatter.date}
-            </small>
-          </section>
-          <section>
-            <div dangerouslySetInnerHTML={{ __html: htmlString }} />
-          </section>
-        </div>
+        <BlogStyle>
+          <div
+            style={{
+              maxWidth: '800px',
+              margin: '0 auto',
+            }}
+          >
+            <section>
+              <h1>{frontmatter.title}</h1>
+              <small>
+                Written by {frontmatter.author} on {frontmatter.date}
+              </small>
+            </section>
+            <section>
+              <div dangerouslySetInnerHTML={{ __html: htmlString }} />
+            </section>
+          </div>
+        </BlogStyle>
       </Layout>
     </>
   );
@@ -51,6 +54,16 @@ export const getStaticPaths = async () => {
     fallback: false,
   };
 };
+
+const BlogStyle = styled.div`
+  img {
+    padding: 0.5rem 0;
+    max-width: 70%;
+    min-width: 40%;
+    margin: auto;
+    display: block;
+  }
+`;
 
 export const getStaticProps = async ({ params: { slug } }) => {
   const postsDirname = path.join('pages', 'blog', 'posts').toString();
