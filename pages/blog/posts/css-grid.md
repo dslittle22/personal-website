@@ -44,17 +44,17 @@ with this HTML:
 </div>
 ```
 
-gives us this:
+gives us:
 
 ![CSS grid container with items](/blog/grid-1.png)
 
-If we add the line
+So here's are starting point. We have an explicit grid with two items, which seem to stretch to fill their available space. If we add the line:
 
 ```css
 justify-items: center;
 ```
 
-Then the `div`'s in our grid are horizontally centered, but vertically unaffected:
+then the `div`'s in our grid are horizontally centered, but vertically unaffected:
 
 ![CSS grid container with horizontally centered items](/blog/grid-2.png)
 
@@ -67,15 +67,15 @@ align-items: end;
 we get:
 ![CSS grid container with each item at the bottom of its grid space](/blog/grid-3.png)
 
-As you might assume, both properties have the value `stretch` by default. Also, you can set both values in one line by using the `place-items` property and separating the values with a slash (align / justify).
+Both of our items are vertically aligned toward the end of their grid space. As you might assume, both properties have the value `stretch` by default. Also, you can set both values in one line by using the `place-items` property and separating the values with a slash (e.g. `center / center`).
 
 ## 2: justify-content / align-content[^2]
 
-The last property we looked at changed where items sit within the grid space allocated for them, but it did not change the location of the grid space. If our content is much smaller than our grid container, like it is in the example we've been using, it would be nice to specify how the grid should be set up. And, you guessed it, that's exactly what this section's properties do!
+The last property we looked at changes where items sit within the grid space allocated for them, but it does not change the location of the grid space. If our content is much smaller than our grid container, like it is in the example we've been using, it would be nice to specify where the allocated space goes, not just the items within the space. And you guessed it: that's exactly what this section's properties do.
 
 #### Examples
 
-Let's say we really like the vibe of `align-items: end;`, except we want to make things _even more_ aligned at the end. We can write this:
+Let's say we really like the vibe of `align-items: end;`, except we want to make things _even more_ aligned toward the end. We can write this:
 
 ```css
 align-content: end;
@@ -85,7 +85,7 @@ to get this:
 
 ![CSS grid container with both items stacked in the bottom of the container](/blog/grid-4.png)
 
-Notice how it's kind of similar to the `align-items: end;` photo, except all of the content is at the bottom of the container rather than the items being centered within their allocated space. We can see this by looking at the dev tools and looking at our items within their space. Here's the grid with `align-items: end;`
+Notice how it's similar to the `align-items: end;` photo, except all of the content is at the bottom of the container rather than the items being centered within their grid space. We can see this by looking at the dev tools and looking at our items within their space. Here's the grid with `align-items: end;`
 ![CSS grid with align-items: end; dev tools](/blog/grid-5.png)
 
 And with `align-content: end;`
@@ -126,6 +126,8 @@ align-items: stretch;
 ```
 
 a lot of the time. For the `content` properties, it probably makes sense to just use the `space-evenly`-type values except for in niche situations.
+
+I think that's pretty much it! Hopefully this clears up these four CSS Grid properties. Note that all of these properties _except_ `justify-items` exist in Flexbox and do more or less the same thing, except all of the horizontal / verticals flip if you change the main axis by saying `flex-direction: column;`.
 
 [^1]: Values: start, end, center, stretch (default)
 [^2]: Values: start, end, center, stretch (default), space-around, space-between, space-evenly
