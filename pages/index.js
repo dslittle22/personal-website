@@ -1,10 +1,9 @@
 import Layout from '../components/layout';
+import CenteredGrid from '../components/CenteredGrid';
 import Image from 'next/image';
 import styled from 'styled-components';
-import fs from 'fs';
-import path from 'path';
+import getAllFiles from '../lib/blogposts';
 import Link from 'next/link';
-import matter from 'gray-matter';
 import { projectsList } from '../content';
 
 const Index = ({ filesWithFrontmatter }) => {
@@ -28,20 +27,22 @@ const Index = ({ filesWithFrontmatter }) => {
 
   const renderProjects = () => {
     return projectsList.map(project => (
-      <Link href={project.href} key={project.title}>
-        <a target='_blank'>
-          <div className='grid-item'>
-            <h3>{project.title}</h3>
-            <Image
-              src={project.imageURL}
-              alt={`Image of ${project.title}`}
-              width={140}
-              height={180}
-              objectFit='cover'
-            />
-          </div>
-        </a>
-      </Link>
+      <StyledProject key={project.title}>
+        <Link href={project.href}>
+          <a target='_blank'>
+            <div className='grid-item'>
+              <h3>{project.title}</h3>
+              <Image
+                src={project.imageURL}
+                alt={`Image of ${project.title}`}
+                width={140}
+                height={180}
+                objectFit='cover'
+              />
+            </div>
+          </a>
+        </Link>
+      </StyledProject>
     ));
   };
 
@@ -75,7 +76,9 @@ const Index = ({ filesWithFrontmatter }) => {
             <a>projects:</a>
           </Link>
         </h3>
-        <StyledProjectsGrid>{renderProjects()}</StyledProjectsGrid>
+        <CenteredGrid maxWidth='400px' minWidth='200px'>
+          {renderProjects()}
+        </CenteredGrid>
       </section>
     </Layout>
   );
@@ -83,27 +86,10 @@ const Index = ({ filesWithFrontmatter }) => {
 
 export default Index;
 
-export const getStaticProps = async () => {
-  const postsDirname = path.join('pages', 'blog', 'posts').toString();
-  const files = fs.readdirSync(postsDirname);
-
-  const filesWithFrontmatter = files.map(filename => {
-    const rawMarkdown = fs
-      .readFileSync(path.join(postsDirname, filename))
-      .toString();
-
-    const slug = filename.replace('.md', '');
-    const frontmatter = matter(rawMarkdown).data;
-    frontmatter.date = new Date(frontmatter.date)
-      .toISOString()
-      .substring(0, 10);
-    return { slug, frontmatter };
-  });
+export const getStaticProps = () => {
   return {
     props: {
-      filesWithFrontmatter: filesWithFrontmatter.sort((a, b) => {
-        return a.frontmatter.date > b.frontmatter.date ? -1 : 1;
-      }),
+      filesWithFrontmatter: getAllFiles(),
     },
   };
 };
@@ -115,14 +101,18 @@ const BlogPost = styled.div`
   align-items: flex-start;
 `;
 
-const StyledProjectsGrid = styled.div`
-  padding-top: 1rem;
+const StyledProject = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 400px));
-  grid-gap: 10px;
   align-items: center;
   justify-content: center;
+  transition: transform 250ms;
+  :hover {
+    transform: scale(1.02);
+  }
 
+  a {
+    background: none;
+  }
   .grid-item {
     display: grid;
     align-items: center;
@@ -130,14 +120,6 @@ const StyledProjectsGrid = styled.div`
     grid-template-rows: 0.25fr 1fr;
     background: ${({ theme }) => theme.colors.white};
     border-radius: 5px;
-    transition: transform 250ms;
     padding: 10px;
-
-    :hover {
-      transform: scale(1.02);
-    }
-  }
-  a {
-    background: none;
   }
 `;

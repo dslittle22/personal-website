@@ -96,9 +96,8 @@ const Overlay = styled.div`
   position: relative;
   width: 100%;
   top: -64px;
-  height: 64px;
   margin-bottom: -64px;
-  transition: 300ms ease;
+  transition: 400ms ease;
   opacity: 0;
   background: white;
   display: grid;
@@ -119,7 +118,7 @@ const PhotoGallery = styled.div`
     display: grid;
   }
   div:hover ${Overlay} {
-    opacity: 0.7;
+    opacity: 0.8;
   }
 `;
 

@@ -37,7 +37,7 @@ const Post = ({ htmlString, frontmatter, nextPost, lastPost }) => {
 export default Post;
 
 const BlogStyle = styled.div`
-  max-width: 800px;
+  max-width: 900px;
   margin: 0 auto;
   img {
     padding: 0.5rem 0;
