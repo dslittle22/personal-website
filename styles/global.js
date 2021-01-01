@@ -86,6 +86,10 @@ const GlobalStyle = css`
     border-top: 1px solid ${theme.colors.text};
     border-bottom: 1px solid ${theme.colors.text};
   }
+
+  li {
+    margin-left: 20px;
+  }
 `;
 
 export default GlobalStyle;

@@ -1,10 +1,8 @@
 import Layout from '../components/layout';
-import CenteredGrid from '../components/CenteredGrid';
-import Image from 'next/image';
+import ProjectsGrid from '../components/ProjectsGrid';
 import styled from 'styled-components';
 import getAllFiles from '../lib/blogposts';
 import Link from 'next/link';
-import { projectsList } from '../content';
 
 const Index = ({ filesWithFrontmatter }) => {
   const renderBlogPosts = () => {
@@ -23,27 +21,6 @@ const Index = ({ filesWithFrontmatter }) => {
         </div>
       );
     });
-  };
-
-  const renderProjects = () => {
-    return projectsList.map(project => (
-      <StyledProject key={project.title}>
-        <Link href={project.href}>
-          <a target='_blank'>
-            <div className='grid-item'>
-              <h3>{project.title}</h3>
-              <Image
-                src={project.imageURL}
-                alt={`Image of ${project.title}`}
-                width={140}
-                height={180}
-                objectFit='cover'
-              />
-            </div>
-          </a>
-        </Link>
-      </StyledProject>
-    ));
   };
 
   return (
@@ -76,9 +53,7 @@ const Index = ({ filesWithFrontmatter }) => {
             <a>projects:</a>
           </Link>
         </h3>
-        <CenteredGrid maxWidth='400px' minWidth='200px'>
-          {renderProjects()}
-        </CenteredGrid>
+        <ProjectsGrid />
       </section>
     </Layout>
   );
@@ -99,27 +74,4 @@ const BlogPost = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-`;
-
-const StyledProject = styled.div`
-  display: grid;
-  align-items: center;
-  justify-content: center;
-  transition: transform 250ms;
-  :hover {
-    transform: scale(1.02);
-  }
-
-  a {
-    background: none;
-  }
-  .grid-item {
-    display: grid;
-    align-items: center;
-    justify-content: center;
-    grid-template-rows: 0.25fr 1fr;
-    background: ${({ theme }) => theme.colors.white};
-    border-radius: 5px;
-    padding: 10px;
-  }
 `;

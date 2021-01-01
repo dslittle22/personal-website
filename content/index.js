@@ -3,11 +3,13 @@ export const projectsList = [
     title: 'Regex Tool',
     href: 'https://regex-tool.netlify.app',
     imageURL: '/regex-tool.png',
+    technologies: ['React.js', 'CSS', 'Regular Expressions'],
   },
   {
     title: 'Visual Countdown',
     href: 'https://visual-countdown.netlify.app',
     imageURL: '/visual-countdown.png',
+    technologies: ['React.js', 'CSS'],
   },
 ];
 
@@ -25,7 +27,7 @@ export const musicAudio = [
 export const musicLinks = [
   {
     title: 'Disco Dream',
-    description: 'A tasteful mashup of Vulfpeck and Katy Perry.',
+    description: '"nice1!" - Jack Stratton, Vulfpeck',
     href: 'https://youtu.be/o9qnCKs6MhQ',
   },
   {

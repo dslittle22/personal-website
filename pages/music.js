@@ -3,6 +3,7 @@ import Image from 'next/image';
 import styled from 'styled-components';
 import fs from 'fs';
 import path from 'path';
+import MusicPhotosGrid from '../components/MusicPhotosGrid';
 import { musicLinks, musicAudio } from '../content';
 
 const Music = ({ photos }) => {
@@ -12,7 +13,7 @@ const Music = ({ photos }) => {
         <a href={href} target='_blank'>
           <h4>{title}</h4>
         </a>
-        <small>{`- "${description}"`}</small>
+        <small>{description}</small>
       </li>
     ));
   };
@@ -28,26 +29,6 @@ const Music = ({ photos }) => {
         </div>
       </li>
     ));
-  };
-
-  const renderGallery = () => {
-    return photos.map(filename => {
-      return (
-        <div key={filename}>
-          <Image
-            src={'/' + path.join('music-photos', filename)}
-            height='400'
-            width='300'
-            objectFit='cover'
-          />
-          <Overlay>
-            <a href={'/' + path.join('music-photos', filename)} download>
-              Download
-            </a>
-          </Overlay>
-        </div>
-      );
-    });
   };
 
   return (
@@ -74,7 +55,7 @@ const Music = ({ photos }) => {
       </section>
       <section>
         <h3>Photos</h3>
-        <PhotoGallery>{renderGallery()}</PhotoGallery>
+        <MusicPhotosGrid photos={photos} />
       </section>
     </Layout>
   );
@@ -89,36 +70,6 @@ const EvenList = styled.ul`
   align-items: center;
   audio {
     margin-left: 1rem;
-  }
-`;
-
-const Overlay = styled.div`
-  position: relative;
-  width: 100%;
-  top: -64px;
-  margin-bottom: -64px;
-  transition: 400ms ease;
-  opacity: 0;
-  background: white;
-  display: grid;
-  align-items: center;
-  justify-content: center;
-  border-radius: 5px;
-`;
-
-const PhotoGallery = styled.div`
-  display: grid;
-  grid-gap: 20px;
-  justify-content: center;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  img {
-    border-radius: 5px;
-  }
-  div {
-    display: grid;
-  }
-  div:hover ${Overlay} {
-    opacity: 0.8;
   }
 `;
 
