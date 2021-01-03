@@ -1,15 +1,21 @@
 export const projectsList = [
   {
-    title: 'Regex Tool',
-    href: 'https://regex-tool.netlify.app',
-    imageURL: '/regex-tool.png',
-    technologies: ['React.js', 'CSS', 'Regular Expressions'],
+    title: 'Simple Tasks',
+    href: 'https://simpletasksonline.netlify.app/',
+    imageURL: '/simpletasks.png',
+    technologies: ['React.js', 'SQL', 'Express', 'styled-components'],
   },
   {
     title: 'Visual Countdown',
     href: 'https://visual-countdown.netlify.app',
     imageURL: '/visual-countdown.png',
-    technologies: ['React.js', 'CSS'],
+    technologies: ['React.js', 'TypeScript', 'styled-components'],
+  },
+  {
+    title: 'Regex Tool',
+    href: 'https://regex-tool.netlify.app',
+    imageURL: '/regex-tool.png',
+    technologies: ['React.js', 'CSS', 'Regular Expressions'],
   },
 ];
 
