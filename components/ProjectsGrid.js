@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Link from 'next/link';
 import { projectsList } from '../content';
 
-const ProjectsGrid = ({}) => {
+const ProjectsGrid = () => {
   const renderProjects = () => {
     return projectsList.map(project => (
       <StyledProject key={project.title}>
@@ -46,7 +46,8 @@ const StyledProjectsGrid = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(200px, 400px));
   grid-gap: 10px;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
+  margin: 0 auto;
 `;
 
 const StyledProject = styled.div`
