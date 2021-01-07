@@ -8,7 +8,7 @@ const Index = ({ filesWithFrontmatter }) => {
   const renderBlogPosts = () => {
     return filesWithFrontmatter.map(post => {
       return (
-        <div key={post.frontmatter.date}>
+        <div key={`${post.frontmatter.date}-${post.frontmatter.date}`}>
           <BlogPost>
             <div>
               <Link href={'/blog/' + post.slug}>
