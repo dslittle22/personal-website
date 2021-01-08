@@ -12,10 +12,16 @@ export const projectsList = [
     technologies: ['React.js', 'TypeScript', 'styled-components'],
   },
   {
+    title: "Conway's game of Life",
+    href: 'https://conwaysgameoflife-react.netlify.app',
+    imageURL: '/conway.png',
+    technologies: ['React.js', 'CSS'],
+  },
+  {
     title: 'Regex Tool',
     href: 'https://regex-tool.netlify.app',
     imageURL: '/regex-tool.png',
-    technologies: ['React.js', 'CSS', 'Regular Expressions'],
+    technologies: ['Regular Expressions', 'React.js', 'CSS'],
   },
 ];
 

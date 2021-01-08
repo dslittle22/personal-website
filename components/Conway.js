@@ -10,7 +10,7 @@ export const Conway = ({ width, height }) => {
     height === undefined
       ? window.innerWidth < 600
         ? Math.floor(innerHeight / 80)
-        : Math.floor(window.innerHeight / 65)
+        : Math.floor(window.innerHeight / 80)
       : Math.floor(height / 65);
 
   const numCols =
@@ -139,55 +139,64 @@ export const Conway = ({ width, height }) => {
           }}
         ></div>
       </div>
-      <Options>
-        <Buttons>
-          <button onClick={handleStartStopClick}>
-            {running ? 'Stop' : 'Start'}
-          </button>
-          <button onClick={handleClearClick}>Clear</button>
-          <button
-            onClick={() => {
-              setGrid(generateGrid(false));
-              if (!running) {
-                setTimeout(handleStartStopClick, tick);
-              }
-            }}
-          >
-            Random
-          </button>
-        </Buttons>
-        <LabeledSlider>
-          <label htmlFor='randomizer'>Percent living</label>
-          <input
-            type='range'
-            min='0'
-            max='100'
-            value={randomizer * 100}
-            onChange={e => setRandomizer(e.target.value / 100)}
-            onMouseDown={() => setRunning(false)}
-            onMouseUp={() => {
-              setGrid(generateGrid());
-              setTimeout(startSimulation, tick);
-            }}
-            id='randomizer'
-          />
-        </LabeledSlider>
-        <LabeledSlider>
-          <label htmlFor='tick'>Speed</label>
-          <input
-            type='range'
-            min='0'
-            max='800'
-            value={1000 - tick}
-            onChange={e => {
-              setTick(1000 - e.target.value);
-            }}
-            onMouseDown={() => setRunning(false)}
-            onMouseUp={startSimulation}
-            id='tick'
-          />
-        </LabeledSlider>
-      </Options>
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+        }}
+      >
+        <div>Try clicking and dragging your cursor across the game!</div>
+        <Options>
+          <Buttons>
+            <button onClick={handleStartStopClick}>
+              {running ? 'Stop' : 'Start'}
+            </button>
+            <button onClick={handleClearClick}>Clear</button>
+            <button
+              onClick={() => {
+                setGrid(generateGrid(false));
+                if (!running) {
+                  setTimeout(handleStartStopClick, tick);
+                }
+              }}
+            >
+              Reset
+            </button>
+          </Buttons>
+          <LabeledSlider>
+            <label htmlFor='randomizer'>Percent living</label>
+            <input
+              type='range'
+              min='0'
+              max='100'
+              value={randomizer * 100}
+              onChange={e => setRandomizer(e.target.value / 100)}
+              onMouseDown={() => setRunning(false)}
+              onMouseUp={() => {
+                setGrid(generateGrid());
+                setTimeout(startSimulation, tick);
+              }}
+              id='randomizer'
+            />
+          </LabeledSlider>
+          <LabeledSlider>
+            <label htmlFor='tick'>Speed</label>
+            <input
+              type='range'
+              min='0'
+              max='800'
+              value={1000 - tick}
+              onChange={e => {
+                setTick(1000 - e.target.value);
+              }}
+              onMouseDown={() => setRunning(false)}
+              onMouseUp={startSimulation}
+              id='tick'
+            />
+          </LabeledSlider>
+        </Options>
+      </div>
       <CellGrid numCols={numCols} numRows={numRows}>
         {grid.map((rows, r) =>
           rows.map((col, c) => (

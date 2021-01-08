@@ -16,7 +16,7 @@ const ProjectsGrid = () => {
                   Technologies used:
                   <ul>
                     {project.technologies.map(tech => (
-                      <li>{tech}</li>
+                      <li key={tech}>{tech}</li>
                     ))}
                   </ul>
                 </p>

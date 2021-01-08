@@ -7,19 +7,11 @@ const Error = () => {
     <Layout page='Projects'>
       <h1>Uh Oh!</h1>
       <p>
-        You visited a page that doesn't exist on my website. Sorry about that.
-        Feel free to{' '}
-        <Link href='/'>
-          <a>Go Home</a>
+        This page doesn't exist. Feel free to stick around and play Conway's
+        Game of Life, or go to the full sized version{' '}
+        <Link href='https://conwaysgameoflife-react.netlify.app/'>
+          <a>here.</a>
         </Link>
-        , or stick around and play{' '}
-        <a
-          href='https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life'
-          target='blank'
-        >
-          Conway's Game of Life
-        </a>
-        .
       </p>
       {typeof window !== 'undefined' ? <Conway /> : ''}
     </Layout>
