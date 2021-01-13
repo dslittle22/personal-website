@@ -3,6 +3,8 @@ import theme from '../styles/theme.js';
 import GlobalStyle from '../styles/global';
 import Head from 'next/head';
 import 'prismjs/themes/prism-okaidia.css';
+import Layout from '@/components/layout';
+import GridLayout from '@/components/GridLayout';
 
 const Global = createGlobalStyle`${GlobalStyle}`;
 
@@ -20,7 +22,11 @@ export default function App({ Component, pageProps }) {
         <meta name='viewport' content='width=device-width, initial-scale=1.0' />
       </Head>
       <ThemeProvider theme={theme}>
-        <Component {...pageProps} />
+        <Layout>
+          <GridLayout>
+            <Component {...pageProps} />
+          </GridLayout>
+        </Layout>
       </ThemeProvider>
     </>
   );

@@ -1,47 +1,50 @@
 import Link from 'next/link';
-import matter from 'gray-matter';
-import Layout from '../../components/layout';
+import Head from 'next/head';
+import { getBlogPostsWithFrontmatter } from '@/lib/mdx';
 import styled from 'styled-components';
-import getAllFiles from '../../lib/blogposts';
 
-const Index = ({ filesWithFrontmatter }) => {
+const Blog = ({ files }) => {
+  if (typeof window !== 'undefined') {
+    console.log(window.location.pathname);
+  }
   const renderBlogPosts = () => {
-    return filesWithFrontmatter.map(post => {
+    return files.map(frontmatter => {
       return (
-        <div key={post.frontmatter.date}>
-          <BlogPost>
-            <div>
-              <Link href={'/blog/' + post.slug}>
-                <a>{post.frontmatter.title + ':'}</a>
-              </Link>
-              {' ' + post.frontmatter.description}
-            </div>
-            <small>{post.frontmatter.date}</small>
-          </BlogPost>
-        </div>
+        <BlogPost key={frontmatter.date}>
+          <div>
+            <Link href={'/blog/' + frontmatter.slug}>
+              <a>{frontmatter.title + ':'}</a>
+            </Link>
+            {' ' + frontmatter.description}
+          </div>
+          <small>{frontmatter.date}</small>
+        </BlogPost>
       );
     });
   };
 
   return (
-    <Layout page='Blog'>
+    <>
+      <Head>
+        <title>{'Danny Little - Blog'}</title>
+      </Head>
       <div>
         Read my blog posts:
         {renderBlogPosts()}
       </div>
-    </Layout>
+    </>
   );
 };
 
 export const getStaticProps = async () => {
   return {
     props: {
-      filesWithFrontmatter: getAllFiles(),
+      files: await getBlogPostsWithFrontmatter(),
     },
   };
 };
 
-export default Index;
+export default Blog;
 
 const BlogPost = styled.div`
   padding-top: 0.5rem;

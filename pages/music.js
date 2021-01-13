@@ -1,10 +1,9 @@
-import Layout from '../components/layout';
-import Image from 'next/image';
 import styled from 'styled-components';
 import fs from 'fs';
 import path from 'path';
 import MusicPhotosGrid from '../components/MusicPhotosGrid';
 import { musicLinks, musicAudio } from '../content';
+import Head from 'next/head';
 
 const Music = ({ photos }) => {
   const renderLinks = () => {
@@ -32,7 +31,10 @@ const Music = ({ photos }) => {
   };
 
   return (
-    <Layout page='Music'>
+    <>
+      <Head>
+        <title>{'Danny Little - Music'}</title>
+      </Head>
       <h2>Music</h2>
       <section>
         <p>
@@ -53,11 +55,9 @@ const Music = ({ photos }) => {
           {renderAudioFiles()}
         </EvenList>
       </section>
-      <section>
-        <h3>Photos</h3>
-        <MusicPhotosGrid photos={photos} />
-      </section>
-    </Layout>
+      <h3>Photos</h3>
+      <MusicPhotosGrid photos={photos} />
+    </>
   );
 };
 

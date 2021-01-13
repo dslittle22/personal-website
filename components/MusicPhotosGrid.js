@@ -23,20 +23,12 @@ const MusicPhotosGrid = ({ photos }) => {
     });
   };
 
-  return <PhotoGallery>{renderGallery()}</PhotoGallery>;
+  return (
+    <PhotoGallery className='sidebar-span'>{renderGallery()}</PhotoGallery>
+  );
 };
 
 export default MusicPhotosGrid;
-
-const EvenList = styled.ul`
-  margin-top: 1rem;
-  display: grid;
-  grid-auto-rows: minmax(40px, auto);
-  align-items: center;
-  audio {
-    margin-left: 1rem;
-  }
-`;
 
 const Overlay = styled.div`
   position: relative;
@@ -54,6 +46,7 @@ const Overlay = styled.div`
 
 const PhotoGallery = styled.div`
   display: grid;
+  width: 100%;
   grid-gap: 20px;
   justify-content: center;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));

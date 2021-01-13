@@ -35,7 +35,11 @@ const ProjectsGrid = () => {
     ));
   };
 
-  return <StyledProjectsGrid>{renderProjects()}</StyledProjectsGrid>;
+  return (
+    <StyledProjectsGrid className='sidebar-span'>
+      {renderProjects()}
+    </StyledProjectsGrid>
+  );
 };
 
 export default ProjectsGrid;
@@ -43,6 +47,7 @@ export default ProjectsGrid;
 const StyledProjectsGrid = styled.div`
   padding-top: 1rem;
   display: grid;
+  width: 100%;
   grid-template-columns: repeat(auto-fit, minmax(200px, 400px));
   grid-gap: 10px;
   align-items: center;

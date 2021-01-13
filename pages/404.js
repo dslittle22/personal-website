@@ -1,10 +1,13 @@
 import Link from 'next/link';
-import Layout from '../components/layout';
+import Head from 'next/head';
 import Conway from '../components/Conway';
 
 const Error = () => {
   return (
-    <Layout page='Projects'>
+    <>
+      <Head>
+        <title>{'Danny Little - 404'}</title>
+      </Head>
       <h1>Uh Oh!</h1>
       <p>
         This page doesn't exist. Feel free to stick around and play Conway's
@@ -14,7 +17,7 @@ const Error = () => {
         </Link>
       </p>
       {typeof window !== 'undefined' ? <Conway /> : ''}
-    </Layout>
+    </>
   );
 };
 

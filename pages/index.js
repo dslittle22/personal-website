@@ -1,22 +1,21 @@
-import Layout from '../components/layout';
 import ProjectsGrid from '../components/ProjectsGrid';
 import styled from 'styled-components';
-import getAllFiles from '../lib/blogposts';
 import Link from 'next/link';
-
-const Index = ({ filesWithFrontmatter }) => {
+import { getBlogPostsWithFrontmatter } from '@/lib/mdx';
+import Head from 'next/head';
+const Index = ({ files }) => {
   const renderBlogPosts = () => {
-    return filesWithFrontmatter.map(post => {
+    return files.map(post => {
       return (
-        <div key={`${post.frontmatter.date}-${post.frontmatter.date}`}>
+        <div key={`${post.date}-${post.date}`}>
           <BlogPost>
             <div>
               <Link href={'/blog/' + post.slug}>
-                <a>{post.frontmatter.title + ':'}</a>
+                <a>{post.title + ':'}</a>
               </Link>
-              {' ' + post.frontmatter.description}
+              {' ' + post.description}
             </div>
-            <small>{`Written on ${post.frontmatter.date}`}</small>
+            <small>{`Written on ${post.date}`}</small>
           </BlogPost>
         </div>
       );
@@ -24,7 +23,10 @@ const Index = ({ filesWithFrontmatter }) => {
   };
 
   return (
-    <Layout page='home'>
+    <>
+      <Head>
+        <title>{'Danny Little'}</title>
+      </Head>
       <section>
         <p>
           Hi! I'm Danny Little. I'm a full stack web developer and a musician.
@@ -37,34 +39,31 @@ const Index = ({ filesWithFrontmatter }) => {
           bottom of the page.
         </p>
       </section>
-      <section>
-        <h3>
-          Read my{' '}
-          <Link href='/blog'>
-            <a>blog:</a>
-          </Link>{' '}
-        </h3>
-        {renderBlogPosts()}
-      </section>
-      <section>
-        <h3>
-          Look at my{' '}
-          <Link href='/projects'>
-            <a>projects:</a>
-          </Link>
-        </h3>
-        <ProjectsGrid />
-      </section>
-    </Layout>
+      <h3>
+        Read my{' '}
+        <Link href='/blog'>
+          <a>blog:</a>
+        </Link>{' '}
+      </h3>
+      <section>{renderBlogPosts()}</section>
+      <h3>
+        Look at my{' '}
+        <Link href='/projects'>
+          <a>projects:</a>
+        </Link>
+      </h3>
+      <ProjectsGrid />
+    </>
+    //</Layout>
   );
 };
 
 export default Index;
 
-export const getStaticProps = () => {
+export const getStaticProps = async () => {
   return {
     props: {
-      filesWithFrontmatter: getAllFiles(),
+      files: await getBlogPostsWithFrontmatter(),
     },
   };
 };

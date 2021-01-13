@@ -5,31 +5,43 @@ const GlobalStyle = css`
   :root {
     font-size: 16px;
   }
+  html {
+    height: 100%;
+  }
   body {
+    height: 100%;
     font-family: Arial, Helvetica, sans-serif;
     background: ${theme.colors.background};
     color: ${theme.colors.text};
     letter-spacing: 0.3px;
     font-size: clamp(14px, 1rem + 0.5vw, 18px);
-    line-height: 1.4;
+    line-height: 1.5;
 
-    /* for sticky bottom footer */
-    div#__next {
-      display: flex;
-      flex-direction: column;
-      height: 100vh;
+    #__next {
+      min-height: 100%;
+      display: grid;
+      grid-template-areas:
+        'header'
+        'main'
+        'footer';
+      grid-template-rows: auto 1fr auto;
     }
   }
 
   main {
-    width: min(1000px, 85%);
+    width: 100%;
     letter-spacing: 0;
     margin: 0 auto;
-
-    /* for sticky bottom footer */
-    flex: 1 0 auto;
+    grid-area: main;
   }
 
+  header {
+    grid-area: header;
+  }
+
+  footer {
+    grid-area: footer;
+  }
   *,
   ::before,
   ::after {
