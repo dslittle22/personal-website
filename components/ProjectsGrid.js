@@ -26,7 +26,7 @@ const ProjectsGrid = () => {
                 alt={`Image of ${project.title}`}
                 width={140}
                 height={180}
-                objectFit='cover'
+                objectFit='responsive'
               />
             </div>
           </a>
@@ -56,6 +56,7 @@ const StyledProjectsGrid = styled.div`
 `;
 
 const StyledProject = styled.div`
+  width: 100%;
   background: ${({ theme }) => theme.colors.white};
   border-radius: 5px;
   transition: transform 250ms;
@@ -68,6 +69,9 @@ const StyledProject = styled.div`
   }
   .grid-item {
     display: flex;
+    @media (max-width: 500px) {
+      flex-direction: column;
+    }
     justify-content: space-between;
     background: ${({ theme }) => theme.colors.white};
     border-radius: 5px;

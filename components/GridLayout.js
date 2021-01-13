@@ -24,9 +24,6 @@ const Grid = styled.div`
   display: grid;
   gap: 10px;
   grid-template-columns: ${({ gtc }) => gtc};
-  /* grid-template-columns: calc((100% - 1100px) / 2) 3fr 11fr 3fr calc(
-      (100% - 1100px) / 2
-    ); */
 
   p {
     padding: 0;
@@ -71,5 +68,9 @@ const Grid = styled.div`
       text-align: left;
       grid-column: 2 / -2;
     }
+  }
+  @media (max-width: 500px) {
+    grid-template-columns: none;
+    padding: 0 10%;
   }
 `;

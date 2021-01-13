@@ -1,9 +1,9 @@
-import Image from 'next/image';
 import CustomLink from '@/components/CustomLink';
+import InsetImage from './InsetImage';
 
 const MDXComponents = {
   a: CustomLink,
-  Image,
+  InsetImage: InsetImage,
 };
 
 export default MDXComponents;
