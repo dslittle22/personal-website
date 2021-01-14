@@ -20,12 +20,12 @@ const Music = ({ photos }) => {
   const renderAudioFiles = () => {
     return musicAudio.map(({ title, filename }) => (
       <li key={filename}>
-        <div style={{ display: 'flex' }}>
+        <StyledMp3>
           {title}
-          <audio style={{ height: '30px' }} controls>
+          <audio controls>
             <source src={path.join('audio', filename)} />
           </audio>
-        </div>
+        </StyledMp3>
       </li>
     ));
   };
@@ -69,7 +69,16 @@ const EvenList = styled.ul`
   grid-auto-rows: minmax(40px, auto);
   align-items: center;
   audio {
-    margin-left: 1rem;
+    height: 30px;
+    margin-left: 0.5rem;
+    max-width: 100%;
+  }
+`;
+
+const StyledMp3 = styled.div`
+  display: flex;
+  @media only screen and (max-width: 500px) {
+    flex-direction: column;
   }
 `;
 
