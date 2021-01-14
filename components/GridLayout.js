@@ -23,12 +23,15 @@ const Grid = styled.div`
   margin: 0 auto;
   display: grid;
   gap: 10px;
-  grid-template-columns: ${({ gtc }) => gtc};
+  grid-template-columns: ${props => props.gtc};
 
   p {
     padding: 0;
     margin: 0;
     padding-bottom: calc(1rem - 10px);
+    :last-of-type {
+      padding: 0;
+    }
   }
   > * {
     grid-column: 3 / -3;
@@ -67,10 +70,11 @@ const Grid = styled.div`
     .sidebar {
       text-align: left;
       grid-column: 2 / -2;
+      border: ${({ theme }) => `1px solid ${theme.colors.link}`};
     }
   }
   @media (max-width: 500px) {
-    grid-template-columns: none;
-    padding: 0 10%;
+    grid-template-columns: 1fr;
+    padding: 0 6%;
   }
 `;

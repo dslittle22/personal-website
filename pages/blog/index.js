@@ -4,9 +4,6 @@ import { getBlogPostsWithFrontmatter } from '@/lib/mdx';
 import styled from 'styled-components';
 
 const Blog = ({ files }) => {
-  if (typeof window !== 'undefined') {
-    console.log(window.location.pathname);
-  }
   const renderBlogPosts = () => {
     return files.map(frontmatter => {
       return (

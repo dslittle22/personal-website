@@ -21,13 +21,16 @@ const ProjectsGrid = () => {
                   </ul>
                 </p>
               </div>
-              <Image
-                src={project.imageURL}
-                alt={`Image of ${project.title}`}
-                width={140}
-                height={180}
-                objectFit='responsive'
-              />
+              <div className='image-container'>
+                <Image
+                  src={project.imageURL}
+                  alt={`Image of ${project.title}`}
+                  height={project.imageHeight}
+                  width={project.imageWidth}
+                  layout='responsive'
+                  // objectFit='responsive'
+                />
+              </div>
             </div>
           </a>
         </Link>
@@ -56,10 +59,10 @@ const StyledProjectsGrid = styled.div`
 `;
 
 const StyledProject = styled.div`
-  width: 100%;
   background: ${({ theme }) => theme.colors.white};
   border-radius: 5px;
   transition: transform 250ms;
+  height: 100%;
   :hover {
     transform: scale(1.02);
   }
@@ -68,13 +71,25 @@ const StyledProject = styled.div`
     background: none;
   }
   .grid-item {
-    display: flex;
-    @media (max-width: 500px) {
-      flex-direction: column;
-    }
-    justify-content: space-between;
-    background: ${({ theme }) => theme.colors.white};
-    border-radius: 5px;
     padding: 10px;
+    display: grid;
+    gap: 10px;
+    grid-template-columns: 3fr 2fr;
+    grid-template-rows: 1fr;
+    @media (max-width: 500px) {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto auto;
+      align-items: center;
+      .image-container {
+        width: 80%;
+        margin: 0 auto;
+        div {
+          max-height: 100%;
+        }
+        img {
+          object-fit: cover;
+        }
+      }
+    }
   }
 `;

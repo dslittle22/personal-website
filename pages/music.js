@@ -40,7 +40,7 @@ const Music = ({ photos }) => {
         <p>
           I'm tenor saxophone player, but I also play baritone/alto/soprano
           saxophones. I can get away with playing flute, drums, bass, or guitar,
-          but those aren't my strongsuit. I mostly play jazz, funk, and R&B.
+          but those aren't my strong suit. I mostly play jazz, funk, and R&B.
         </p>
         <p>
           I'm a bit of a music theory nerd, and I enjoy arranging and

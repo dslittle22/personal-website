@@ -49,7 +49,8 @@ with this HTML:
 gives us:
 
 <InsetImage
-  percentWidth={60}
+  quality={95}
+  percentWidth={70}
   src='/blog/grid-1.png'
   alt='CSS grid container with items'
   imgWidth='466'
@@ -65,11 +66,12 @@ justify-items: center;
 then the `div`'s in our grid are horizontally centered, but vertically unaffected.
 
 <InsetImage
-  percentWidth={60}
+  quality={95}
+  percentWidth={70}
   src='/blog/grid-2.png'
   alt='CSS grid container with horizontally centered items'
-  imgWidth='466'
-  imgHeight='197'
+  imgWidth='468'
+  imgHeight='198'
 />
 
 Or if we wanted to vertically align our items toward the end of their containers:
@@ -79,10 +81,11 @@ align-items: end;
 ```
 
 <InsetImage
-  percentWidth={60}
+  quality={95}
+  percentWidth={70}
   src='/blog/grid-3.png'
   alt='CSS grid container with  each item at the bottom of its grid space'
-  imgWidth='466'
+  imgWidth='469'
   imgHeight='197'
 />
 
@@ -103,31 +106,34 @@ align-content: end;
 ```
 
 <InsetImage
-  percentWidth={60}
+  quality={95}
+  percentWidth={70}
   src='/blog/grid-4.png'
   alt='CSS grid container with both items stacked in the bottom of the container'
-  imgWidth='466'
+  imgWidth='467'
   imgHeight='197'
 />
 
 Instead of the content being being centered within their allocated grid space, that grid space itself has moved. That's a little confusing, so let's use Chrome dev tools to see this more clearly. Here's the grid with `align-items: end;`
 
 <InsetImage
-  percentWidth={60}
+  quality={95}
+  percentWidth={70}
   src='/blog/grid-5.png'
   alt='CSS grid container with align-items: end, and dev tools'
-  imgWidth='466'
-  imgHeight='197'
+  imgWidth='464'
+  imgHeight='194'
 />
 
 And with `align-content: end;`
 
 <InsetImage
-  percentWidth={60}
+  quality={95}
+  percentWidth={70}
   src='/blog/grid-6.png'
   alt='CSS grid container with align-content: end, and dev tools'
-  imgWidth='466'
-  imgHeight='197'
+  imgWidth='465'
+  imgHeight='195'
 />
 
 This clears up exactly what's going on. `align-items` changes where the items are within their allocated space (dotted lined boxes), but keeps this space stretched. `align-content`, on the other hand, changes where the space itself is.
@@ -141,11 +147,12 @@ align-content: space-evenly;
 ```
 
 <InsetImage
-  percentWidth={60}
+  quality={95}
+  percentWidth={70}
   src='/blog/grid-7.png'
   alt='CSS grid container with space-evenly'
   imgWidth='466'
-  imgHeight='197'
+  imgHeight='195'
 />
 
 Or, to have items press up against the container:
@@ -154,10 +161,9 @@ Or, to have items press up against the container:
 align-content: space-between;
 ```
 
-<!-- ![CSS grid with space-between](/blog/grid-8.png) -->
-
 <InsetImage
-  percentWidth={60}
+  quality={95}
+  percentWidth={70}
   src='/blog/grid-8.png'
   alt='CSS grid container with space-between'
   imgWidth='466'
