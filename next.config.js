@@ -1,5 +1,5 @@
-const withMDX = require('@next/mdx')();
-
-module.exports = withMDX({
-  pageExtensions: ['js', 'jsx', 'md', 'mdx'],
-});
+module.exports = {
+    compiler: {
+      styledComponents: true,
+    },
+  }

@@ -3,21 +3,21 @@ import Link from 'next/link';
 import styled from 'styled-components';
 
 const PostButtons = ({ nextPost, lastPost }) => {
-  return (
+  return (  
     <StyledButtons>
-      {lastPost !== null ? (
+      {lastPost ? (
         <button>
           <Link href={'/blog/' + lastPost.slug}>
-            <a>{`< Last Post: ${lastPost.frontmatter.title}`}</a>
+            <a>{`< Last: ${lastPost.title}`}</a>
           </Link>
         </button>
       ) : (
         <div></div>
       )}
-      {nextPost !== null ? (
+      {nextPost ? (
         <button>
           <Link href={'/blog/' + nextPost.slug}>
-            <a>{`Next Post: ${nextPost.frontmatter.title} >`}</a>
+            <a>{`Next: ${nextPost.title} >`}</a>
           </Link>
         </button>
       ) : (
@@ -34,6 +34,7 @@ const StyledButtons = styled.div`
   display: grid;
   justify-content: space-between;
   grid-template-columns: auto auto;
+  gap: 10px;
   button {
     border: none;
     padding: 5px;

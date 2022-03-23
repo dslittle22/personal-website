@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Link from 'next/link';
 import { getBlogPostsWithFrontmatter } from '@/lib/mdx';
 import Head from 'next/head';
+import React from 'react';
 const Index = ({ files }) => {
   const renderBlogPosts = () => {
     return files.map(post => {
@@ -23,7 +24,7 @@ const Index = ({ files }) => {
   };
 
   return (
-    <>
+    <React.Fragment>
       <Head>
         <title>{'Danny Little'}</title>
       </Head>
@@ -53,8 +54,7 @@ const Index = ({ files }) => {
         </Link>
       </h3>
       <ProjectsGrid />
-    </>
-    //</Layout>
+    </React.Fragment>
   );
 };
 

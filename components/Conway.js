@@ -103,7 +103,6 @@ export const Conway = ({ width, height }) => {
 
   const startSimulation = () => {
     if (!running) {
-      console.log('starting simulation');
       setRunning(true);
       runningRef.current = true;
       simulate();

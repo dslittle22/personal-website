@@ -12,7 +12,7 @@ const DesktopHeader = () => {
             justifyContent: 'space-between',
           }}
         >
-          <Link href='https://github.com/dannylittle715'>
+          <Link href='https://github.com/dslittle22'>
             <a>Github</a>
           </Link>
           <Link href='https://www.linkedin.com/in/danny-little-3b3665178/'>

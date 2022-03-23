@@ -5,12 +5,13 @@ import Head from 'next/head';
 import 'prismjs/themes/prism-okaidia.css';
 import Layout from '@/components/layout';
 import GridLayout from '@/components/GridLayout';
+import React from 'react';
 
 const Global = createGlobalStyle`${GlobalStyle}`;
 
 export default function App({ Component, pageProps }) {
   return (
-    <>
+    <React.Fragment>
       <Global />
       <Head>
         <link rel='shortcut icon' href='favicon/favicon.ico' />
@@ -28,6 +29,6 @@ export default function App({ Component, pageProps }) {
           </GridLayout>
         </Layout>
       </ThemeProvider>
-    </>
+    </React.Fragment>
   );
 }
