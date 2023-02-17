@@ -12,22 +12,25 @@ type Props = {
   project: Project;
 };
 
-export default function ProjectPreview({ project }: Props) {
+export default function ProjectPreview({ project, ...props }: Props) {
   function Parent({ children }: { children: React.ReactNode }) {
     return project.href == undefined ? (
-      <div>{children}</div>
+      <div {...props}>{children}</div>
     ) : (
-      <SmartLink href={project.href}>{children}</SmartLink>
+      <SmartLink href={project.href} {...props}>
+        {children}
+      </SmartLink>
     );
   }
 
   return (
-    <div style={{ maxHeight: "300px" }}>
-      <Parent>
+    <Parent>
+      <div>
         <h3 style={{ display: "inline" }}>{project.title}</h3>
-        <div>{project.description}</div>
-        <SizedImage imageSrc={project.imageSrc} round={5} maxHeight={200} />
-      </Parent>
-    </div>
+        <br />
+        <small>{project.description}</small>
+      </div>
+      <SizedImage imageSrc={project.imageSrc} maxHeight={300} />
+    </Parent>
   );
 }

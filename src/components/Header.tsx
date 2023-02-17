@@ -4,7 +4,6 @@ import ThemeSwitcher from "@/components/ThemeSwitcher";
 import styles from "@/styles/header.module.scss";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect } from "react";
 
 export default function Header() {
   let path = usePathname()?.substring(1);

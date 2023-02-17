@@ -3,6 +3,7 @@ export type ImageType = {
   alt: string;
   width: number;
   height: number;
+  borderRadius?: string;
 };
 
 export const allImages: { [key: string]: ImageType } = {

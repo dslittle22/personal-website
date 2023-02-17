@@ -18,7 +18,7 @@ const projects: Project[] = [
   {
     title: "Conway's Game of Life",
     description:
-      "An interactive implementation of Conway's Game of Life, written in React.",
+      "An interactive React implementation of Conway's Game of Life.",
     imageSrc: "/conway.png",
     href: "https://conwaysgameoflife-react.netlify.app/",
   },

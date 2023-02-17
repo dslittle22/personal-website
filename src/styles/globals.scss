@@ -26,18 +26,20 @@ html {
 }
 
 body {
-  --edge-width: minmax(15%, 200px);
-  --sidebar-width: minmax(10%, 200px);
-  --middle-width: minmax(50%, 800px);
   font-family: var(--font-prose);
 
   min-height: 100%;
   display: grid;
   grid-template-areas:
     "theme        header           header  header            header-right"
-    "left-pad     main             main    main              right-pad"
+    "left-pad     main-left        main    main-right        right-pad"
     "footer       footer           footer  footer            footer";
   grid-template-rows: auto 1fr auto;
+
+  --edge-width: minmax(15%, 1fr);
+  --sidebar-width: minmax(10%, 100px);
+  --middle-width: minmax(auto, 600px);
+
   grid-template-columns:
     var(--edge-width) var(--sidebar-width) var(--middle-width)
     var(--sidebar-width) var(--edge-width);
@@ -46,6 +48,7 @@ body {
   color: var(--color-text);
   font-size: clamp(14px, 14px + 0.5vw, 18px);
   line-height: 1.4;
+  width: 100%;
   // todo: check if these affect reload in prod!
   // transition: color 400ms;
   // transition: background-color 400ms;
@@ -89,7 +92,8 @@ li {
 }
 
 main {
-  grid-area: main;
+  // grid-area: main;
+  grid-column: 2 / span 3;
   p + *:not(p) {
     margin-top: 1em;
   }
