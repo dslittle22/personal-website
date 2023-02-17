@@ -9,32 +9,37 @@ export type ImageType = {
 export const allImages: { [key: string]: ImageType } = {
   "/bitwrought.png": {
     src: "/bitwrought.png",
-    alt: "alt",
+    alt: "image of bitwrought cli app in a terminal",
     width: 1682,
     height: 858,
   },
   "/subjectsearcher.png": {
     src: "/subjectsearcher.png",
-    alt: "alt",
+    alt: "image of subject searcher, a wrapper on Bowdoin's classfinder",
     width: 3566,
     height: 1996,
   },
-  "/conway.png": { src: "/conway.png", alt: "alt", width: 4208, height: 2168 },
+  "/conway.png": { 
+    src: "/conway.png", 
+    alt: "image of conway's game of life implementation", 
+    width: 4208, 
+    height: 2168 
+  },
   "/simpletasks.png": {
     src: "/simpletasks.png",
-    alt: "alt",
+    alt: "image of simpletasks web app",
     width: 3452,
     height: 1950,
   },
   "/visual-countdown.png": {
     src: "/visual-countdown.png",
-    alt: "alt",
+    alt: "image of visual countdown web app",
     width: 650,
     height: 838,
   },
   "/regex-tool.png": {
     src: "/regex-tool.png",
-    alt: "alt",
+    alt: "image of regex tool web app",
     width: 705,
     height: 846,
   },
