@@ -48,7 +48,6 @@ type Props = {
 };
 
 export default function ProjectsList(props: Props) {
-  console.log(process.env.LOCAL);
   let count = props.count;
   if (count === undefined) {
     count = projects.length;

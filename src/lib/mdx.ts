@@ -30,6 +30,7 @@ export async function getFrontmatterBySlug(slug: string) {
   return {
     ...frontmatter,
     slug,
+    // @ts-ignore
     date: frontmatter.date.toISOString().substring(0, 10),
   } as Frontmatter;
 }
