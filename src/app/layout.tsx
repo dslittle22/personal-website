@@ -1,0 +1,46 @@
+// import "@/styles/prism-material-dark.css";
+import { Roboto_Serif, Open_Sans } from "@next/font/google";
+
+import "styles/globals.scss";
+import "styles/code.scss";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+
+const heading = Roboto_Serif({
+  subsets: ["latin"],
+  variable: "--font-heading",
+  display: "swap",
+});
+
+const prose = Open_Sans({
+  subsets: ["latin"],
+  variable: "--font-prose",
+  display: "swap",
+});
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  const setInitialTheme = `
+    const theme = window.localStorage.getItem('theme')
+    const fallbackTheme = theme || window.matchMedia('(prefers-color-scheme: dark)').matches
+        ? 'dark'
+        : 'light';
+    document.body.dataset.theme = theme || fallbackTheme
+  `;
+
+  return (
+    <html lang="en" className={`${heading.variable} ${prose.variable}`}>
+      <head />
+
+      <body>
+        <script dangerouslySetInnerHTML={{ __html: setInitialTheme }}></script>
+        <Header />
+        <main>{children}</main>
+        <Footer />
+      </body>
+    </html>
+  );
+}

@@ -1,0 +1,129 @@
+body[data-theme="light"] {
+  --color-background: hsl(50, 84%, 90%);
+  --color-accent: hsl(185, 76%, 43%);
+  --color-text: hsl(0, 0%, 35%);
+  --color-heading: hsl(0, 0%, 20%);
+}
+
+body[data-theme="dark"] {
+  --color-heading: hsl(50, 50%, 80%);
+  --color-text: hsl(50, 21%, 72%);
+  --color-accent: hsl(185, 78%, 32%);
+  --color-background: hsl(0, 0%, 15%);
+}
+
+html {
+  height: 100%;
+}
+
+*,
+::before,
+::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
+
+body {
+  --edge-width: minmax(15%, 200px);
+  --sidebar-width: minmax(10%, 200px);
+  --middle-width: minmax(50%, 800px);
+  font-family: var(--font-prose);
+
+  min-height: 100%;
+  display: grid;
+  grid-template-areas:
+    "theme        header           header  header            header-right"
+    "left-pad     main             main    main              right-pad"
+    "footer       footer           footer  footer            footer";
+  grid-template-rows: auto 1fr auto;
+  grid-template-columns:
+    var(--edge-width) var(--sidebar-width) var(--middle-width)
+    var(--sidebar-width) var(--edge-width);
+
+  background-color: var(--color-background);
+  color: var(--color-text);
+  font-size: clamp(14px, 14px + 0.5vw, 18px);
+  line-height: 1.4;
+  // todo: check if these affect reload in prod!
+  // transition: color 400ms;
+  // transition: background-color 400ms;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--color-heading);
+  font-family: var(--font-heading);
+}
+
+a,
+a h1,
+a h2,
+a h3,
+a h4,
+a h5,
+a h6 {
+  color: var(--color-accent);
+  text-decoration: none;
+
+  /* for link animation */
+  transition: background-size 250ms;
+  background-image: linear-gradient(var(--color-accent), var(--color-accent));
+  background-position: 0% 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 2px;
+
+  &:hover,
+  :focus {
+    background-size: 100% 2px;
+  }
+}
+
+li {
+  margin-left: 20px;
+}
+
+main {
+  grid-area: main;
+  p + *:not(p) {
+    margin-top: 1em;
+  }
+  *:not(p) + p {
+    margin-top: 1em;
+  }
+  p + p {
+    margin-top: 1em;
+  }
+}
+
+section + * {
+  margin-top: 1em;
+}
+
+.musicList {
+  li + li {
+    padding-top: 0.5em;
+  }
+}
+
+.footnotes {
+  font-size: smaller;
+  border-top: 1px solid #30363d;
+}
+
+/* Hide the section label for visual users. */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  word-wrap: normal;
+  border: 0;
+}

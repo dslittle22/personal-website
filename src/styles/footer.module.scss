@@ -1,0 +1,20 @@
+.footer {
+  grid-area: footer;
+  font-family: var(--font-heading);
+  padding: 0.5em 0;
+  background-color: var(--color-text);
+  display: grid;
+  justify-content: center;
+  margin-top: 1em;
+  font-size: 0.85em;
+}
+
+.links {
+  a + a {
+    margin-left: 0.75rem;
+  }
+}
+.bottomText {
+  margin: 0 auto;
+  color: var(--color-background);
+}

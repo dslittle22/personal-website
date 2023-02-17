@@ -1,0 +1,33 @@
+.wrapper {
+  padding-top: 1em;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr));
+  & > div {
+    border: 1px solid var(--color-text);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    & > * {
+      padding: 1em;
+    }
+
+    a {
+      background-image: none;
+    }
+    a:hover {
+      background-image: none;
+    }
+
+    a div {
+      color: var(--color-text);
+    }
+
+    img {
+      margin: 0.5em auto;
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+  }
+}
