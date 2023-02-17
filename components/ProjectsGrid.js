@@ -1,45 +1,42 @@
-import Image from 'next/image';
-import styled from 'styled-components';
-import Link from 'next/link';
-import { projectsList } from '../content';
+import Image from "next/image";
+import styled from "styled-components";
+import Link from "next/link";
+import { projectsList } from "../content";
 
 const ProjectsGrid = () => {
   const renderProjects = () => {
-    return projectsList.map(project => (
+    return projectsList.map((project) => (
       <StyledProject key={project.title}>
-        <Link href={project.href}>
-          <a target='_blank'>
-            <div className='grid-item'>
-              <div>
-                <h3>{project.title}</h3>
-                <p>
-                  Technologies used:
-                  <ul>
-                    {project.technologies.map(tech => (
-                      <li key={tech}>{tech}</li>
-                    ))}
-                  </ul>
-                </p>
-              </div>
-              <div className='image-container'>
-                <Image
-                  src={project.imageURL}
-                  alt={`Image of ${project.title}`}
-                  height={project.imageHeight}
-                  width={project.imageWidth}
-                  layout='responsive'
-                  // objectFit='responsive'
-                />
-              </div>
+        <Link href={project.href} target="_blank">
+          <div className="grid-item">
+            <div>
+              <h3>{project.title}</h3>
+              <p>
+                Technologies used:
+                <ul>
+                  {project.technologies.map((tech) => (
+                    <li key={tech}>{tech}</li>
+                  ))}
+                </ul>
+              </p>
             </div>
-          </a>
+            <div className="image-container">
+              <Image
+                src={project.imageURL}
+                alt={`Image of ${project.title}`}
+                // height={project.imageHeight}
+                // width={project.imageWidth}
+                fill={true}
+              />
+            </div>
+          </div>
         </Link>
       </StyledProject>
     ));
   };
 
   return (
-    <StyledProjectsGrid className='sidebar-span'>
+    <StyledProjectsGrid className="sidebar-span">
       {renderProjects()}
     </StyledProjectsGrid>
   );

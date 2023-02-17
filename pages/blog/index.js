@@ -10,7 +10,7 @@ const Blog = ({ files }) => {
         <BlogPost key={frontmatter.date}>
           <div>
             <Link href={'/blog/' + frontmatter.slug}>
-              <a>{frontmatter.title + ':'}</a>
+              {frontmatter.title + ':'}
             </Link>
             {' ' + frontmatter.description}
           </div>

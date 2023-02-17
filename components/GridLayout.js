@@ -1,21 +1,25 @@
-import styled from 'styled-components';
+import styled from "styled-components";
+import { useEffect, useState } from "react";
 
 export default function GridLayout({ children }) {
-  let gtc = `
+  useEffect(() => {
+    first;
+    setGtc(`
   calc((100% - 1200px) / 2) 3fr 11fr 3fr calc(
     (100% - 1200px) / 2
   )
-  `;
-  if (
-    typeof window !== 'undefined' &&
-    window.location.pathname.startsWith('/blog')
-  ) {
-    gtc = `
+  `);
+    if (window.location.pathname.startsWith("/blog")) {
+      setGtc(`
     calc((100% - 1100px) / 2) 3fr 11fr 3fr calc(
       (100% - 1100px) / 2
     )
-    `;
-  }
+    `);
+    }
+  }, []);
+
+  const [gtc, setGtc] = useState("");
+
   return <Grid gtc={gtc}>{children}</Grid>;
 }
 
@@ -23,7 +27,7 @@ const Grid = styled.div`
   margin: 0 auto;
   display: grid;
   gap: 10px;
-  grid-template-columns: ${props => props.gtc};
+  grid-template-columns: ${(props) => props.gtc};
 
   p {
     padding: 0;

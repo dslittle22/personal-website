@@ -3,12 +3,12 @@ import Link from 'next/link';
 import styled from 'styled-components';
 
 const PostButtons = ({ nextPost, lastPost }) => {
-  return (  
+  return (
     <StyledButtons>
       {lastPost ? (
         <button>
           <Link href={'/blog/' + lastPost.slug}>
-            <a>{`< Last: ${lastPost.title}`}</a>
+            {`< Last: ${lastPost.title}`}
           </Link>
         </button>
       ) : (
@@ -17,7 +17,7 @@ const PostButtons = ({ nextPost, lastPost }) => {
       {nextPost ? (
         <button>
           <Link href={'/blog/' + nextPost.slug}>
-            <a>{`Next: ${nextPost.title} >`}</a>
+            {`Next: ${nextPost.title} >`}
           </Link>
         </button>
       ) : (

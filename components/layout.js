@@ -1,31 +1,31 @@
-import { useEffect } from 'react';
-import Head from 'next/head';
-import DesktopHeader from './DesktopHeader';
-import MobileHeader from './MobileHeader';
-import Footer from './Footer';
+import { useEffect } from "react";
+import Head from "next/head";
+import DesktopHeader from "./DesktopHeader";
+import MobileHeader from "./MobileHeader";
+import Footer from "./Footer";
 
-export const siteTitle = 'Danny Little';
+export const siteTitle = "Danny Little";
 
 export default function Layout({ children, page }) {
   return (
-    <>
-      <Head>
+    <React.Fragment>
+      {/* <Head>
         <title>{page ? `Danny Little - ${page}` : `Danny Little`}</title>
         <meta
-          property='og:title'
+          property="og:title"
           content={page ? `Danny Little - ${page}` : `Danny Little`}
-          key='title'
+          key="title"
         />
-        <link rel='icon' href='/favicon/favicon.ico' />
+        <link rel="icon" href="/favicon/favicon.ico" />
         <meta
-          name='description'
-          content='Personal website of web developer Danny Little.'
+          name="description"
+          content="Personal website of web developer Danny Little."
         />
-      </Head>
+  </Head>*/}
       <MobileHeader />
       <DesktopHeader />
       <main>{children}</main>
       <Footer />
-    </>
+    </React.Fragment>
   );
 }

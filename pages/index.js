@@ -12,7 +12,7 @@ const Index = ({ files }) => {
           <BlogPost>
             <div>
               <Link href={'/blog/' + post.slug}>
-                <a>{post.title + ':'}</a>
+                {post.title + ':'}
               </Link>
               {' ' + post.description}
             </div>
@@ -43,14 +43,14 @@ const Index = ({ files }) => {
       <h3>
         Read my{' '}
         <Link href='/blog'>
-          <a>blog:</a>
+          blog:
         </Link>{' '}
       </h3>
       <section>{renderBlogPosts()}</section>
       <h3>
         Look at my{' '}
         <Link href='/projects'>
-          <a>projects:</a>
+          projects:
         </Link>
       </h3>
       <ProjectsGrid />

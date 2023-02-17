@@ -7,24 +7,24 @@ const DesktopHeader = () => {
     <StyledHeader>
       <div className='inner-container'>
         <Link href='/'>
-          <a>
-            <h1>Danny Little</h1>
-          </a>
+
+          <h1>Danny Little</h1>
+
         </Link>
         <ul>
           <li>
             <Link href='/blog'>
-              <a>Blog</a>
+              Blog
             </Link>
           </li>
           <li>
             <Link href='/projects'>
-              <a>Projects</a>
+              Projects
             </Link>
           </li>
           <li>
             <Link href='/music'>
-              <a>Music</a>
+              Music
             </Link>
           </li>
         </ul>

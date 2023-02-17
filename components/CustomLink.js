@@ -9,9 +9,9 @@ const CustomLink = props => {
 
   if ((href && href.startsWith('/')) || href.startsWith('#')) {
     return (
-      <Link href={href}>
-        <a {...props} />
-      </Link>
+      (<Link href={href} {...props}>
+
+      </Link>)
     );
   }
 

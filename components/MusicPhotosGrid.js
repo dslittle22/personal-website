@@ -1,20 +1,21 @@
-import Image from 'next/image';
-import styled from 'styled-components';
-import path from 'path';
+import Image from "next/image";
+import styled from "styled-components";
+import path from "path";
 
 const MusicPhotosGrid = ({ photos }) => {
   const renderGallery = () => {
-    return photos.map(filename => {
+    return photos.map((filename) => {
       return (
         <div key={filename}>
           <Image
-            src={'/' + path.join('music-photos', filename)}
-            height='400'
-            width='300'
-            objectFit='cover'
+            src={"/" + path.join("music-photos", filename)}
+            height="400"
+            width="300"
+            // objectFit='cover'
+            style={"cover"}
           />
           <Overlay>
-            <a href={'/' + path.join('music-photos', filename)} download>
+            <a href={"/" + path.join("music-photos", filename)} download>
               Download
             </a>
           </Overlay>
@@ -24,7 +25,7 @@ const MusicPhotosGrid = ({ photos }) => {
   };
 
   return (
-    <PhotoGallery className='sidebar-span'>{renderGallery()}</PhotoGallery>
+    <PhotoGallery className="sidebar-span">{renderGallery()}</PhotoGallery>
   );
 };
 

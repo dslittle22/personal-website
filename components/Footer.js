@@ -13,16 +13,16 @@ const DesktopHeader = () => {
           }}
         >
           <Link href='https://github.com/dslittle22'>
-            <a>Github</a>
+            Github
           </Link>
           <Link href='https://www.linkedin.com/in/danny-little-3b3665178/'>
-            <a>LinkedIn</a>
+            LinkedIn
           </Link>
           <Link href='https://www.youtube.com/channel/UCDqiWjbQMqqgomDexzFBUJQ'>
-            <a>YouTube</a>
+            YouTube
           </Link>
           <Link href='https://www.instagram.com/dlittle_music/'>
-            <a>Instagram</a>
+            Instagram
           </Link>
         </div>
         <div style={{ textAlign: 'center' }}>Made by Danny Little in 2020.</div>
