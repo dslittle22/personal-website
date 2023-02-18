@@ -6,8 +6,8 @@ const SmartLink = (props: {
   [any: string]: any;
 }) => {
   const { href, children } = props;
-  if (href && href.startsWith("#user-content")) {
-    return <a {...props} />;
+  if (href && href.startsWith("#")) {
+    return <a className="autolink" {...props} />;
   }
 
   return (

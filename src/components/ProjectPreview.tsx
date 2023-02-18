@@ -25,7 +25,7 @@ export default function ProjectPreview({ project, ...props }: Props) {
 
   return (
     <Parent>
-      <div>
+      <div style={{ marginBottom: "10px" }}>
         <h3 style={{ display: "inline" }}>{project.title}</h3>
         <br />
         <small>{project.description}</small>

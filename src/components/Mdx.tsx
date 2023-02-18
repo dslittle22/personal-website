@@ -4,9 +4,7 @@ import { Compatible } from "vfile";
 import SmartLink from "./SmartLink";
 import SizedImage from "./SizedImage";
 import remarkGfm from "remark-gfm";
-import rehypeSlug from "rehype-slug";
 import rehypePrettyCode from "rehype-pretty-code";
-import rehypeAutolinkHeadings from "rehype-autolink-headings";
 
 const customComponents = {
   a: SmartLink,
@@ -15,8 +13,7 @@ const customComponents = {
 
 const options = {
   keepBackground: "false",
-  // theme: { dark: "github-dark", light: "github-light" },
-  theme: "github-dark",
+  theme: { dark: "github-dark", light: "github-light" },
   // @ts-expect-error
   onVisitLine(node) {
     if (node.children.length === 0) {
@@ -47,19 +44,7 @@ export function Mdx(props: { components?: MDXComponents; source: Compatible }) {
         parseFrontmatter: true,
         mdxOptions: {
           remarkPlugins: [remarkGfm],
-          rehypePlugins: [
-            [rehypePrettyCode, options],
-            rehypeSlug,
-            rehypeAutolinkHeadings,
-            [
-              rehypeAutolinkHeadings,
-              {
-                properties: {
-                  className: ["anchor"],
-                },
-              },
-            ],
-          ],
+          rehypePlugins: [[rehypePrettyCode, options]],
         },
       }}
     />
