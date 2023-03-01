@@ -4,7 +4,7 @@
         <title>Blog | Danny Little</title>
         <link>dlittle.me</link>
         <description>Blog posts by Danny Little</description>
-        <lastBuildDate>Wed, 01 Mar 2023 15:12:18 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 01 Mar 2023 15:31:10 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -18,8 +18,8 @@
             <title><![CDATA[Bitwrought]]></title>
             <link>dlittle.me/blog/bitwrought</link>
             <guid>dlittle.me/blog/bitwrought</guid>
-            <pubDate>Tue, 07 Feb 2023 00:00:00 GMT</pubDate>
-            <description><![CDATA[A new project!]]></description>
+            <pubDate>Wed, 01 Mar 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[The making of a file integrity and bit rot command line tool]]></description>
         </item>
         <item>
             <title><![CDATA[Four Grid / Flex Properties]]></title>

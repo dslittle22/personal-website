@@ -1,21 +1,26 @@
 import SmartLink from "@/components/SmartLink";
 import BlogPostPreview from "@/components/BlogPostPreview";
 import { getAllPosts } from "@/lib/mdx";
-import Image from "next/image";
-import SizedImage from "@/components/SizedImage";
-import conway from "/public/conway.png";
 import ProjectsList from "@/components/ProjectsList";
 
 export default async function Home() {
   async function listNBlogPosts(n: number) {
     const posts = await getAllPosts();
+
+    if (process.env.LOCAL === "true") {
+      return posts.map(({ frontmatter }) => (
+        <BlogPostPreview key={frontmatter.slug} frontmatter={frontmatter} />
+      ));
+    }
+
     return posts
+      .filter((post) => post.frontmatter.draft != true)
       .map(({ frontmatter }) => (
         <BlogPostPreview key={frontmatter.slug} frontmatter={frontmatter} />
       ))
       .slice(0, n);
   }
-  const blogPosts = await listNBlogPosts(5);
+  const blogPosts = await listNBlogPosts(4);
 
   return (
     <>

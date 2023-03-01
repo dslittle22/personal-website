@@ -46,11 +46,8 @@ export async function getAllPosts() {
   const blogFilePaths = readdirSync(blogPostsPath);
   for (const path of blogFilePaths) {
     const { frontmatter, content } = await getPostBySlug(pathToSlug(path));
-    if (frontmatter.draft && process.env.LOCAL === "true") {
-      posts.push({ content, frontmatter });
-    } else {
-      posts.push({ content, frontmatter });
-    }
+
+    posts.push({ content, frontmatter });
   }
   return posts.sort((a, b) =>
     a.frontmatter.date > b.frontmatter.date ? -1 : 1
