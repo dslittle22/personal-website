@@ -21,21 +21,21 @@ export default async function generateRssFeed() {
     language: "en",
   });
 
-  // import { renderToStaticMarkup } from "react-dom/server";
-  // const ReactDOMServer = await (await import("react-dom/server")).default;
-
   const posts = await getAllPosts();
+
   posts.map(
     async ({ content, frontmatter: { title, date, description, slug } }) => {
       // const file = getSourceBySlug(slug);
       // const mdxSource = await serialize(file);
+      // const ReactDOMServer = (await import("react-dom/server")).default;
+      // const staticMarkup = ReactDOMServer.renderToStaticMarkup(content);
 
       feed.addItem({
         title,
         description,
         date: new Date(date),
         link: `${site_url}/blog/${slug}`,
-        // content: ReactDOMServer.renderToStaticMarkup(content as ReactElement),
+        // content: staticMarkup,
       });
     }
   );

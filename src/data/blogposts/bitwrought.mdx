@@ -6,25 +6,47 @@ description: A new project!
 draft: true
 ---
 
-# here is my blog post about ~~bit rot~~ bitwrought
+I made a new side project! After listening to [this](https://overcast.fm/+R7DXe40g4/15:22) episode of ATP, it had been rattling around in my head for a little while to try making a program to check data integrity and hopefully detect [bit rot](https://eclecticlight.co/2020/03/21/should-we-take-bit-rot-seriously/). The co-hosts (specifically Siracusa) suggested this would be an interesting project for a budding programmer. I just completed my undergraduate CS degree, so I'd like to imagine I'm slightly farther along than budding; however, I had just finished taking an Operating Systems course, and this project sounded interesting enough for me to want to do it. I thought I'd also give myself a little extra challenge and try doing this in a new language, so at the suggestion of my brother [James](https://jameslittle.me), I tried it in Rust. My program is called [bitwrought](https://github.com/dslittle22/bitwrought): afraid that your bits wrought havoc? try bitwrought!
 
-bitwrought!![^1]
+## How it works
 
-```js showLineNumbers title="blockOne.js" {1,12} /2/
-const multiply = (a, b) => a * b;
-multiply(2, 2); // 4
-const s =
-  "here is a very long string that likely extends past the page- let's see what happens to it in a markdown code block blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah";
-const a = 1;
+The program itself is pretty simple; it's only about 300 lines excluding tests. The general logic looks like this:
+
+```rust
+for file in files:
+  if !file.has_saved_hash() {
+    file.save_new_hash()
+
+    // save the file metadata's last modified timestamp as a second xattr
+    file.save_last_modified()
+  } else {
+    saved_hash = file.saved_hash()
+    new_hash = file.calculate_hash()
+
+    if saved_hash == new_hash {
+      println!("Your file is okay")
+    } else {
+      if file.last_modified() != file.saved_last_modified() {
+        println!("Your file was written to")
+      } else {
+        // if the file hashes are not equal but the file doesn't seem to
+        // have been modified, that is likely a data integrity issue!
+        println!("Your file is not okay")
+      }
+    }
+  }
 ```
 
-```js
-const a = "hello";
-let b = 7;
-let c = func();
-```
+Pretty simple! The "hashes" are saved as extended attributes directly on the file, which is reasonable because macOS checks data integrity for metadata, but not user data (e.g. files). I got this idea from Howard Oakley of The Eclectic Light Company, who has written lots of helpful articles about bit rot, file integrity, ECC, his own solution called [cinch](https://eclecticlight.co/2020/05/27/cintch-checks-file-integrity-from-the-command-line/), and much more. Some things not pictured are: allowing the deletion of saved hashes, handling nonexistent files or files with bad permissions, and traversing directories (possibly the first time recursion has seemed the most straightforward way to solve a problem).
 
-[external link](https://google.com)
-[internal link](/music)
+## What I learned
 
-[^1]: testing 123
+- I learned some Rust! Starting from zero on something is both exciting and frustrating, and this was definitely true here: lots of hitting my head against the wall, but also lots of moments where something about borrowing or lifetimes finally clicked for me in an immensely satisfying way.
+- [Files are frought with peril!](https://www.deconstructconf.com/2019/dan-luu-files)
+- I leveled up a bit with error handling: I didn't want the program to crash if you give it a file that it can't access. Rust also does some funky things with errors, so it took a good bit of work to feel like I was doing things in a way that was Rust-like, but also a good experience for someone using the program.
+- At some point while I was working on this project, I read [this](https://chriscoyier.net/2023/01/12/a-perfect-ci-process/) great blog post from Chris Coyier. This made me want to try to use something also completely new to me, GitHub Actions. Like Rust, the learning curve with these felt pretty steep. But at the end of it, I had a slick setup where pushing my code automatically did some stuff (linting and testing), and pushing a new _release_ did the same stuff, and if that succeeded, some more stuff (building executables and handing them over as artifacts for a GitHub release). Pretty cool!
+- A tool like this often works with large files, so I knew I would need to buffer a lot of my file operations. One fun example is a test where I verified that the program detects an issue if you save a hash for a large (e.g. 10gb) file, overwrite a couple bytes in the middle of the file without changing the time it was last modified, and then check the hash again. The way I accomplish this was to copy the file in a buffered manner (e.g. copy it in n-byte chunks), but randomly modified part of one of the chunks. Then overwrite the file with the copy, preserving saved metadata, so it appears like the same file to the program.
+
+## Does it work?
+
+Pretty much! I have a folder with a bunch of large MP3s that I care about, totaling 10GB in size. I've installed my own program from [cargo](https://crates.io/crates/bitwrought) and run it on these files. It finishes running them in a minute or two. The one thing I want to improve is some kind of progress indicator, as right now it basically looks like it's frozen until it's done and then prints the output. Overall, this has been a fun project and I feel like I've learned a lot. It's also made me feel excited about little side projects again, and I intend to do some more!

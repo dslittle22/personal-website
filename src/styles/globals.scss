@@ -55,7 +55,7 @@ body {
   background-color: var(--color-background);
   color: var(--color-text);
   font-size: clamp(14px, 14px + 0.5vw, 18px);
-  line-height: 1.4;
+  line-height: 1.5;
   width: 100%;
   // todo: check if these affect reload in prod!
   // transition: color 400ms;
@@ -97,6 +97,19 @@ a h6 {
 
 li {
   margin-left: 20px;
+  & + li {
+    padding-top: 0.4em;
+  }
+}
+
+ul + h1,
+ul + h2,
+ul + h3,
+ul + h3,
+ul + h4,
+ul + h5,
+ul + h6 {
+  padding-top: 1em;
 }
 
 main {
@@ -115,12 +128,6 @@ main {
 
 section + * {
   margin-top: 1em;
-}
-
-.musicList {
-  li + li {
-    padding-top: 0.5em;
-  }
 }
 
 .footnotes {

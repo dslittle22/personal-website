@@ -26,6 +26,9 @@ export async function getPostBySlug(slug: string) {
     compiledSource: "",
     options: { parseFrontmatter: true },
   });
+  if (frontmatter?.draft && process.env.LOCAL === "true") {
+    frontmatter.title += " [draft]";
+  }
 
   return {
     content,
@@ -43,10 +46,8 @@ export async function getAllPosts() {
   const blogFilePaths = readdirSync(blogPostsPath);
   for (const path of blogFilePaths) {
     const { frontmatter, content } = await getPostBySlug(pathToSlug(path));
-    if (frontmatter.draft) {
-      if (process.env.LOCAL === "true") {
-        posts.push({ content, frontmatter });
-      }
+    if (frontmatter.draft && process.env.LOCAL === "true") {
+      posts.push({ content, frontmatter });
     } else {
       posts.push({ content, frontmatter });
     }
