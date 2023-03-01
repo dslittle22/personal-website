@@ -32,7 +32,7 @@ export default async function generateRssFeed() {
       // const file = getSourceBySlug(slug);
       // const mdxSource = await serialize(file);
       // const ReactDOMServer = (await import("react-dom/server")).default;
-      // const staticMarkup = ReactDOMServer.renderToStaticMarkup(content);
+      const staticMarkup = ReactDOMServer.renderToStaticMarkup(content);
 
       feed.addItem({
         title,
