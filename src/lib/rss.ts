@@ -1,7 +1,9 @@
 import fs from "fs";
 import { Feed } from "feed";
 import { getAllPosts, getSourceBySlug } from "./mdx";
-import { serialize } from "next-mdx-remote/serialize";
+import ReactDOMServer from "react-dom/server";
+
+// import { serialize } from "next-mdx-remote/serialize";
 
 export default async function generateRssFeed() {
   let site_url = "dlittle.me";
@@ -29,10 +31,12 @@ export default async function generateRssFeed() {
 
   posts.map(
     async ({ content, frontmatter: { title, date, description, slug } }) => {
+      console.log("____hi____");
+
       // const file = getSourceBySlug(slug);
       // const mdxSource = await serialize(file);
       // const ReactDOMServer = (await import("react-dom/server")).default;
-      const staticMarkup = ReactDOMServer.renderToStaticMarkup(content);
+      const staticMarkup = ReactDOMServer.renderToString(content);
 
       feed.addItem({
         title,

@@ -42,7 +42,7 @@ export async function getPostBySlug(slug: string) {
 }
 
 export async function getAllPosts() {
-  const posts: { content: React.ReactNode; frontmatter: Frontmatter }[] = [];
+  const posts: { content: JSX.Element; frontmatter: Frontmatter }[] = [];
   const blogFilePaths = readdirSync(blogPostsPath);
   for (const path of blogFilePaths) {
     const { frontmatter, content } = await getPostBySlug(pathToSlug(path));
