@@ -29,7 +29,11 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({ children }: { children: JSX.Element }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const setInitialTheme = `
     const theme = window.localStorage.getItem('theme')
     const fallbackTheme = theme || window.matchMedia('(prefers-color-scheme: dark)').matches

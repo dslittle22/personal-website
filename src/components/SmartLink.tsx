@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 const SmartLink = (props: {
-  children: JSX.Element;
+  children: React.ReactNode;
   href: string;
   [any: string]: any;
 }) => {
