@@ -1,7 +1,6 @@
+const fs = require("fs").promises;
 import { readFileSync } from "fs";
 import { readdirSync } from "fs";
-const fs = require("fs").promises;
-
 import { compileMDX } from "next-mdx-remote/rsc";
 
 export type Frontmatter = {
@@ -16,7 +15,7 @@ export type Frontmatter = {
 const blogPostsPath = "src/data/blogposts";
 
 export function getSourceBySlug(slug: string) {
-  return readFileSync(`${blogPostsPath}/${slug}.mdx`);
+  return readFileSync(`${blogPostsPath}/${slug}.mdx`, "utf-8");
 }
 
 export async function getPostBySlug(slug: string) {
@@ -42,7 +41,10 @@ export async function getPostBySlug(slug: string) {
 }
 
 export async function getAllPosts() {
-  const posts: { content: JSX.Element; frontmatter: Frontmatter }[] = [];
+  const posts: {
+    content: JSX.Element;
+    frontmatter: Frontmatter;
+  }[] = [];
   const blogFilePaths = readdirSync(blogPostsPath);
   for (const path of blogFilePaths) {
     const { frontmatter, content } = await getPostBySlug(pathToSlug(path));

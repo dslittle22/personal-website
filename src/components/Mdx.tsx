@@ -1,5 +1,5 @@
 import { MDXComponents } from "mdx/types";
-import { MDXRemote, MDXRemoteProps } from "next-mdx-remote/rsc";
+import { MDXRemote } from "next-mdx-remote/rsc";
 import { Compatible } from "vfile";
 import SmartLink from "./SmartLink";
 import SizedImage from "./SizedImage";
@@ -30,7 +30,10 @@ const options = {
   },
 };
 
-export function Mdx(props: { components?: MDXComponents; source: Compatible }) {
+export default function Mdx(props: {
+  components?: MDXComponents;
+  source: Compatible;
+}) {
   return (
     // @ts-ignore
     <MDXRemote

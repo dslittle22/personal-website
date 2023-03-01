@@ -1,33 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>dlittle.me</id>
-    <title>Blog | Danny Little</title>
-    <updated>2023-03-01T17:57:45.554Z</updated>
+    <id>localhost:3000</id>
+    <title>Danny Little | Blog</title>
+    <updated>2023-03-01T22:30:14.757Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
-    <link rel="alternate" href="dlittle.me"/>
-    <link rel="self" href="dlittle.me/rss/atom.xml"/>
+    <link rel="alternate" href="localhost:3000"/>
+    <link rel="self" href="localhost:3000/rss/atom.xml"/>
     <subtitle>Blog posts by Danny Little</subtitle>
-    <logo>dlittle.me/favicon.ico</logo>
+    <logo>localhost:3000/favicon.ico</logo>
     <rights>2023 Danny Little</rights>
     <entry>
         <title type="html"><![CDATA[Bitwrought]]></title>
-        <id>dlittle.me/blog/bitwrought</id>
-        <link href="dlittle.me/blog/bitwrought"/>
+        <id>localhost:3000/blog/bitwrought</id>
+        <link href="localhost:3000/blog/bitwrought"/>
         <updated>2023-03-01T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[The making of a file integrity and bit rot command line tool.]]></summary>
+        <content type="html"><![CDATA[<a href="/blog/bitwrought">The making of a file integrity and bit rot command line tool.</a>]]></content>
     </entry>
     <entry>
         <title type="html"><![CDATA[Four Grid / Flex Properties]]></title>
-        <id>dlittle.me/blog/align-justify-content-items</id>
-        <link href="dlittle.me/blog/align-justify-content-items"/>
+        <id>localhost:3000/blog/align-justify-content-items</id>
+        <link href="localhost:3000/blog/align-justify-content-items"/>
         <updated>2020-12-28T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[A review of four basic CSS Grid and Flexbox properties that confuse me. Probably more for my benefit that yours.]]></summary>
+        <content type="html"><![CDATA[<a href="/blog/align-justify-content-items">A review of four basic CSS Grid and Flexbox properties that confuse me. Probably more for my benefit that yours.</a>]]></content>
     </entry>
     <entry>
         <title type="html"><![CDATA[My Semester Off]]></title>
-        <id>dlittle.me/blog/semester-off</id>
-        <link href="dlittle.me/blog/semester-off"/>
+        <id>localhost:3000/blog/semester-off</id>
+        <link href="localhost:3000/blog/semester-off"/>
         <updated>2020-12-20T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[How I spent my personal leave of absence.]]></summary>
+        <content type="html"><![CDATA[<a href="/blog/semester-off">How I spent my personal leave of absence.</a>]]></content>
     </entry>
 </feed>

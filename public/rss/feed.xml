@@ -1,39 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0">
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
     <channel>
-        <title>Blog | Danny Little</title>
-        <link>dlittle.me</link>
+        <title>Danny Little | Blog</title>
+        <link>localhost:3000</link>
         <description>Blog posts by Danny Little</description>
-        <lastBuildDate>Wed, 01 Mar 2023 17:57:45 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 01 Mar 2023 22:30:14 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
         <image>
-            <title>Blog | Danny Little</title>
-            <url>dlittle.me/favicon.ico</url>
-            <link>dlittle.me</link>
+            <title>Danny Little | Blog</title>
+            <url>localhost:3000/favicon.ico</url>
+            <link>localhost:3000</link>
         </image>
         <copyright>2023 Danny Little</copyright>
         <item>
             <title><![CDATA[Bitwrought]]></title>
-            <link>dlittle.me/blog/bitwrought</link>
-            <guid>dlittle.me/blog/bitwrought</guid>
+            <link>localhost:3000/blog/bitwrought</link>
+            <guid>localhost:3000/blog/bitwrought</guid>
             <pubDate>Wed, 01 Mar 2023 00:00:00 GMT</pubDate>
             <description><![CDATA[The making of a file integrity and bit rot command line tool.]]></description>
+            <content:encoded><![CDATA[<a href="/blog/bitwrought">The making of a file integrity and bit rot command line tool.</a>]]></content:encoded>
         </item>
         <item>
             <title><![CDATA[Four Grid / Flex Properties]]></title>
-            <link>dlittle.me/blog/align-justify-content-items</link>
-            <guid>dlittle.me/blog/align-justify-content-items</guid>
+            <link>localhost:3000/blog/align-justify-content-items</link>
+            <guid>localhost:3000/blog/align-justify-content-items</guid>
             <pubDate>Mon, 28 Dec 2020 00:00:00 GMT</pubDate>
             <description><![CDATA[A review of four basic CSS Grid and Flexbox properties that confuse me. Probably more for my benefit that yours.]]></description>
+            <content:encoded><![CDATA[<a href="/blog/align-justify-content-items">A review of four basic CSS Grid and Flexbox properties that confuse me. Probably more for my benefit that yours.</a>]]></content:encoded>
         </item>
         <item>
             <title><![CDATA[My Semester Off]]></title>
-            <link>dlittle.me/blog/semester-off</link>
-            <guid>dlittle.me/blog/semester-off</guid>
+            <link>localhost:3000/blog/semester-off</link>
+            <guid>localhost:3000/blog/semester-off</guid>
             <pubDate>Sun, 20 Dec 2020 00:00:00 GMT</pubDate>
             <description><![CDATA[How I spent my personal leave of absence.]]></description>
+            <content:encoded><![CDATA[<a href="/blog/semester-off">How I spent my personal leave of absence.</a>]]></content:encoded>
         </item>
     </channel>
 </rss>

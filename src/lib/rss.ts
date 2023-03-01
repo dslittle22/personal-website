@@ -1,9 +1,11 @@
 import fs from "fs";
 import { Feed } from "feed";
-import { getAllPosts, getSourceBySlug } from "./mdx";
-import ReactDOMServer from "react-dom/server";
+import { getAllPosts } from "./mdx";
+import { generateStaticMarkup } from "@/components/GetStaticMarkup";
 
-// import { serialize } from "next-mdx-remote/serialize";
+async function asyncTest() {
+  return Promise.resolve("hello world");
+}
 
 export default async function generateRssFeed() {
   let site_url = "dlittle.me";
@@ -12,7 +14,7 @@ export default async function generateRssFeed() {
   }
 
   const feed = new Feed({
-    title: "Blog | Danny Little",
+    title: "Danny Little | Blog",
     description: "Blog posts by Danny Little",
     link: site_url,
     id: site_url,
@@ -29,26 +31,26 @@ export default async function generateRssFeed() {
 
   const posts = await getAllPosts();
 
-  posts.map(
-    async ({ content, frontmatter: { title, date, description, slug } }) => {
-      console.log("____hi____");
+  const markup: { [key: string]: string } = {};
+  for (let i = 0; i < posts.length; i++) {
+    const {
+      frontmatter: { slug },
+    } = posts[i];
+    markup[slug] = await generateStaticMarkup(slug);
+    // markup[slug] = await asyncTest();
+    await generateStaticMarkup(slug);
+  }
 
-      // const file = getSourceBySlug(slug);
-      // const mdxSource = await serialize(file);
-      // const ReactDOMServer = (await import("react-dom/server")).default;
-      const staticMarkup = ReactDOMServer.renderToString(content);
+  posts.map(({ frontmatter: { title, date, description, slug } }) => {
+    feed.addItem({
+      title,
+      description,
+      date: new Date(date),
+      link: `${site_url}/blog/${slug}`,
+      content: markup[slug],
+    });
+  });
 
-      feed.addItem({
-        title,
-        description,
-        date: new Date(date),
-        link: `${site_url}/blog/${slug}`,
-        // content: staticMarkup,
-      });
-    }
-  );
-
-  // fs.writeFileSync("public/rss.xml", feed.rss2());
   fs.writeFileSync("./public/rss/feed.xml", feed.rss2());
   fs.writeFileSync("./public/rss/atom.xml", feed.atom1());
   fs.writeFileSync("./public/rss/feed.json", feed.json1());

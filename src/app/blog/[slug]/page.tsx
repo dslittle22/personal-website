@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Mdx } from "@/components/Mdx";
+import Mdx from "@/components/Mdx";
 import generateRssFeed from "@/lib/rss";
 
 import { getAllPosts, getPostBySlug, getSourceBySlug } from "@/lib/mdx";
