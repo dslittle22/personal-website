@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>dlittle.me</id>
+    <title>Blog | Danny Little</title>
+    <updated>2023-03-01T15:59:22.077Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="dlittle.me"/>
+    <link rel="self" href="dlittle.me/rss/atom.xml"/>
+    <subtitle>Blog posts by Danny Little</subtitle>
+    <logo>dlittle.me/favicon.ico</logo>
+    <rights>2023 Danny Little</rights>
+    <entry>
+        <title type="html"><![CDATA[Bitwrought]]></title>
+        <id>dlittle.me/blog/bitwrought</id>
+        <link href="dlittle.me/blog/bitwrought"/>
+        <updated>2023-03-01T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[The making of a file integrity and bit rot command line tool.]]></summary>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Four Grid / Flex Properties]]></title>
+        <id>dlittle.me/blog/align-justify-content-items</id>
+        <link href="dlittle.me/blog/align-justify-content-items"/>
+        <updated>2020-12-28T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[A review of four basic CSS Grid and Flexbox properties that confuse me. Probably more for my benefit that yours.]]></summary>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[My Semester Off]]></title>
+        <id>dlittle.me/blog/semester-off</id>
+        <link href="dlittle.me/blog/semester-off"/>
+        <updated>2020-12-20T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[How I spent my personal leave of absence.]]></summary>
+    </entry>
+</feed>

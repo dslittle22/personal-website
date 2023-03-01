@@ -14,7 +14,11 @@ export default async function generateRssFeed() {
     description: "Blog posts by Danny Little",
     link: site_url,
     id: site_url,
-    feedLinks: { rss2: `${site_url}/rss.xml` },
+    feedLinks: {
+      rss2: `${site_url}/rss/feed.xml`,
+      json: `${site_url}/rss/feed.json`,
+      atom: `${site_url}/rss/atom.xml`,
+    },
     image: `${site_url}/favicon.ico`,
     updated: new Date(),
     copyright: `${new Date().getFullYear()} Danny Little`,
@@ -40,5 +44,8 @@ export default async function generateRssFeed() {
     }
   );
 
-  fs.writeFileSync("public/rss.xml", feed.rss2());
+  // fs.writeFileSync("public/rss.xml", feed.rss2());
+  fs.writeFileSync("./public/rss/feed.xml", feed.rss2());
+  fs.writeFileSync("./public/rss/atom.xml", feed.atom1());
+  fs.writeFileSync("./public/rss/feed.json", feed.json1());
 }

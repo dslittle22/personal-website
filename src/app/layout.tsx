@@ -44,7 +44,14 @@ export default function RootLayout({
 
   return (
     <html lang="en" className={`${heading.variable} ${prose.variable}`}>
-      <head />
+      <head>
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          title="RSS 2.0"
+          href="/rss/feed.xml"
+        />
+      </head>
 
       <body>
         <script dangerouslySetInnerHTML={{ __html: setInitialTheme }}></script>

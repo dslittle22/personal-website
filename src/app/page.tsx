@@ -28,7 +28,7 @@ export default async function Home() {
         <p>
           {`Hi! I'm Danny Little. I'm a web developer and a musician.
           I'm also a recent graduate of Bowdoin College, where I double majored in computer
-           science and music performance.`}
+          science and music performance.`}
         </p>
         <p>
           {`If you'd like to get in touch with me, my email is

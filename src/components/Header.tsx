@@ -23,7 +23,7 @@ export default function Header() {
           <ul>
             {path === "blog" && (
               <li>
-                <a target={"_blank"} href="/rss.xml">
+                <a target={"_blank"} href="/rss/feed.xml">
                   Rss
                 </a>
               </li>
