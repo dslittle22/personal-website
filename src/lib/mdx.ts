@@ -19,36 +19,41 @@ export function getSourceBySlug(slug: string) {
   return readFileSync(`${blogPostsPath}/${slug}.mdx`);
 }
 
-export async function getFrontmatterBySlug(slug: string) {
+export async function getPostBySlug(slug: string) {
   let mdxSource: string = await fs.readFile(`${blogPostsPath}/${slug}.mdx`);
-  let { frontmatter } = await compileMDX({
+  let { frontmatter, content } = await compileMDX({
     source: mdxSource,
     compiledSource: "",
     options: { parseFrontmatter: true },
   });
 
   return {
-    ...frontmatter,
-    slug,
-    // @ts-ignore
-    date: frontmatter.date.toISOString().substring(0, 10),
-  } as Frontmatter;
+    content,
+    frontmatter: {
+      ...frontmatter,
+      slug,
+      // @ts-ignore
+      date: frontmatter.date.toISOString().substring(0, 10),
+    } as Frontmatter,
+  };
 }
 
-export async function getAllPostsFrontmatter() {
-  const frontsmatter: Frontmatter[] = [];
+export async function getAllPosts() {
+  const posts: { content: React.ReactNode; frontmatter: Frontmatter }[] = [];
   const blogFilePaths = readdirSync(blogPostsPath);
   for (const path of blogFilePaths) {
-    const frontmatter = await getFrontmatterBySlug(pathToSlug(path));
+    const { frontmatter, content } = await getPostBySlug(pathToSlug(path));
     if (frontmatter.draft) {
       if (process.env.LOCAL === "true") {
-        frontsmatter.push(frontmatter);
+        posts.push({ content, frontmatter });
       }
     } else {
-      frontsmatter.push(frontmatter);
+      posts.push({ content, frontmatter });
     }
   }
-  return frontsmatter.sort((a, b) => (a.date > b.date ? -1 : 1));
+  return posts.sort((a, b) =>
+    a.frontmatter.date > b.frontmatter.date ? -1 : 1
+  );
 }
 
 export function slugToPath(slug: string) {

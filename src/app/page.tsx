@@ -1,6 +1,6 @@
 import SmartLink from "@/components/SmartLink";
 import BlogPostPreview from "@/components/BlogPostPreview";
-import { getAllPostsFrontmatter } from "@/lib/mdx";
+import { getAllPosts } from "@/lib/mdx";
 import Image from "next/image";
 import SizedImage from "@/components/SizedImage";
 import conway from "/public/conway.png";
@@ -8,9 +8,9 @@ import ProjectsList from "@/components/ProjectsList";
 
 export default async function Home() {
   async function listNBlogPosts(n: number) {
-    const frontsmatter = await getAllPostsFrontmatter();
-    return frontsmatter
-      .map((frontmatter) => (
+    const posts = await getAllPosts();
+    return posts
+      .map(({ frontmatter }) => (
         <BlogPostPreview key={frontmatter.slug} frontmatter={frontmatter} />
       ))
       .slice(0, n);

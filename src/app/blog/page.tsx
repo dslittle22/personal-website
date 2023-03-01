@@ -1,11 +1,14 @@
-import SmartLink from "@/components/SmartLink";
 import BlogPostPreview from "@/components/BlogPostPreview";
-import { getAllPostsFrontmatter } from "@/lib/mdx";
-import React from "react";
+import { getAllPosts } from "@/lib/mdx";
+import { Metadata } from "next/types";
+
+export const metadata: Metadata = {
+  title: "Blog",
+};
 
 async function listBlogPosts() {
-  const frontsmatter = await getAllPostsFrontmatter();
-  return frontsmatter.map((frontmatter) => (
+  const posts = await getAllPosts();
+  return posts.map(({ frontmatter }) => (
     <BlogPostPreview key={frontmatter.slug} frontmatter={frontmatter} />
   ));
 }

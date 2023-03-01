@@ -21,6 +21,13 @@ export default function Header() {
             <h1 className={styles.siteHeader}>Danny Little</h1>
           </Link>
           <ul>
+            {path === "blog" && (
+              <li>
+                <a target={"_blank"} href="/rss.xml">
+                  Rss
+                </a>
+              </li>
+            )}
             <li className={path === "blog" ? styles.active : ""}>
               <Link href="/blog">Blog</Link>
             </li>

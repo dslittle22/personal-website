@@ -2,7 +2,6 @@ import fs from "fs";
 import { Feed } from "feed";
 import { getAllPosts, getSourceBySlug } from "./mdx";
 import { serialize } from "next-mdx-remote/serialize";
-import { ReactElement } from "react";
 
 export default async function generateRssFeed() {
   let site_url = "dlittle.me";
@@ -28,8 +27,8 @@ export default async function generateRssFeed() {
   const posts = await getAllPosts();
   posts.map(
     async ({ content, frontmatter: { title, date, description, slug } }) => {
-      const file = getSourceBySlug(slug);
-      const mdxSource = await serialize(file);
+      // const file = getSourceBySlug(slug);
+      // const mdxSource = await serialize(file);
 
       feed.addItem({
         title,

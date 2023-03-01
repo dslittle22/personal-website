@@ -1,5 +1,6 @@
 // import "@/styles/prism-material-dark.css";
 import { Roboto_Serif, Open_Sans } from "@next/font/google";
+import type { Metadata } from "next";
 
 import "styles/globals.scss";
 import "styles/code.scss";
@@ -17,6 +18,16 @@ const prose = Open_Sans({
   variable: "--font-prose",
   display: "swap",
 });
+
+export const metadata: Metadata = {
+  title: {
+    default: "Danny Little",
+    template: "Danny Little | %s",
+  },
+  icons: {
+    shortcut: "favicon/favicon.ico",
+  },
+};
 
 export default function RootLayout({
   children,
