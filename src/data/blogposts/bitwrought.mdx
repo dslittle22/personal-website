@@ -16,7 +16,7 @@ for file in files {
   if !file.has_saved_hash() {
     // save the file's hash as an xattr
     file.save_new_hash()
-    // save the file's modified timestamp as an xattr
+    // save the file metadata's last modified timestamp as an xattr
     file.save_last_modified()
   } else {
     saved_hash = file.saved_hash()
