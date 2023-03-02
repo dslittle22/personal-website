@@ -1,5 +1,6 @@
 .header {
   container-type: inline-size;
+  margin-bottom: 0.5em;
   grid-area: header;
   font-family: var(--font-heading);
   padding-top: 0.5rem;
@@ -52,7 +53,6 @@
 
 .themeSwitcherWrapper {
   display: flex;
-  margin-top: 5px;
   margin-left: 5px;
 }
 
