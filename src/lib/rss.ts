@@ -24,14 +24,14 @@ export default async function generateRssFeed() {
 
   const posts = await getAllPosts();
 
-  // const markup: { [key: string]: string } = {};
-  // for (let i = 0; i < posts.length; i++) {
-  //   const {
-  //     frontmatter: { slug },
-  //   } = posts[i];
-  //   markup[slug] = await generateStaticMarkup(slug);
-  //   await generateStaticMarkup(slug);
-  // }
+  const markup: { [key: string]: string } = {};
+  for (let i = 0; i < posts.length; i++) {
+    const {
+      frontmatter: { slug },
+    } = posts[i];
+    markup[slug] = await generateStaticMarkup(slug);
+    await generateStaticMarkup(slug);
+  }
 
   posts.map(({ frontmatter: { title, date, description, slug } }) => {
     feed.addItem({
