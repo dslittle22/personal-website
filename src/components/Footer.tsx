@@ -13,6 +13,9 @@ export default function Footer({}: Props) {
   return (
     <footer className={styles.footer}>
       <div className={styles.links}>
+        <a target={"_blank"} href="/rss/feed.xml">
+          Rss
+        </a>
         <SmartLink href="https://github.com/dslittle22">GitHub</SmartLink>
         <SmartLink href="https://www.linkedin.com/in/danny-little-3b3665178/">
           LinkedIn

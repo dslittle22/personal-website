@@ -3,9 +3,17 @@
   grid-area: header;
   font-family: var(--font-heading);
   padding-top: 0.5rem;
+  display: grid;
+  --edge-width: max(60px, calc((100% - 1300px) / 2));
+  grid-template-columns:
+    var(--edge-width) var(--sidebar-width) var(--middle-width)
+    var(--sidebar-width) var(--edge-width);
+
+  grid-template-areas: "left theme middle-header right-header right";
 }
 
 .linkWrapper {
+  grid-area: middle-header;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -43,7 +51,6 @@
 }
 
 .themeSwitcherWrapper {
-  grid-area: theme;
   display: flex;
   margin-top: 5px;
   margin-left: 5px;
