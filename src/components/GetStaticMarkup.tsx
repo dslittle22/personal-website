@@ -1,6 +1,6 @@
 import Mdx from "./Mdx";
+import { relative_url } from "@/lib/siteUrl";
 import { getPostBySlug, getSourceBySlug } from "@/lib/mdx";
-import { prod_url } from "@/lib/siteUrl";
 
 export default function None() {
   return;
@@ -15,7 +15,8 @@ export async function generateStaticMarkup(slug: string) {
   const {
     frontmatter: { description },
   } = await getPostBySlug(slug);
-  const element = <a href={`${prod_url}/${slug}`}>{description}</a>;
+  const element = <a href={`${relative_url}/blog/${slug}`}>{description}</a>;
+
   const staticMarkup = ReactDomServer.renderToString(element);
   return staticMarkup;
 }

@@ -1,4 +1,4 @@
-let rel_url = "https://dlittle.me";
+let rel_url = "dlittle.me";
 if (process.env.LOCAL === "true") {
   rel_url = "localhost:3000";
 }
