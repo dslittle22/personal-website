@@ -16,7 +16,7 @@ div[data-rehype-pretty-code-fragment] {
     overflow-x: auto;
     padding-top: 0.25rem;
     padding-bottom: 0.25rem;
-    font-size: clamp(12px, 12px + 0.25vw, 16px);
+    font-size: clamp(10px, 10px + 0.5vw, 14px);
     border-radius: 0.375rem;
     background-color: var(--color-code-background) !important;
 
@@ -82,11 +82,5 @@ div[data-rehype-pretty-code-fragment] {
 
   code[data-line-numbers-max-digits="3"] > .line::before {
     width: 1.5rem;
-  }
-}
-
-@media screen and (max-device-width: 480px) {
-  body {
-    -webkit-text-size-adjust: 100%;
   }
 }

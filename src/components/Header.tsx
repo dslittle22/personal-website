@@ -14,12 +14,20 @@ export default function Header() {
 
   return (
     <>
+      <ThemeSwitcher styles={styles} />
       <header className={styles.header}>
         <div className={styles.linkWrapper}>
           <Link href="/">
             <h1 className={styles.siteHeader}>Danny Little</h1>
           </Link>
           <ul>
+            {path === "blog" && (
+              <li>
+                <a target={"_blank"} href="/rss/feed.xml">
+                  Rss
+                </a>
+              </li>
+            )}
             <li className={path === "blog" ? styles.active : ""}>
               <Link href="/blog">Blog</Link>
             </li>
@@ -31,7 +39,6 @@ export default function Header() {
             </li>
           </ul>
         </div>
-        <ThemeSwitcher styles={styles} />
       </header>
     </>
   );
