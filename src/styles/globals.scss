@@ -34,27 +34,24 @@ html {
 }
 
 body {
+  --edge-width: max(20px, calc((100% - 1300px) / 2));
+  --sidebar-width: 5fr;
+  --middle-width: minmax(0, 750px);
+
   font-family: var(--font-prose);
 
   min-height: 100%;
   display: grid;
+
   grid-template-areas:
-    "theme        header           header  header            header-right"
-    "left-pad     main-left        main    main-right        right-pad"
-    "footer       footer           footer  footer            footer";
+    "header"
+    "main"
+    "footer";
   grid-template-rows: auto 1fr auto;
-
-  --edge-width: minmax(15%, 1fr);
-  --sidebar-width: minmax(10%, 100px);
-  --middle-width: minmax(0, 600px);
-
-  grid-template-columns:
-    var(--edge-width) var(--sidebar-width) var(--middle-width)
-    var(--sidebar-width) var(--edge-width);
 
   background-color: var(--color-background);
   color: var(--color-text);
-  font-size: clamp(14px, 14px + 0.5vw, 18px);
+  font-size: clamp(14px, 14px + 0.25vw, 18px);
   line-height: 1.5;
   width: 100%;
   // todo: check if these affect reload in prod!
@@ -113,8 +110,18 @@ ul + h6 {
 }
 
 main {
-  // grid-area: main;
-  grid-column: 2 / span 3;
+  grid-area: main;
+
+  display: grid;
+
+  grid-template-columns:
+    var(--edge-width) var(--sidebar-width) var(--middle-width)
+    var(--sidebar-width) var(--edge-width);
+
+  & > * {
+    grid-column: 3 / span 1;
+  }
+
   p + *:not(p) {
     margin-top: 1em;
   }
