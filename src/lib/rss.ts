@@ -10,7 +10,7 @@ export default async function generateRssFeed() {
     title: "Danny Little | Blog",
     description: "Blog posts by Danny Little",
     link: site_url,
-    id: site_url,
+    id: `Danny Little | Blog`,
     feedLinks: {
       rss2: `${site_url}/rss/feed.xml`,
       json: `${site_url}/rss/feed.json`,
@@ -24,14 +24,14 @@ export default async function generateRssFeed() {
 
   const posts = await getAllPosts();
 
-  const markup: { [key: string]: string } = {};
-  for (let i = 0; i < posts.length; i++) {
-    const {
-      frontmatter: { slug },
-    } = posts[i];
-    markup[slug] = await generateStaticMarkup(slug);
-    await generateStaticMarkup(slug);
-  }
+  // const markup: { [key: string]: string } = {};
+  // for (let i = 0; i < posts.length; i++) {
+  //   const {
+  //     frontmatter: { slug },
+  //   } = posts[i];
+  //   markup[slug] = await generateStaticMarkup(slug);
+  //   await generateStaticMarkup(slug);
+  // }
 
   posts.map(({ frontmatter: { title, date, description, slug } }) => {
     feed.addItem({
@@ -39,7 +39,7 @@ export default async function generateRssFeed() {
       description,
       date: new Date(date),
       link: `${site_url}/blog/${slug}`,
-      content: markup[slug],
+      // content: markup[slug],
     });
   });
 
