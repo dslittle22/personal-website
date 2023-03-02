@@ -16,7 +16,7 @@ div[data-rehype-pretty-code-fragment] {
     overflow-x: auto;
     padding-top: 0.25rem;
     padding-bottom: 0.25rem;
-    font-size: 0.875rem;
+    font-size: clamp(10px, 10px + 0.5vw, 14px);
     border-radius: 0.375rem;
     background-color: var(--color-code-background) !important;
 
@@ -39,7 +39,7 @@ div[data-rehype-pretty-code-fragment] {
     padding-right: 0.75rem;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
-    font-size: 0.75rem;
+    font-size: clamp(10px, 10px + 0.5vw, 14px);
     line-height: 1rem;
   }
 

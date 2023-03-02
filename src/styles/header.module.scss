@@ -9,9 +9,14 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  h1 {
+    font-size: clamp(45px, 45px + 0.5vw, 55px);
+  }
+
   a {
     font-weight: 600;
   }
+
   a,
   h1 {
     color: var(--color-heading);

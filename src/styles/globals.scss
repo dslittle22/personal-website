@@ -46,7 +46,7 @@ body {
 
   --edge-width: minmax(15%, 1fr);
   --sidebar-width: minmax(10%, 100px);
-  --middle-width: minmax(auto, 600px);
+  --middle-width: minmax(0, 600px);
 
   grid-template-columns:
     var(--edge-width) var(--sidebar-width) var(--middle-width)

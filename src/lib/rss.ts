@@ -2,17 +2,10 @@ import fs from "fs";
 import { Feed } from "feed";
 import { getAllPosts } from "./mdx";
 import { generateStaticMarkup } from "@/components/GetStaticMarkup";
-
-async function asyncTest() {
-  return Promise.resolve("hello world");
-}
+import { relative_url } from "./siteUrl";
 
 export default async function generateRssFeed() {
-  let site_url = "dlittle.me";
-  if (process.env.LOCAL === "true") {
-    site_url = "localhost:3000";
-  }
-
+  const site_url = relative_url;
   const feed = new Feed({
     title: "Danny Little | Blog",
     description: "Blog posts by Danny Little",
@@ -37,7 +30,6 @@ export default async function generateRssFeed() {
       frontmatter: { slug },
     } = posts[i];
     markup[slug] = await generateStaticMarkup(slug);
-    // markup[slug] = await asyncTest();
     await generateStaticMarkup(slug);
   }
 

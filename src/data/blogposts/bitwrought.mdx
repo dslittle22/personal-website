@@ -12,11 +12,11 @@ I made a new side project! After listening to [this](https://overcast.fm/+R7DXe4
 The program itself is pretty simple; it's only about 300 lines excluding tests. The general logic looks like this:
 
 ```rust
-for file in files:
+for file in files {
   if !file.has_saved_hash() {
+    // save the file's hash as an xattr
     file.save_new_hash()
-
-    // save the file metadata's last modified timestamp as a second xattr
+    // save the file metadata's last modified timestamp as an xattr
     file.save_last_modified()
   } else {
     saved_hash = file.saved_hash()
@@ -28,12 +28,13 @@ for file in files:
       if file.last_modified() != file.saved_last_modified() {
         println!("Your file was written to")
       } else {
-        // if the file hashes are not equal but the file doesn't seem to
-        // have been modified, that is likely a data integrity issue!
+        // if the file hashes are not equal but the file was
+        // not modified, that is likely a data integrity issue!
         println!("Your file is not okay")
       }
     }
   }
+}
 ```
 
 Pretty simple! The "hashes" are saved as extended attributes directly on the file, which is reasonable because macOS checks data integrity for metadata, but not user data (e.g. files). I got this idea from Howard Oakley of The Eclectic Light Company, who has written lots of helpful articles about bit rot, file integrity, ECC, his own solution called [cinch](https://eclecticlight.co/2020/05/27/cintch-checks-file-integrity-from-the-command-line/), and much more. Some things not pictured are: allowing the deletion of saved hashes, handling nonexistent files or files with bad permissions, and traversing directories (possibly the first time recursion has seemed the most straightforward way to solve a problem).
