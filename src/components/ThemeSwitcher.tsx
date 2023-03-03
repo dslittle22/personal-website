@@ -11,6 +11,11 @@ export default function ThemeSwitcher({
 }) {
   const [initialRender, setInitialRender] = useState(true);
   const [selected, setSelected] = useState<string | undefined>(undefined);
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   function osPrefListener(event: MediaQueryListEvent) {
     const newTheme = event.matches ? "dark" : "light";
@@ -99,9 +104,11 @@ export default function ThemeSwitcher({
           <System />
         </div>
       </div>
-      <Tooltip id="light" />
-      <Tooltip id="dark" />
-      <Tooltip id="system" />
+
+      {isMounted && <Tooltip id="light" />}
+
+      {isMounted && <Tooltip id="dark" />}
+      {isMounted && <Tooltip id="system" />}
     </div>
   );
 }
