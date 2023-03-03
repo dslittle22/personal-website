@@ -25,8 +25,37 @@ export const metadata: Metadata = {
     default: "Danny Little",
     template: "Danny Little | %s",
   },
+  description: "Web developer",
+  openGraph: {
+    title: "Danny Little",
+    description: "Web developer",
+    url: "https://dlittle.me",
+    siteName: "Danny Little",
+    images: [
+      {
+        url: "https://dlittle.me/senior-portrait.jpeg",
+        width: 853,
+        height: 1280,
+      },
+    ],
+    locale: "en-US",
+    type: "website",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
   icons: {
+    icon: "favicon/favicon.ico",
     shortcut: "favicon/favicon.ico",
+    apple: "favicon/apple-touch-icon.png",
   },
 };
 
