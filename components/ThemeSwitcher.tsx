@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import { Moon, Sun, System } from "./icons";
-import { Tooltip } from "react-tooltip";
 
 export default function ThemeSwitcher({
   styles,
@@ -74,40 +73,24 @@ export default function ThemeSwitcher({
     <div className={styles.themeSwitcherWrapper}>
       <div className={styles.themeSwitcher}>
         <div
-          data-tooltip-id="light"
-          data-tooltip-content="Light mode"
-          data-tooltip-delay-show={250}
-          data-tooltip-place="right"
           onClick={setLightMode}
           className={selected == "light" ? styles.active : ""}
         >
           <Sun />
         </div>
         <div
-          data-tooltip-id="dark"
-          data-tooltip-content="Dark mode"
-          data-tooltip-delay-show={250}
-          data-tooltip-place="right"
           onClick={setDarkMode}
           className={selected == "dark" ? styles.active : ""}
         >
           <Moon />
         </div>
         <div
-          data-tooltip-id="system"
-          data-tooltip-content="OS preference"
-          data-tooltip-delay-show={250}
-          data-tooltip-place="right"
           onClick={changeToOSPref}
           className={selected == "system" ? styles.active : ""}
         >
           <System />
         </div>
       </div>
-
-      {/* {isMounted && <Tooltip id="light" />} */}
-      {/* {isMounted && <Tooltip id="dark" />} */}
-      {/* {isMounted && <Tooltip id="system" />} */}
     </div>
   );
 }

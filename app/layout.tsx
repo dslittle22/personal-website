@@ -3,7 +3,6 @@
 import { Roboto_Serif, Open_Sans } from "next/font/google";
 import type { Metadata } from "next";
 
-import "react-tooltip/dist/react-tooltip.css";
 import "styles/globals.scss";
 import "styles/code.scss";
 import Header from "@/components/Header";
