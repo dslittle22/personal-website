@@ -30,7 +30,7 @@ export default function ProjectPreview({ project, ...props }: Props) {
         <br />
         <small>{project.description}</small>
       </div>
-      <SizedImage imageSrc={project.imageSrc} maxHeight={300} />
+      <SizedImage imageSrc={project.imageSrc} maxHeight={300} priority />
     </Parent>
   );
 }
