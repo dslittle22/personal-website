@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { Moon, Sun, System } from "./icons";
-// import { Tooltip } from "react-tooltip";
+import { Tooltip } from "react-tooltip";
 
 export default function ThemeSwitcher({
   styles,
@@ -99,9 +99,9 @@ export default function ThemeSwitcher({
           <System />
         </div>
       </div>
-      {/* <Tooltip id="light" /> */}
-      {/* <Tooltip id="dark" /> */}
-      {/* <Tooltip id="system" /> */}
+      <Tooltip id="light" />
+      <Tooltip id="dark" />
+      <Tooltip id="system" />
     </div>
   );
 }
