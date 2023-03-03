@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from "react";
 import { Moon, Sun, System } from "./icons";
+import Tooltip from "rc-tooltip";
+import "rc-tooltip/assets/bootstrap.css";
 
 export default function ThemeSwitcher({
   styles,
@@ -72,24 +74,43 @@ export default function ThemeSwitcher({
   return (
     <div className={styles.themeSwitcherWrapper}>
       <div className={styles.themeSwitcher}>
-        <div
-          onClick={setLightMode}
-          className={selected == "light" ? styles.active : ""}
+        <Tooltip
+          trigger={["hover"]}
+          overlay={<span>Light mode</span>}
+          placement="right"
+          mouseEnterDelay={0.075}
         >
-          <Sun />
-        </div>
-        <div
-          onClick={setDarkMode}
-          className={selected == "dark" ? styles.active : ""}
+          <div
+            onClick={setLightMode}
+            className={selected == "light" ? styles.active : ""}
+          >
+            <Sun />
+          </div>
+        </Tooltip>
+        <Tooltip
+          trigger={["hover"]}
+          overlay={<span>Dark mode</span>}
+          mouseEnterDelay={0.075}
         >
-          <Moon />
-        </div>
-        <div
-          onClick={changeToOSPref}
-          className={selected == "system" ? styles.active : ""}
+          <div
+            onClick={setDarkMode}
+            className={selected == "dark" ? styles.active : ""}
+          >
+            <Moon />
+          </div>
+        </Tooltip>
+        <Tooltip
+          trigger={["hover"]}
+          overlay={<span>System Preference</span>}
+          mouseEnterDelay={0.075}
         >
-          <System />
-        </div>
+          <div
+            onClick={changeToOSPref}
+            className={selected == "system" ? styles.active : ""}
+          >
+            <System />
+          </div>
+        </Tooltip>
       </div>
     </div>
   );

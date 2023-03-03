@@ -153,3 +153,7 @@ section + * {
   word-wrap: normal;
   border: 0;
 }
+
+div.rc-tooltip-arrow {
+  left: 4px !important;
+}
