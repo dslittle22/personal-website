@@ -39,7 +39,7 @@ export default async function generateRssFeed() {
       description,
       date: new Date(date),
       link: `${site_url}/blog/${slug}`,
-      // content: markup[slug],
+      content: markup[slug],
     });
   });
 

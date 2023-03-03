@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import Mdx from "@/components/Mdx";
-import generateRssFeed from "@/lib/rss";
-
 import { getAllPosts, getPostBySlug, getSourceBySlug } from "@/lib/mdx";
 import { generateSitemap } from "@/lib/sitemap";
+import generateRssFeed from "@/lib/rss";
 
 type Props = {
   params: { slug: string };

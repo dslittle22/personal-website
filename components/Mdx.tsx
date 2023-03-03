@@ -6,7 +6,7 @@ import SizedImage from "./SizedImage";
 import remarkGfm from "remark-gfm";
 import rehypePrettyCode from "rehype-pretty-code";
 
-const customComponents = {
+export const customComponents = {
   a: SmartLink,
   SizedImage,
 };
@@ -37,7 +37,6 @@ export default function Mdx(props: {
   return (
     // @ts-ignore
     <MDXRemote
-      compiledSource=""
       {...props}
       components={{
         ...(customComponents as MDXComponents),

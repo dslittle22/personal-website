@@ -1,6 +1,7 @@
 import Mdx from "./Mdx";
-import { relative_url } from "@/lib/siteUrl";
-import { getPostBySlug, getSourceBySlug } from "@/lib/mdx";
+import { getSourceBySlug } from "@/lib/mdx";
+import CoolComponent from "./CoolComponent";
+import { MDXRemote } from "next-mdx-remote/rsc";
 
 export default function None() {
   return;
@@ -9,16 +10,15 @@ export default function None() {
 export async function generateStaticMarkup(slug: string) {
   const ReactDomServer = (await import("react-dom/server")).default;
 
+  let element: JSX.Element;
+  // element = <CoolComponent>hello</CoolComponent>;
   const mdxSource = getSourceBySlug(slug);
-  let element;
-  element = <Mdx source={mdxSource} />;
+  // element = await (<Mdx source={mdxSource} />);
+  element = await (<MDXRemote source={mdxSource} compiledSource="" />);
 
-  element = (
-    <a
-      href={`${relative_url}/blog/${slug}`}
-    >{`${relative_url}/blog/${slug}`}</a>
-  );
+  console.log(element);
+  const staticMarkup = ReactDomServer.renderToStaticMarkup(element);
+  console.log(staticMarkup);
 
-  const staticMarkup = ReactDomServer.renderToString(element);
   return staticMarkup;
 }
