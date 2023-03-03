@@ -38,8 +38,6 @@ export default function SizedImage({
 
   imageStyle.borderRadius = borderRadius ? borderRadius : "5px";
 
-  // return <Image alt={alt} {...image} style={imageStyle} {...props} />;
-
   return (
     <div style={divStyle}>
       <Image alt={alt} {...image} style={imageStyle} {...props} />

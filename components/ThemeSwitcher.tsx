@@ -105,10 +105,9 @@ export default function ThemeSwitcher({
         </div>
       </div>
 
-      {isMounted && <Tooltip id="light" />}
-
-      {isMounted && <Tooltip id="dark" />}
-      {isMounted && <Tooltip id="system" />}
+      {/* {isMounted && <Tooltip id="light" />} */}
+      {/* {isMounted && <Tooltip id="dark" />} */}
+      {/* {isMounted && <Tooltip id="system" />} */}
     </div>
   );
 }
