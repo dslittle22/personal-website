@@ -12,7 +12,7 @@ export type Frontmatter = {
   draft?: boolean;
 };
 
-const blogPostsPath = "src/data/blogposts";
+const blogPostsPath = "data/blogposts";
 
 export function getSourceBySlug(slug: string) {
   return readFileSync(`${blogPostsPath}/${slug}.mdx`, "utf-8");
