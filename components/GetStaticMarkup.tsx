@@ -16,6 +16,16 @@ export async function generateStaticMarkup(slug: string) {
   // element = await (<Mdx source={mdxSource} />);
   element = await (<MDXRemote source={mdxSource} compiledSource="" />);
 
+  // uncommenting the lines below makes the rss feed generate correctly
+
+  // element = (
+  //   <div>
+  //     <a
+  //       href={`${relative_url}/blog/${slug}`}
+  //     >{`${relative_url}/blog/${slug}`}</a>
+  //   </div>
+  // );
+
   console.log(element);
   const staticMarkup = ReactDomServer.renderToStaticMarkup(element);
   console.log(staticMarkup);

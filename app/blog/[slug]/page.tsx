@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Mdx from "@/components/Mdx";
+
 import { getAllPosts, getPostBySlug, getSourceBySlug } from "@/lib/mdx";
 import { generateSitemap } from "@/lib/sitemap";
 import generateRssFeed from "@/lib/rss";
@@ -24,6 +25,8 @@ export async function generateStaticParams() {
   await generateRssFeed();
 
   const posts = await getAllPosts();
+  // await generateRssFeed();
+
   return posts.map(({ frontmatter }) => ({
     slug: frontmatter.slug,
   }));
