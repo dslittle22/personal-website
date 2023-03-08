@@ -3,6 +3,7 @@ import Mdx from "@/components/Mdx";
 import generateRssFeed from "@/lib/rss";
 
 import { getAllPosts, getPostBySlug, getSourceBySlug } from "@/lib/mdx";
+import { generateSitemap } from "@/lib/sitemap";
 
 type Props = {
   params: { slug: string };
@@ -20,9 +21,10 @@ export default async function Post({ params: { slug } }: Props) {
 }
 
 export async function generateStaticParams() {
-  const posts = await getAllPosts();
+  await generateSitemap();
   await generateRssFeed();
 
+  const posts = await getAllPosts();
   return posts.map(({ frontmatter }) => ({
     slug: frontmatter.slug,
   }));
