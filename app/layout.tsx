@@ -1,5 +1,3 @@
-// import "@/styles/prism-material-dark.css";
-
 import { Roboto_Serif, Open_Sans } from "next/font/google";
 import type { Metadata } from "next";
 

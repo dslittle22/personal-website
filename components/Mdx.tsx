@@ -37,7 +37,6 @@ export default function Mdx(props: {
   return (
     // @ts-ignore
     <MDXRemote
-      compiledSource=""
       {...props}
       components={{
         ...(customComponents as MDXComponents),

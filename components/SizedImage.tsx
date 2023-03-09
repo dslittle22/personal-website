@@ -22,7 +22,6 @@ export default function SizedImage({
   };
   const imageStyle: CSSProperties = {
     maxWidth: "100%",
-    // maxHeight: "100%",
     height: "auto",
     objectFit: "contain",
   };
