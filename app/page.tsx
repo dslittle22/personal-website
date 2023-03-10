@@ -2,6 +2,7 @@ import SmartLink from "@/components/SmartLink";
 import BlogPostPreview from "@/components/BlogPostPreview";
 import { getAllPosts } from "@/lib/mdx";
 import ProjectsList from "@/components/ProjectsList";
+import SizedImage from "@/components/SizedImage";
 
 export default async function Home() {
   async function listNBlogPosts(n: number) {
@@ -24,17 +25,23 @@ export default async function Home() {
 
   return (
     <>
-      <section>
-        <p>
-          {`Hi! I'm Danny Little. I'm a web developer and a musician.
-          I'm also a recent graduate of Bowdoin College, where I double majored in computer
-          science and music performance.`}
-        </p>
-        <p>
-          {`If you'd like to get in touch with me, my email is
-          hi@{this domain}. You can find me elsewhere at the
-          bottom of the page.`}
-        </p>
+      <section className="intro-paragraph">
+        <div>
+          <p>Hi! I'm Danny Little. I'm a web developer and musician.</p>
+          <p>
+            I'm a recent graduate from Bowdoin College, where I majored in
+            computer science and music performance.
+          </p>
+          <p>
+            I'm currently working as a frontend software engineer at HubSpot,
+            working in React.
+          </p>
+          <p>
+            On my own time, I enjoy learning more about computer systems,
+            compilers, and the web.
+          </p>
+        </div>
+        <SizedImage imageSrc="/senior-portrait.jpg" />
       </section>
       <section>
         <h3>

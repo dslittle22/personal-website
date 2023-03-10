@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     siteName: "Danny Little",
     images: [
       {
-        url: "https://dlittle.me/senior-portrait.jpeg",
+        url: "https://dlittle.me/senior-portrait.jpg",
         width: 853,
         height: 1280,
       },

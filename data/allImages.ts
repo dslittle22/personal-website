@@ -19,11 +19,11 @@ export const allImages: { [key: string]: ImageType } = {
     width: 3566,
     height: 1996,
   },
-  "/conway.png": { 
-    src: "/conway.png", 
-    alt: "image of conway's game of life implementation", 
-    width: 4208, 
-    height: 2168 
+  "/conway.png": {
+    src: "/conway.png",
+    alt: "image of conway's game of life implementation",
+    width: 4208,
+    height: 2168,
   },
   "/simpletasks.png": {
     src: "/simpletasks.png",
@@ -90,5 +90,12 @@ export const allImages: { [key: string]: ImageType } = {
     alt: "CSS grid container with space-between",
     width: 466,
     height: 197,
+  },
+
+  "/senior-portrait.jpg": {
+    src: "/senior-portrait.jpg",
+    alt: "A photo of me (Danny), taken by my brother James",
+    width: 853,
+    height: 853,
   },
 };

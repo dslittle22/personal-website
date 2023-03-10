@@ -6,6 +6,7 @@ export type Props = {
   imageSrc: string;
   maxWidth?: number;
   maxHeight?: number;
+  center?: boolean;
   [key: string]: any;
 };
 
@@ -13,13 +14,15 @@ export default function SizedImage({
   imageSrc,
   maxWidth,
   maxHeight,
+  center,
   ...props
 }: Props) {
   const { alt, borderRadius, ...image }: ImageType = allImages[imageSrc];
-  const divStyle: { [key: string]: string } = {
+  const divStyle: CSSProperties = {
     display: "flex",
-    justifyContent: "center",
+    justifyContent: center ? "center" : "",
   };
+
   const imageStyle: CSSProperties = {
     maxWidth: "100%",
     height: "auto",
@@ -32,13 +35,12 @@ export default function SizedImage({
     divStyle.maxHeight = `${maxHeight}px`;
   } else {
     divStyle.width = "100%";
-    divStyle.height = "100%";
   }
 
   imageStyle.borderRadius = borderRadius ? borderRadius : "5px";
 
   return (
-    <div style={divStyle}>
+    <div className={"sized-image"} style={divStyle}>
       <Image alt={alt} {...image} style={imageStyle} {...props} />
     </div>
   );

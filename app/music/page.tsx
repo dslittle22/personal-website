@@ -16,8 +16,8 @@ function MusicLink({
       <SmartLink href={href} style={{ display: "inline" }}>
         <h4 style={{ display: "inline" }}>{title}</h4>
       </SmartLink>
-      <br />
-      <small>{description}</small>
+      {": "}
+      {description}
     </li>
   );
 }
