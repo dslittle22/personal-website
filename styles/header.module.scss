@@ -1,9 +1,8 @@
 .header {
   container-type: inline-size;
-  margin-bottom: 0.5em;
+  padding: 0.5rem 0;
   grid-area: header;
   font-family: var(--font-heading);
-  padding-top: 0.5rem;
   display: grid;
   --edge-width: max(60px, calc((100% - 1300px) / 2));
   grid-template-columns:
@@ -11,6 +10,8 @@
     var(--sidebar-width) var(--edge-width);
 
   grid-template-areas: "left theme middle-header right-header right";
+  border-bottom: 0.25em groove var(--color-accent);
+  margin-bottom: 1em;
 }
 
 .link-wrapper {
@@ -96,7 +97,7 @@ div.active {
   }
 }
 
-@container (max-width: 500px) {
+@container (max-width: 625px) {
   .link-wrapper {
     flex-direction: column;
     justify-content: space-evenly;

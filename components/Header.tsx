@@ -19,20 +19,23 @@ export default function Header() {
           <Link href="/">
             <h1>Danny Little</h1>
           </Link>
-          <ul>
-            <li className={path === "blog" ? styles.active : ""}>
-              <Link href="/blog">Blog</Link>
-            </li>
-            <li className={path === "projects" ? styles.active : ""}>
-              <Link href="/projects">Projects</Link>
-            </li>
-            <li className={path === "music" ? styles.active : ""}>
-              <Link href="/music">Music</Link>
-            </li>
-          </ul>
+          <nav>
+            <ul>
+              <li className={path === "blog" ? styles.active : ""}>
+                <Link href="/blog">Blog</Link>
+              </li>
+              <li className={path === "projects" ? styles.active : ""}>
+                <Link href="/projects">Projects</Link>
+              </li>
+              <li className={path === "music" ? styles.active : ""}>
+                <Link href="/music">Music</Link>
+              </li>
+            </ul>
+          </nav>
         </div>
         <ThemeSwitcher styles={styles} />
       </header>
+      <div></div>
     </>
   );
 }

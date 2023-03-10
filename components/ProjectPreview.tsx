@@ -30,11 +30,7 @@ export default function ProjectPreview({ project, ...props }: Props) {
         <br />
         <small>{project.description}</small>
       </div>
-      <SizedImage
-        image_src={project.image_src}
-        priority
-        borderRadius={"10px"}
-      />
+      <SizedImage image_src={project.image_src} borderRadius={"10px"} />
     </Parent>
   );
 }
