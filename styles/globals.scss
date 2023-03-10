@@ -92,7 +92,7 @@ li {
   margin-left: 20px;
 }
 
-.musicList li {
+.music-list li {
   padding-top: 0.4em;
 }
 
@@ -138,8 +138,12 @@ main {
   }
 }
 
-section + * {
-  margin-top: 1em;
+* + section {
+  margin-bottom: 1em;
+}
+
+* + img {
+  margin-top: 0.5em;
 }
 
 .footnotes {
@@ -147,12 +151,9 @@ section + * {
   border-top: 1px solid #30363d;
 }
 
-* + .sized-image {
-  margin-top: 0.5em;
-}
-
 .intro-paragraph {
   display: grid;
+  align-items: center;
   grid-template-columns: 1fr 1fr;
   gap: 0 1em;
 }
@@ -160,11 +161,9 @@ section + * {
 @media (max-width: 650px) {
   .intro-paragraph {
     display: block;
-    .sized-image {
+
+    img {
       display: none;
-      img {
-        display: none;
-      }
     }
   }
 }

@@ -1,16 +1,16 @@
 import type { Metadata } from "next";
 import Mdx from "@/components/Mdx";
-import generateRssFeed from "@/lib/rss";
+import generate_rss_feed from "@/lib/rss";
 
-import { getAllPosts, getPostBySlug, getSourceBySlug } from "@/lib/mdx";
-import { generateSitemap } from "@/lib/sitemap";
+import { get_all_posts, get_post_by_slug, get_source_by_slug } from "@/lib/mdx";
+import { generate_sitemap } from "@/lib/sitemap";
 
 type Props = {
   params: { slug: string };
 };
 export default async function Post({ params: { slug } }: Props) {
-  const { frontmatter } = await getPostBySlug(slug);
-  const source = getSourceBySlug(slug);
+  const { frontmatter } = await get_post_by_slug(slug);
+  const source = get_source_by_slug(slug);
 
   return (
     <>
@@ -21,10 +21,10 @@ export default async function Post({ params: { slug } }: Props) {
 }
 
 export async function generateStaticParams() {
-  await generateSitemap();
-  await generateRssFeed();
+  await generate_sitemap();
+  await generate_rss_feed();
 
-  const posts = await getAllPosts();
+  const posts = await get_all_posts();
   return posts.map(({ frontmatter }) => ({
     slug: frontmatter.slug,
   }));
@@ -35,6 +35,6 @@ export async function generateMetadata({
 }: Props): Promise<Metadata> {
   const {
     frontmatter: { title, description },
-  } = await getPostBySlug(slug);
+  } = await get_post_by_slug(slug);
   return { title, description };
 }

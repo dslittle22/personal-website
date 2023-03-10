@@ -1,9 +1,9 @@
 import fs from "fs";
 import { globby } from "globby";
-import { getAllPosts } from "./mdx";
-import { prod_url } from "@/lib/siteUrl";
+import { get_all_posts } from "./mdx";
+import { prod_url } from "@/lib/site_url";
 
-export async function generateSitemap() {
+export async function generate_sitemap() {
   const pagePaths = await globby(["**/page.tsx", "!**/[slug]/**"]);
   const pages: { [key: string]: string } = pagePaths.reduce((obj, page) => {
     let realPage = page.substring(3).replace("/page.tsx", "");
@@ -14,7 +14,7 @@ export async function generateSitemap() {
     };
   }, {});
 
-  const posts = await getAllPosts();
+  const posts = await get_all_posts();
   const blogPostPages: { [key: string]: string } = {};
   posts.forEach(({ frontmatter: { slug, date } }) => {
     pages[`/blog/${slug}`] = date;

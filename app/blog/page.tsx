@@ -1,13 +1,13 @@
 import BlogPostPreview from "@/components/BlogPostPreview";
-import { getAllPosts } from "@/lib/mdx";
+import { get_all_posts } from "@/lib/mdx";
 import { Metadata } from "next/types";
 
 export const metadata: Metadata = {
   title: "Blog",
 };
 
-async function listBlogPosts() {
-  const posts = await getAllPosts();
+async function list_blog_posts() {
+  const posts = await get_all_posts();
   if (process.env.LOCAL === "true") {
     return posts.map(({ frontmatter }) => (
       <BlogPostPreview key={frontmatter.slug} frontmatter={frontmatter} />
@@ -24,11 +24,11 @@ async function listBlogPosts() {
 type Props = {};
 
 export default async function Blog(props: Props) {
-  const blogPosts = await listBlogPosts();
+  const blog_posts = await list_blog_posts();
 
   return (
     <div>
-      <div>{blogPosts}</div>
+      <div>{blog_posts}</div>
     </div>
   );
 }

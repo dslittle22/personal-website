@@ -5,10 +5,12 @@ import styles from "@/styles/footer.module.scss";
 type Props = {};
 
 export default function Footer({}: Props) {
-  const startYear = 2023;
-  const currentYear = new Date().getFullYear();
+  const start_year = 2023;
+  const current_year = new Date().getFullYear();
   const dateStr =
-    currentYear === startYear ? startYear : `${startYear} - ${currentYear}`;
+    current_year === start_year
+      ? start_year
+      : `${start_year} - ${current_year}`;
 
   return (
     <footer className={styles.footer}>
@@ -27,7 +29,9 @@ export default function Footer({}: Props) {
           Mastodon
         </SmartLink>
       </div>
-      <div className={styles.bottomText}>Made by Danny Little in {dateStr}</div>
+      <div className={styles["bottom-text"]}>
+        Made by Danny Little in {dateStr}
+      </div>
     </footer>
   );
 }

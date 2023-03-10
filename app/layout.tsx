@@ -62,7 +62,7 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const setInitialTheme = `
+  const set_initial_theme = `
     const theme = window.localStorage.getItem('theme')
     const fallbackTheme = theme || window.matchMedia('(prefers-color-scheme: dark)').matches
         ? 'dark'
@@ -82,7 +82,9 @@ export default function RootLayout({
       </head>
 
       <body>
-        <script dangerouslySetInnerHTML={{ __html: setInitialTheme }}></script>
+        <script
+          dangerouslySetInnerHTML={{ __html: set_initial_theme }}
+        ></script>
         <Header />
         <main>{children}</main>
         <Footer />

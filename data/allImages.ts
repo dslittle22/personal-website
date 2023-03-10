@@ -6,7 +6,7 @@ export type ImageType = {
   borderRadius?: string;
 };
 
-export const allImages: { [key: string]: ImageType } = {
+export const all_images: { [key: string]: ImageType } = {
   "/bitwrought.png": {
     src: "/bitwrought.png",
     alt: "image of bitwrought cli app in a terminal",

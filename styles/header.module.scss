@@ -13,7 +13,7 @@
   grid-template-areas: "left theme middle-header right-header right";
 }
 
-.linkWrapper {
+.link-wrapper {
   grid-area: middle-header;
   display: flex;
   justify-content: space-between;
@@ -97,7 +97,7 @@ div.active {
 }
 
 @container (max-width: 500px) {
-  .linkWrapper {
+  .link-wrapper {
     flex-direction: column;
     justify-content: space-evenly;
   }

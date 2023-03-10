@@ -24,8 +24,8 @@ export function Moon() {
 export function Sun() {
   const [color, setColor] = useState("white");
   useEffect(() => {
-    let bodyStyles = window.getComputedStyle(document.body);
-    setColor(bodyStyles.getPropertyValue("--color-text"));
+    let body_styles = window.getComputedStyle(document.body);
+    setColor(body_styles.getPropertyValue("--color-text"));
   }, []);
 
   return (

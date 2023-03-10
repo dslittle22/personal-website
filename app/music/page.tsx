@@ -71,7 +71,7 @@ export default function Music() {
         </p>
       </section>
       <section>
-        <ul className="musicList">
+        <ul className="music-list">
           {musics.map((music) => (
             <MusicLink music={music} key={music.href} />
           ))}

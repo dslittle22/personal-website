@@ -6,7 +6,7 @@ import SizedImage from "./SizedImage";
 import remarkGfm from "remark-gfm";
 import rehypePrettyCode from "rehype-pretty-code";
 
-const customComponents = {
+const custom_components = {
   a: SmartLink,
   SizedImage,
 };
@@ -39,7 +39,7 @@ export default function Mdx(props: {
     <MDXRemote
       {...props}
       components={{
-        ...(customComponents as MDXComponents),
+        ...(custom_components as MDXComponents),
         ...(props.components || {}),
       }}
       options={{

@@ -1,15 +1,15 @@
 import Mdx from "./Mdx";
-import { relative_url } from "@/lib/siteUrl";
-import { getPostBySlug, getSourceBySlug } from "@/lib/mdx";
+import { relative_url } from "@/lib/site_url";
+import { get_post_by_slug, get_source_by_slug } from "@/lib/mdx";
 
 export default function None() {
   return;
 }
 
-export async function generateStaticMarkup(slug: string) {
+export async function generate_static_markup(slug: string) {
   const ReactDomServer = (await import("react-dom/server")).default;
 
-  const mdxSource = getSourceBySlug(slug);
+  const mdxSource = get_source_by_slug(slug);
   let element;
   element = <Mdx source={mdxSource} />;
 
@@ -19,6 +19,6 @@ export async function generateStaticMarkup(slug: string) {
     >{`${relative_url}/blog/${slug}`}</a>
   );
 
-  const staticMarkup = ReactDomServer.renderToString(element);
-  return staticMarkup;
+  const static_markup = ReactDomServer.renderToString(element);
+  return static_markup;
 }

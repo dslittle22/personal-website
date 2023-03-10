@@ -1,12 +1,12 @@
 import SmartLink from "@/components/SmartLink";
 import BlogPostPreview from "@/components/BlogPostPreview";
-import { getAllPosts } from "@/lib/mdx";
+import { get_all_posts } from "@/lib/mdx";
 import ProjectsList from "@/components/ProjectsList";
 import SizedImage from "@/components/SizedImage";
 
 export default async function Home() {
-  async function listNBlogPosts(n: number) {
-    const posts = await getAllPosts();
+  async function list_n_blog_posts(n: number) {
+    const posts = await get_all_posts();
 
     if (process.env.LOCAL === "true") {
       return posts.map(({ frontmatter }) => (
@@ -21,7 +21,7 @@ export default async function Home() {
       ))
       .slice(0, n);
   }
-  const blogPosts = await listNBlogPosts(4);
+  const blogPosts = await list_n_blog_posts(4);
 
   return (
     <>
@@ -41,7 +41,7 @@ export default async function Home() {
             compilers, and the web.
           </p>
         </div>
-        <SizedImage imageSrc="/senior-portrait.jpg" />
+        <SizedImage image_src="/senior-portrait.jpg" priority />
       </section>
       <section>
         <h3>

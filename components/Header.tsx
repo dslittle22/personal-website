@@ -15,9 +15,9 @@ export default function Header() {
   return (
     <>
       <header className={styles.header}>
-        <div className={styles.linkWrapper}>
+        <div className={styles["link-wrapper"]}>
           <Link href="/">
-            <h1 className={styles.siteHeader}>Danny Little</h1>
+            <h1>Danny Little</h1>
           </Link>
           <ul>
             <li className={path === "blog" ? styles.active : ""}>

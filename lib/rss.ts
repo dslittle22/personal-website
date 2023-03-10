@@ -1,10 +1,10 @@
 import fs from "fs";
 import { Feed } from "feed";
-import { getAllPosts } from "./mdx";
-import { generateStaticMarkup } from "@/components/GetStaticMarkup";
-import { relative_url } from "./siteUrl";
+import { get_all_posts } from "./mdx";
+import { generate_static_markup } from "@/components/GetStaticMarkup";
+import { relative_url } from "./site_url";
 
-export default async function generateRssFeed() {
+export default async function generate_rss_feed() {
   const site_url = relative_url;
   const feed = new Feed({
     title: "Danny Little | Blog",
@@ -22,15 +22,15 @@ export default async function generateRssFeed() {
     language: "en",
   });
 
-  const posts = await getAllPosts();
+  const posts = await get_all_posts();
 
   const markup: { [key: string]: string } = {};
   for (let i = 0; i < posts.length; i++) {
     const {
       frontmatter: { slug },
     } = posts[i];
-    markup[slug] = await generateStaticMarkup(slug);
-    await generateStaticMarkup(slug);
+    markup[slug] = await generate_static_markup(slug);
+    await generate_static_markup(slug);
   }
 
   posts.map(({ frontmatter: { title, date, description, slug } }) => {
