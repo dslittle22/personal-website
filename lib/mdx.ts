@@ -12,14 +12,14 @@ export type Frontmatter = {
   draft?: boolean;
 };
 
-const blogPostsPath = "data/blogposts";
+const blog_posts_path = "data/blog_posts";
 
 export function get_source_by_slug(slug: string) {
-  return readFileSync(`${blogPostsPath}/${slug}.mdx`, "utf-8");
+  return readFileSync(`${blog_posts_path}/${slug}.mdx`, "utf-8");
 }
 
 export async function get_post_by_slug(slug: string) {
-  let mdxSource: string = await fs.readFile(`${blogPostsPath}/${slug}.mdx`);
+  let mdxSource: string = await fs.readFile(`${blog_posts_path}/${slug}.mdx`);
   let { frontmatter, content } = await compileMDX({
     source: mdxSource,
     compiledSource: "",
@@ -45,7 +45,7 @@ export async function get_all_posts() {
     content: JSX.Element;
     frontmatter: Frontmatter;
   }[] = [];
-  const blogFilePaths = readdirSync(blogPostsPath);
+  const blogFilePaths = readdirSync(blog_posts_path);
   for (const path of blogFilePaths) {
     const { frontmatter, content } = await get_post_by_slug(path_to_slug(path));
 

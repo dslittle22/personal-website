@@ -14,7 +14,9 @@ export default async function Post({ params: { slug } }: Props) {
 
   return (
     <>
-      <h1>{frontmatter.title}</h1>
+      <h1 style={{ fontSize: "clamp(2rem, 1.5rem + 5vw, 4rem)" }}>
+        {frontmatter.title}
+      </h1>
       <Mdx source={source} />
     </>
   );

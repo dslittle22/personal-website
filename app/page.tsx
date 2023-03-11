@@ -21,7 +21,7 @@ export default async function Home() {
       ))
       .slice(0, n);
   }
-  const blogPosts = await list_n_blog_posts(4);
+  const blog_posts = await list_n_blog_posts(4);
 
   return (
     <>
@@ -48,7 +48,7 @@ export default async function Home() {
           Read my <SmartLink href="/blog">blog:</SmartLink> <br />
         </h3>
 
-        {blogPosts}
+        {blog_posts}
       </section>
       <section>
         <h3>

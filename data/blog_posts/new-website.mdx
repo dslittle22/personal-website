@@ -1,0 +1,89 @@
+---
+title: New website check
+date: 2023-03-11
+author: Danny Little
+description: A walkthrough of my new website, and exploring Next.js 13 and RSC
+draft: true
+---
+
+I made a new website! I liked the last one, but I had this habit of not touching it for many months and then getting annoyed about all of the npm warnings when I tried to update it next. I had seen a lot on the internet about Next.js 13 React Server Components, so I thought I'd give those a whiff and put my site on the Next.js 13 beta.
+
+# The old
+
+Overall, my website is simple. But I like it! In remaking it, I had the chance to reevalute many of the choices I made on v1.0. Some of those choices were pretty good, others less so. Here's some things about the remade site that I kept the same.
+
+### Grid layout
+
+I have five columns:
+
+- A middle column that won't expand past `750px`
+- Two "sidebar" sections that expand up to `5fr`, but disappear completely if the window is narrow
+- Two outer padding sections that don't get smaller than `20px`, will fill the remaining width once the "sidebar" columns reach their max width
+
+This layout looks pretty good on a big huge monitor as well as a tiny phone, so I'm
+happy with it. I don't have a wrapper in the middle column, so it's possible for
+me to put content in the sidebar column if I feel like it. Neat!
+
+<div
+  className="sidebar-right"
+  style={{
+    witdh: "min-content",
+    margin: "0.5em auto 0 auto",
+  }}
+>
+  <div
+    style={{
+      padding: "0.5em",
+      border: "1px solid",
+      borderRadius: "5px",
+      boxShadow: "5px 3px 1px var(--color-text)",
+      marginLeft: "1em",
+    }}
+  >
+    _Like this, if your window is wide enough!_
+  </div>
+</div>
+
+<h2 style={{ marginTop: "1em" }}>MDX</h2>
+
+I write my blog posts in MDX, which is a format that combines markdown and JavaScript. It's a little tricky to set up and get working- Next.js 13 has some built in stuff for MDX, but it's not exactly what I want: I'd need to make a new .mdx file, as well as a new folder and `page.tsx` file in the project.
+
+Instead, I'm using `next-mdx-remote` to look at all of my MDX files at build time and essentially do some kind of compilation of MDX into HTML and JavaScript. `next-mdx-remote` also has a slightly involved setup, and it also has some limitations (you can't import directly into MDX files). But once I got it set up, it's worked pretty well.
+
+### Images
+
+On the last website and this one, I've made a little wrapper component on the `next/image` component. It's nice to just hand it a url, and optionally a max size or a `centered` prop. The wrapper also grabs the width, height, and alt text from a TypeScript file full of constants.
+
+### Links
+
+I have a dumb little animation when you hover on links. I cribbed it from somewhere on the internet I'll never be able to find. I love it. I also have a wrapper on the `next/link` component that makes it a `<Link>` if the url is internal and an `<a>` if it's external.
+
+# The new
+
+My site doesn't really use any of the fancy new RSC or Next.js 13 features. Really, the only thing I did was change from Styled-Components to CSS modules, because Styled-Components had a little bit of a janky setup on both Next.js 12 and Next.js 13, and I'd rather use something built in to the framework. It was a little laborious rewriting all of the CSS for this site, but also educational! I learned about some new things like container queries and `:has`, which are both pretty cool. I also added a dark mode, with the help of CSS custom properties and [these](https://chriscoyier.net/2023/01/19/dark-mode-via-a-smallish-script-in-the-head-avoiding-fart/) [blogs](https://www.joshwcomeau.com/react/dark-mode/).
+
+### Next.js 13
+
+I've started using an RSS reader quite often, so I wanted to give my site an RSS feed. That's fairly easy to do with a number of npm packages (I'm using `feed`), but I'm fully stuck on trying to get the full content of my posts into the feed. I think I should be able to use `next-mdx-remote` to turn an MDX file into a static string of markup, but I keep running into confusing errors. But until I figure that out, I have a feed with links to each post.
+
+Next.js also has some nice built-in stuff with metadata and SEO, so I'm trying to use that as well. I also have, for the first time, a sitemap! Both the sitemap and the RSS feed are generated automatically at build time; I accomplish this by running functions to do those in the new `generateStaticParams`, which replaces `getStaticPaths`.
+
+### React Server Components
+
+When I run `npm run build` on this new site, Next.js says that every page is:
+
+```none
+(Static) automatically rendered as static HTML
+```
+
+I'm not making use of server components, but I like the idea behind them: don't ship JavaScript to the client if you don't need to, and do more computational work / data fetching on the beefy servers with the fat pipes instead your great aunt's five year old Amazon Fire Phone.
+
+How can we test out RSC? If I add a new page to my site which uses `fetch`, I should have some dynamic data, right? I'll add a [route](/ssr) to my site that fetches a random word. Running `npm run build` shows... the same thing, another static page. What gives? Well, this actually does _not_ make the page dynamic: Next.js has set up `fetch` to cache forever by default, which in practical terms, means that this does one fetch **at build time** and ships the result to all clients until a new version of the site is built. But if we tell it to not cache with `fetch(url, cache: {'no-cache'})`, the data is refetched, on the server, on every page load! And indeed, `npm run build` tell us about the route:
+
+```none
+(Server) server-side renders at runtime
+```
+
+There's a bunch of other fancy stuff going on too (e.g. if I had the same fetch request in another component on the page, Next.js would recognize this and only make one request). I should be able to "revalidate" the data at some time interval, but it didn't work when I tried it. I thought that saying "hey, revalidate every 5 seconds" would mean that it would, you know, get new data every 5 seconds. But that didn't seem to happen.
+
+I hope you enjoyed this tour of my new site! This post is probably going to be more useful to me than anybody else when I want to mess with the site, but I hope it's helpful for anybody else who wants to make a completely overkill blog in Next.js 13.

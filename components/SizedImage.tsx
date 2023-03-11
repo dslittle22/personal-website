@@ -1,4 +1,4 @@
-import { all_images, ImageType } from "@/data/allImages";
+import { all_images, ImageType } from "@/data/all_images";
 import Image from "next/image";
 import { CSSProperties } from "react";
 
@@ -16,7 +16,7 @@ export default function SizedImage({
   maxWidth,
   maxHeight,
   center,
-  border_radius: props_border_radius,
+  borderRadius: props_border_radius,
   ...props
 }: Props) {
   const {
