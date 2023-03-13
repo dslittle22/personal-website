@@ -33,15 +33,17 @@ export default async function generate_rss_feed() {
     await generate_static_markup(slug);
   }
 
-  posts.map(({ frontmatter: { title, date, description, slug } }) => {
-    feed.addItem({
-      title,
-      description,
-      date: new Date(date),
-      link: `${site_url}/blog/${slug}`,
-      // content: markup[slug],
+  posts
+    .filter((post) => post.frontmatter.draft !== true)
+    .map(({ frontmatter: { title, date, description, slug } }) => {
+      feed.addItem({
+        title,
+        description,
+        date: new Date(date),
+        link: `${site_url}/blog/${slug}`,
+        // content: markup[slug],
+      });
     });
-  });
 
   fs.mkdir("public/rss", () => {});
 
