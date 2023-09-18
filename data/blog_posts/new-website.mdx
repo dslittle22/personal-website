@@ -1,6 +1,6 @@
 ---
 title: New website check
-date: 2023-03-11
+date: 2023-09-18
 author: Danny Little
 description: A walkthrough of my new website, and exploring Next.js 13 and RSC
 draft: true
@@ -85,5 +85,14 @@ How can we test out RSC? If I add a new page to my site which uses `fetch`, I sh
 ```
 
 There's a bunch of other fancy stuff going on too (e.g. if I had the same fetch request in another component on the page, Next.js would recognize this and only make one request). I should be able to "revalidate" the data at some time interval, but it didn't work when I tried it. I thought that saying "hey, revalidate every 5 seconds" would mean that it would, you know, get new data every 5 seconds. But that didn't seem to happen.
+
+<Popout>
+  9/18 Edit: Now I know why that ☝️ didn't work! React server components render
+  once, hydrated and all (as opposed to SRR, which just renders an unhydrated
+  'shell'). There's no way for a server component to run the JS client-side to
+  do any kind of "fetch this every 5 seconds" thing. Thanks to Josh Comeau's
+  awesome [article](https://joshwcomeau.com/react/server-components/) about this
+  stuff that cleared it up for me!
+</Popout>
 
 I hope you enjoyed this tour of my new site! This post is probably going to be more useful to me than anybody else when I want to mess with the site, but I hope it's helpful for anybody else who wants to make a completely overkill blog in Next.js 13.

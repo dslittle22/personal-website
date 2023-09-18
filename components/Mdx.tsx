@@ -3,12 +3,14 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import { Compatible } from "vfile";
 import SmartLink from "./SmartLink";
 import SizedImage from "./SizedImage";
+import Popout from "./Popout";
 import remarkGfm from "remark-gfm";
 import rehypePrettyCode from "rehype-pretty-code";
 
 const custom_components = {
   a: SmartLink,
   SizedImage,
+  Popout,
 };
 
 const options = {

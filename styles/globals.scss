@@ -173,6 +173,28 @@ main {
   gap: 0 1em;
 }
 
+.popout {
+  // background-color: var(--color-background);
+  background-image: linear-gradient(
+    to bottom right,
+    var(--color-accent),
+    var(--color-background)
+  );
+  // border: var(--color-accent) 2px solid;
+  border-bottom: 5px groove var(--color-accent);
+  border-right: 5px groove var(--color-accent);
+  padding: 1rem;
+  border-radius: 10px;
+  & a {
+    color: var(--color-text);
+    font-weight: bold;
+    background-image: linear-gradient(
+      var(--color-heading),
+      var(--color-heading)
+    );
+  }
+}
+
 @media (max-width: 625px) {
   .intro-paragraph {
     display: block;

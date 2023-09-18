@@ -1,7 +1,6 @@
 import SmartLink from "@/components/SmartLink";
 
 export default async function Ssr() {
-  // const item = await get_data(url);
   const items = await fetch_n_items(5);
   return (
     <>
