@@ -1,18 +1,12 @@
 import SmartLink from "@/components/SmartLink";
 
 export default async function Ssr() {
-  const items = await fetch_n_items(5);
+  const items = await get_data();
   return (
     <>
-      <div>
-        Here are five words from{" "}
-        <SmartLink href="https://random-word-api.herokuapp.com/word?number=1">
-          this
-        </SmartLink>{" "}
-        web api:
-      </div>
+      <div>Here are five words from a web API:</div>
       <ul>
-        {items.map((item, i) => (
+        {items.map((item: string, i: number) => (
           <li key={`${item}-${i}`}>{item}</li>
         ))}
       </ul>
@@ -21,12 +15,13 @@ export default async function Ssr() {
 }
 
 async function get_data() {
-  const url = "https://random-word-api.herokuapp.com/word?number=1";
+  const url = "https://random-word-api.vercel.app/api?words=5";
   const resp = await fetch(url, { cache: "no-cache" });
   if (!resp.ok) {
     throw new Error("Failed to fetch data");
   }
   const json = await resp.json();
+  console.log(json);
   return json;
 }
 

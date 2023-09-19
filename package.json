@@ -16,7 +16,7 @@
     "eslint-config-next": "^13.4.19",
     "feed": "^4.2.2",
     "globby": "^13.1.3",
-    "next": "^13.4.19",
+    "next": "^13.5.1",
     "next-mdx-remote": "^4.3.0",
     "rc-tooltip": "^6.0.1",
     "react": "^18.2.0",

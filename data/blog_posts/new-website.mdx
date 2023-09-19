@@ -89,9 +89,11 @@ There's a bunch of other fancy stuff going on too (e.g. if I had the same fetch 
   Edit: Now I know why that ☝️ didn't work! React server components render once,
   hydrated and all (as opposed to SRR, which just renders an unhydrated
   'shell'). There's no way for a server component to run the JS client-side to
-  do any kind of "fetch this every 5 seconds" thing. Thanks to Josh Comeau's
-  awesome [article](https://joshwcomeau.com/react/server-components/) about this
-  stuff that cleared it up for me!
+  do any kind of "fetch this every 5 seconds" thing. I could do something like
+  this by putting a client component within the server component, though. Thanks
+  to Josh Comeau's awesome
+  [article](https://joshwcomeau.com/react/server-components/) about this stuff
+  that cleared it up for me!
 </Popout>
 
 I hope you enjoyed this tour of my new site! This post is probably going to be more useful to me than anybody else when I want to mess with the site, but I hope it's helpful for anybody else who wants to make a completely overkill blog in Next.js 13.
