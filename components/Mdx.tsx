@@ -9,6 +9,7 @@ import rehypePrettyCode from "rehype-pretty-code";
 
 const custom_components = {
   a: SmartLink,
+  SmartLink,
   SizedImage,
   Popout,
 };

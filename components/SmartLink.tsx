@@ -11,7 +11,7 @@ const SmartLink = (props: {
   }
 
   return (
-    <Link {...props} target={href.startsWith("/") ? "" : "_blank"}>
+    <Link target={href.startsWith("/") ? "" : "_blank"} {...props}>
       {children}
     </Link>
   );
