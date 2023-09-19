@@ -18,11 +18,20 @@ export function get_source_by_slug(slug: string) {
   return readFileSync(`${blog_posts_path}/${slug}.mdx`, "utf-8");
 }
 
+export async function get_last_modified_by_slug(slug: string) {
+  const stat = await fs.stat(`${blog_posts_path}/${slug}.mdx`);
+  return new Date(stat.mtimeMs).toLocaleDateString(undefined, {
+    weekday: undefined,
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  });
+}
+
 export async function get_post_by_slug(slug: string) {
   let mdxSource: string = await fs.readFile(`${blog_posts_path}/${slug}.mdx`);
   let { frontmatter, content } = await compileMDX({
     source: mdxSource,
-    compiledSource: "",
     options: { parseFrontmatter: true },
   });
   if (frontmatter?.draft && process.env.LOCAL === "true") {

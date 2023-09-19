@@ -2,8 +2,14 @@ import type { Metadata } from "next";
 import Mdx from "@/components/Mdx";
 import generate_rss_feed from "@/lib/rss";
 
-import { get_all_posts, get_post_by_slug, get_source_by_slug } from "@/lib/mdx";
+import {
+  get_all_posts,
+  get_post_by_slug,
+  get_source_by_slug,
+  get_last_modified_by_slug,
+} from "@/lib/mdx";
 import { generate_sitemap } from "@/lib/sitemap";
+import LastEdited from "@/components/LastEdited";
 
 type Props = {
   params: { slug: string };
@@ -11,6 +17,7 @@ type Props = {
 export default async function Post({ params: { slug } }: Props) {
   const { frontmatter } = await get_post_by_slug(slug);
   const source = get_source_by_slug(slug);
+  const lastModified = await get_last_modified_by_slug(slug);
 
   return (
     <>
@@ -18,6 +25,7 @@ export default async function Post({ params: { slug } }: Props) {
         {frontmatter.title}
       </h1>
       <Mdx source={source} />
+      <LastEdited lastModified={lastModified} />
     </>
   );
 }
