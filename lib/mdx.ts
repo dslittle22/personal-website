@@ -32,8 +32,8 @@ export async function get_post_by_slug(slug: string) {
   if (frontmatter?.draft && process.env.LOCAL === "true") {
     frontmatter.title += " [draft]";
   }
-  const date = frontmatter.date as Date;
-  date.setDate(date.getDate() + 1);
+  // const date = frontmatter.date as Date;
+  // date.setDate(date.getDate() + 1);
   // Frontmatter date gets moved back a day because of time zones
 
   return {
