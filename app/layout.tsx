@@ -5,6 +5,7 @@ import "styles/globals.scss";
 import "styles/code.scss";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { prod_url } from "@/lib/site_url";
 
 const heading = Roboto_Serif({
   subsets: ["latin"],
@@ -24,6 +25,7 @@ export const metadata: Metadata = {
     template: "Danny Little | %s",
   },
   description: "Web developer",
+  metadataBase: new URL(prod_url),
   openGraph: {
     title: "Danny Little",
     description: "Web developer",

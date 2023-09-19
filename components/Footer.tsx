@@ -2,9 +2,7 @@ import React from "react";
 import SmartLink from "./SmartLink";
 import styles from "@/styles/footer.module.scss";
 
-type Props = {};
-
-export default function Footer({}: Props) {
+export default function Footer() {
   const start_year = 2023;
   const current_year = new Date().getFullYear();
   const dateStr =

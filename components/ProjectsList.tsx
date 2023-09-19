@@ -43,12 +43,7 @@ const projects: Project[] = [
   },
 ];
 
-type Props = {
-  count?: number;
-};
-
-export default function ProjectsList(props: Props) {
-  let count = props.count;
+export default function ProjectsList({ count }: { count?: number }) {
   if (count === undefined) {
     count = projects.length;
   }

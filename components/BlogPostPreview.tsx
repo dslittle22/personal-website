@@ -1,22 +1,17 @@
 import SmartLink from "@/components/SmartLink";
-type Props = {};
+import { formatDate } from "@/lib/date";
+import { Frontmatter } from "@/lib/mdx";
 
 export default function BlogPostPreview({
-  frontmatter: { title, date, author, description, slug },
+  frontmatter: { title, date, description, slug },
 }: {
-  frontmatter: {
-    title: string;
-    date: string;
-    author: string;
-    description: string;
-    slug: string;
-  };
+  frontmatter: Frontmatter;
 }) {
   return (
     <div key={slug}>
       <SmartLink href={`/blog/${slug}`}>{title}</SmartLink>: {description}
       <br />
-      <small>Written on {date}</small>
+      <small>Written on {formatDate(date)}</small>
     </div>
   );
 }

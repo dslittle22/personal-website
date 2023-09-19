@@ -21,9 +21,7 @@ async function list_blog_posts() {
     ));
 }
 
-type Props = {};
-
-export default async function Blog(props: Props) {
+export default async function Blog() {
   const blog_posts = await list_blog_posts();
 
   return (

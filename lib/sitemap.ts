@@ -17,7 +17,7 @@ export async function generate_sitemap() {
   const posts = await get_all_posts();
   const blogPostPages: { [key: string]: string } = {};
   posts.forEach(({ frontmatter: { slug, date } }) => {
-    pages[`/blog/${slug}`] = date;
+    pages[`/blog/${slug}`] = date.toISOString().split("T")[0];
   });
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>

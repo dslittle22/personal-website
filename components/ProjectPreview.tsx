@@ -8,18 +8,12 @@ export type Project = {
   href?: string;
 };
 
-type Props = {
-  project: Project;
-};
-
-export default function ProjectPreview({ project, ...props }: Props) {
+export default function ProjectPreview({ project }: { project: Project }) {
   function Parent({ children }: { children: React.ReactNode }) {
     return project.href == undefined ? (
-      <div {...props}>{children}</div>
+      <div>{children}</div>
     ) : (
-      <SmartLink href={project.href} {...props}>
-        {children}
-      </SmartLink>
+      <SmartLink href={project.href}>{children}</SmartLink>
     );
   }
 

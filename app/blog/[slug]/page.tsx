@@ -10,15 +10,16 @@ import {
 } from "@/lib/mdx";
 import { generate_sitemap } from "@/lib/sitemap";
 import LastEdited from "@/components/LastEdited";
+import { prod_url } from "@/lib/site_url";
 
-type Props = {
+export default async function Post({
+  params: { slug },
+}: {
   params: { slug: string };
-};
-export default async function Post({ params: { slug } }: Props) {
+}) {
   const { frontmatter } = await get_post_by_slug(slug);
   const source = get_source_by_slug(slug);
   const lastModified = await get_last_modified_by_slug(slug);
-  console.log(frontmatter.date);
 
   return (
     <>
@@ -32,6 +33,8 @@ export default async function Post({ params: { slug } }: Props) {
 }
 
 export async function generateStaticParams() {
+  console.log("generating static params");
+
   await generate_sitemap();
   await generate_rss_feed();
 
@@ -43,7 +46,9 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({
   params: { slug },
-}: Props): Promise<Metadata> {
+}: {
+  params: { slug: string };
+}): Promise<Metadata> {
   const {
     frontmatter: { title, description },
   } = await get_post_by_slug(slug);
