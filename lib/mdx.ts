@@ -5,7 +5,7 @@ import { compileMDX } from "next-mdx-remote/rsc";
 
 export type Frontmatter = {
   title: string;
-  date: string;
+  date: Date;
   author: string;
   description: string;
   slug: string;
@@ -20,12 +20,7 @@ export function get_source_by_slug(slug: string) {
 
 export async function get_last_modified_by_slug(slug: string) {
   const stat = await fs.stat(`${blog_posts_path}/${slug}.mdx`);
-  return new Date(stat.mtimeMs).toLocaleDateString(undefined, {
-    weekday: undefined,
-    month: "long",
-    day: "numeric",
-    year: "numeric",
-  });
+  return new Date(stat.mtimeMs);
 }
 
 export async function get_post_by_slug(slug: string) {
@@ -37,14 +32,15 @@ export async function get_post_by_slug(slug: string) {
   if (frontmatter?.draft && process.env.LOCAL === "true") {
     frontmatter.title += " [draft]";
   }
+  const date = frontmatter.date as Date;
+  date.setDate(date.getDate() + 1);
+  // Frontmatter date gets moved back a day because of time zones
 
   return {
     content,
     frontmatter: {
       ...frontmatter,
       slug,
-      // @ts-ignore
-      date: frontmatter.date.toISOString().substring(0, 10),
     } as Frontmatter,
   };
 }

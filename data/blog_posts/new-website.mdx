@@ -1,6 +1,6 @@
 ---
 title: New website check
-date: 2023-09-18
+date: 2023-09-19
 author: Danny Little
 description: A walkthrough of my new website, and exploring Next.js 13 and RSC
 ---
@@ -77,7 +77,7 @@ When I run `npm run build` on this new site, Next.js says that every page is:
 
 I'm not making use of server components, but I like the idea behind them: don't ship JavaScript to the client if you don't need to, and do more computational work / data fetching on the beefy servers with the fat pipes instead your great aunt's five year old Amazon Fire Phone.
 
-How can we test out RSC? If I add a new page to my site which uses `fetch`, I should have some dynamic data, right? I'll add a [route](/ssr) to my site that fetches a random word. Running `npm run build` shows... the same thing, another static page. What gives? Well, this actually does _not_ make the page dynamic: Next.js has set up `fetch` to cache forever by default, which in practical terms, means that this does one fetch **at build time** and ships the result to all clients until a new version of the site is built. But if we tell it to not cache with `fetch(url, cache: {'no-cache'})`, the data is refetched, on the server, on every page load! And indeed, `npm run build` tell us about the route:
+How can we test out RSC? If I add a new page to my site which uses `fetch`, I should have some dynamic data, right? I'll add a [route](/rsc) to my site that fetches a random word. Running `npm run build` shows... the same thing, another static page. What gives? Well, this actually does _not_ make the page dynamic: Next.js has set up `fetch` to cache forever by default, which in practical terms, means that this does one fetch **at build time** and ships the result to all clients until a new version of the site is built. But if we tell it to not cache with `fetch(url, cache: {'no-cache'})`, the data is refetched, on the server, on every page load! And indeed, `npm run build` tell us about the route:
 
 ```none
 (Server) server-side renders at runtime
@@ -86,8 +86,8 @@ How can we test out RSC? If I add a new page to my site which uses `fetch`, I sh
 There's a bunch of other fancy stuff going on too (e.g. if I had the same fetch request in another component on the page, Next.js would recognize this and only make one request). I should be able to "revalidate" the data at some time interval, but it didn't work when I tried it. I thought that saying "hey, revalidate every 5 seconds" would mean that it would, you know, get new data every 5 seconds. But that didn't seem to happen.
 
 <Popout>
-  9/18 Edit: Now I know why that ☝️ didn't work! React server components render
-  once, hydrated and all (as opposed to SRR, which just renders an unhydrated
+  Edit: Now I know why that ☝️ didn't work! React server components render once,
+  hydrated and all (as opposed to SRR, which just renders an unhydrated
   'shell'). There's no way for a server component to run the JS client-side to
   do any kind of "fetch this every 5 seconds" thing. Thanks to Josh Comeau's
   awesome [article](https://joshwcomeau.com/react/server-components/) about this

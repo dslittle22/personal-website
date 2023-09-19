@@ -18,6 +18,7 @@ export default async function Post({ params: { slug } }: Props) {
   const { frontmatter } = await get_post_by_slug(slug);
   const source = get_source_by_slug(slug);
   const lastModified = await get_last_modified_by_slug(slug);
+  console.log(frontmatter.date);
 
   return (
     <>
@@ -25,7 +26,7 @@ export default async function Post({ params: { slug } }: Props) {
         {frontmatter.title}
       </h1>
       <Mdx source={source} />
-      <LastEdited lastModified={lastModified} />
+      <LastEdited written={frontmatter.date} modified={lastModified} />
     </>
   );
 }
