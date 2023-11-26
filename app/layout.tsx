@@ -33,9 +33,9 @@ export const metadata: Metadata = {
     siteName: "Danny Little",
     images: [
       {
-        url: "https://dlittle.me/senior-portrait.jpg",
-        width: 853,
-        height: 1280,
+        url: "https://dlittle.me/favicon/android-chrome-512x512.png",
+        width: 512,
+        height: 512,
       },
     ],
     locale: "en-US",

@@ -33,8 +33,6 @@ export default async function Post({
 }
 
 export async function generateStaticParams() {
-  console.log("generating static params");
-
   await generate_sitemap();
   await generate_rss_feed();
 
