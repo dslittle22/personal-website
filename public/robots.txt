@@ -1,2 +1,2 @@
 User-agent: *
-Sitemap: https://dlittle.me/sitemap.xml
+Sitemap: https://dannylittle.com/sitemap.xml

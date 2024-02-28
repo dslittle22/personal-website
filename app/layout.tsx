@@ -29,11 +29,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Danny Little",
     description: "Web developer",
-    url: "https://dlittle.me",
+    url: "https://dannylittle.com",
     siteName: "Danny Little",
     images: [
       {
-        url: "https://dlittle.me/favicon/android-chrome-512x512.png",
+        url: "https://dannylittle.com/favicon/android-chrome-512x512.png",
         width: 512,
         height: 512,
       },
