@@ -3,7 +3,7 @@ import fs from "fs";
 import { get_all_posts } from "../lib/mdx";
 import { prod_url } from "../lib/site_url";
 
-export async function generate_sitemap() {
+async function generate_sitemap() {
   const { globby } = await import("globby");
   const pagePaths = await globby(["**/page.tsx", "!**/[slug]/**"]);
   const pages: { [key: string]: string } = pagePaths.reduce((obj, page) => {

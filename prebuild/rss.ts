@@ -5,7 +5,7 @@ import { relative_url } from "../lib/site_url";
 import { renderToString } from "react-dom/server";
 import { CustomComponents } from "@/components/Mdx";
 
-export async function generate_static_markup(slug: string) {
+async function generate_static_markup(slug: string) {
   const MDXRemote = (await import("next-mdx-remote/rsc")).MDXRemote;
   const sourceWithFrontmatter = await get_source_by_slug(slug);
   const source = sourceWithFrontmatter.replace(/---(.|\n)*---/, "");
@@ -28,7 +28,7 @@ export async function generate_static_markup(slug: string) {
   return static_markup;
 }
 
-export default async function generate_rss_feed() {
+async function generate_rss_feed() {
   const site_url = relative_url;
 
   const feed = new Feed({
