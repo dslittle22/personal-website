@@ -1,10 +1,9 @@
 import fs from "fs";
-// import { globby } from "globby";
+import { globby } from "globby";
 import { get_all_posts } from "../lib/mdx";
 import { prod_url } from "../lib/site_url";
 
 async function generate_sitemap() {
-  const { globby } = await import("globby");
   const pagePaths = await globby(["**/page.tsx", "!**/[slug]/**"]);
   const pages: { [key: string]: string } = pagePaths.reduce((obj, page) => {
     let realPage = page.substring(3).replace("/page.tsx", "");
@@ -43,3 +42,5 @@ async function generate_sitemap() {
 </urlset>`;
   fs.writeFileSync("public/sitemap.xml", sitemap);
 }
+
+generate_sitemap();

@@ -21,7 +21,7 @@ export async function get_last_modified_by_slug(slug: string) {
 }
 
 export async function get_post_by_slug(slug: string) {
-  const { compileMDX } = await import("next-mdx-remote/rsc");
+  const compileMDX = (await import("next-mdx-remote/rsc")).compileMDX;
 
   let mdxSource: string = await fs.readFile(
     `${blog_posts_path}/${slug}.mdx`,
@@ -31,6 +31,7 @@ export async function get_post_by_slug(slug: string) {
     source: mdxSource,
     options: { parseFrontmatter: true },
   });
+
   if (frontmatter?.draft && process.env.LOCAL === "true") {
     frontmatter.title += " [draft]";
   }
