@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Mdx from "@/components/Mdx";
-import generate_rss_feed from "@/lib/rss";
 
 import {
   get_all_posts,
@@ -8,9 +7,7 @@ import {
   get_source_by_slug,
   get_last_modified_by_slug,
 } from "@/lib/mdx";
-import { generate_sitemap } from "@/lib/sitemap";
 import LastEdited from "@/components/LastEdited";
-import { prod_url } from "@/lib/site_url";
 
 export default async function Post({
   params: { slug },
@@ -18,7 +15,7 @@ export default async function Post({
   params: { slug: string };
 }) {
   const { frontmatter } = await get_post_by_slug(slug);
-  const source = get_source_by_slug(slug);
+  const source = await get_source_by_slug(slug);
   const lastModified = await get_last_modified_by_slug(slug);
 
   return (
@@ -33,9 +30,6 @@ export default async function Post({
 }
 
 export async function generateStaticParams() {
-  await generate_sitemap();
-  await generate_rss_feed();
-
   const posts = await get_all_posts();
   return posts.map(({ frontmatter }) => ({
     slug: frontmatter.slug,

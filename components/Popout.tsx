@@ -1,5 +1,3 @@
-import React from "react";
-
 function Popout({ children }: { children: React.ReactNode }) {
   return (
     <div>

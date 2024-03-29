@@ -7,12 +7,27 @@ import Popout from "./Popout";
 import remarkGfm from "remark-gfm";
 import rehypePrettyCode from "rehype-pretty-code";
 
-const custom_components = {
+type CustomComponent = string | ((params: any) => JSX.Element);
+
+export type CustomComponents = {
+  a: CustomComponent;
+  SmartLink: CustomComponent;
+  SizedImage: CustomComponent;
+  Popout: CustomComponent;
+};
+
+const custom_components: CustomComponents = {
   a: SmartLink,
   SmartLink,
   SizedImage,
   Popout,
 };
+
+export type MDXProvidedComponents = typeof custom_components;
+
+export function useMDXComponents(): MDXProvidedComponents {
+  return custom_components;
+}
 
 const options = {
   keepBackground: "false",

@@ -4,6 +4,10 @@ date: 2020-12-28
 author: Danny Little
 description: A review of four basic CSS Grid and Flexbox properties that confuse me. Probably more for my benefit that yours.
 ---
+{/**
+* @typedef {import('../../components/Mdx').MDXProvidedComponents} MDXProvidedComponents
+*/}
+
 
 CSS Grid and Flexbox are very helpful tools that I employ often when making web applications. There are four properties that overlap in both Grid and Flexbox that I use often, but I usually have to look up what they do to find the exact properties and values I want to use. These four are:
 
@@ -48,7 +52,7 @@ with this HTML:
 
 gives us:
 
-<SizedImage center image_src="/blog/grid-1.png" />
+<SizedImage center="true" src="/blog/grid-1.png" />
 
 Here's our starting point. We have an explicit grid with two items, which seem to stretch to fill their available space. Also, the text is in the top left corner of each item. If we add the line:
 
@@ -58,7 +62,7 @@ justify-items: center;
 
 then the `div`'s in our grid are horizontally centered, but vertically unaffected.
 
-<SizedImage center image_src="/blog/grid-2.png" />
+<SizedImage center="true" src="/blog/grid-2.png" />
 
 Or if we wanted to vertically align our items toward the end of their containers:
 
@@ -66,7 +70,7 @@ Or if we wanted to vertically align our items toward the end of their containers
 align-items: end;
 ```
 
-<SizedImage center image_src="/blog/grid-3.png" />
+<SizedImage center="true" src="/blog/grid-3.png" />
 
 Both of our items are vertically aligned toward the end of their grid space. As you might assume, both properties have the value `stretch` by default. You can see this at work in the last two pictures. When one axis is aligned, the other axis still stretches to fill the remaining.
 
@@ -84,15 +88,15 @@ Let's say we want to stack our items on the bottom of the grid. Well, we just tr
 align-content: end;
 ```
 
-<SizedImage center image_src="/blog/grid-4.png" />
+<SizedImage center="true" src="/blog/grid-4.png" />
 
 Instead of the content being being centered within their allocated grid space, that grid space itself has moved. That's a little confusing, so let's use Chrome dev tools to see this more clearly. Here's the grid with `align-items: end;`
 
-<SizedImage center image_src="/blog/grid-5.png" />
+<SizedImage center="true" src="/blog/grid-5.png" />
 
 And with `align-content: end;`
 
-<SizedImage center image_src="/blog/grid-6.png" />
+<SizedImage center="true" src="/blog/grid-6.png" />
 
 This clears up exactly what's going on. `align-items` changes where the items are within their allocated space (dotted lined boxes), but keeps this space stretched. `align-content`, on the other hand, changes where the space itself is.
 
@@ -104,7 +108,7 @@ To space evenly with the walls:
 align-content: space-evenly;
 ```
 
-<SizedImage center image_src="/blog/grid-7.png" />
+<SizedImage center="true" src="/blog/grid-7.png" />
 
 Or, to have items press up against the container:
 
@@ -112,7 +116,7 @@ Or, to have items press up against the container:
 align-content: space-between;
 ```
 
-<SizedImage center image_src="/blog/grid-8.png" />
+<SizedImage center="true" src="/blog/grid-8.png" />
 
 As with the first two properties, you can set values for these last two in one line by using the `place-content` property.
 

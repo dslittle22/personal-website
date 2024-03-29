@@ -4,9 +4,12 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "build": "next build",
+    "prebuild": "npm run build:rss && npm run build:sitemap",
+    "build:rss": "tsx ./prebuild/rss.ts",
+    "build:sitemap": "tsx ./prebuild/sitemap.ts"
   },
   "dependencies": {
     "@types/node": "18.13.0",
@@ -31,6 +34,7 @@
     "typescript": "4.9.5"
   },
   "devDependencies": {
-    "sass": "^1.58.0"
+    "sass": "^1.58.0",
+    "tsx": "^4.7.1"
   }
 }

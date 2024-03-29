@@ -3,7 +3,7 @@ import Image from "next/image";
 import { CSSProperties } from "react";
 
 export type Props = {
-  image_src: string;
+  src: string;
   maxWidth?: number;
   maxHeight?: number;
   center?: boolean;
@@ -12,7 +12,7 @@ export type Props = {
 };
 
 export default function SizedImage({
-  image_src,
+  src,
   maxWidth,
   maxHeight,
   center,
@@ -23,7 +23,7 @@ export default function SizedImage({
     alt,
     borderRadius: image_border_radius,
     ...image
-  }: ImageType = all_images[image_src];
+  }: ImageType = all_images[src];
   let borderRadius = "5px";
   image_border_radius && (() => (borderRadius = image_border_radius))();
   props_border_radius && (() => (borderRadius = props_border_radius))();
