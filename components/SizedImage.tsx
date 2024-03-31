@@ -1,8 +1,8 @@
 import { all_images, ImageType } from "@/data/all_images";
-import Image from "next/image";
+import Image, { ImageProps } from "next/image";
 import { CSSProperties } from "react";
 
-export type Props = {
+type Props = {
   src: string;
   maxWidth?: number;
   maxHeight?: number;
@@ -18,7 +18,7 @@ export default function SizedImage({
   center,
   borderRadius: props_border_radius,
   ...props
-}: Props) {
+}: Props & ImageProps) {
   const {
     alt,
     borderRadius: image_border_radius,
@@ -35,9 +35,7 @@ export default function SizedImage({
     borderRadius,
   };
 
-  const image_component = (
-    <Image alt={alt} {...image} style={imageStyle} {...props} />
-  );
+  const image_component = <Image {...image} style={imageStyle} {...props} />;
   if (!maxWidth && !maxHeight && !center) {
     return image_component;
   }

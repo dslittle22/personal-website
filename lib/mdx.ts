@@ -1,4 +1,5 @@
 import fs from "fs/promises";
+import { compileMDX } from "next-mdx-remote/rsc";
 
 export type Frontmatter = {
   title: string;
@@ -21,8 +22,6 @@ export async function get_last_modified_by_slug(slug: string) {
 }
 
 export async function get_post_by_slug(slug: string) {
-  const compileMDX = (await import("next-mdx-remote/rsc")).compileMDX;
-
   let mdxSource: string = await fs.readFile(
     `${blog_posts_path}/${slug}.mdx`,
     "utf-8"

@@ -1,0 +1,40 @@
+---
+title: Full content RSS feed
+date: 2024-03-30
+author: Danny Little
+description: My journey on getting the content of my posts into my RSS feed!
+draft: true
+---
+{/**
+* @typedef {import('../../components/Mdx').MDXProvidedComponents} MDXProvidedComponents
+*/}
+
+Despite me very rarely writing anything on here, I've tried to make my blog have a good developer experience. I can write posts in MDX, which is Markdown + JSX. But this presented some challenges with one thing in particular I've wanted to do for a while: I want to provide RSS feed with the full content of all my blog posts in it! That means if you have my feed in your RSS reader, you can read the whole thing right in there. This has been tricky, but I've mostly got it. Here's my path to getting there!
+
+## What to Generate
+
+If my posts were just in Markdown, making a full-content RSS feed would be pretty easy: it's very [easy](https://daringfireball.net/projects/markdown/) to go from Markdown -> HTML exactly because there's a straightforward mapping of Markdown syntax -> HTML element. But MDX complicates this a lot. So how can we, at build time, go from MDX -> HTML? Well, this is already happening already in one place: the website itself!
+
+I render react elements at build time using the `<MDXRemote />` component from [`next-mdx-remote/rsc`](https://github.com/hashicorp/next-mdx-remote).[^1] This means that somehow, some code from `next-mdx-remote` is going from MDX -> JSX, and then Next.js is taking that JavaScript and generating HTML (or just calling the JavaScript server/client side if the page is dynamic). So all I need to do is follow that same series of steps!
+
+In my function that loops through all my posts and make an item in the rss feed, tried using the same `<MDXRemote />` component to go from MDX -> JSX, and then call [`renderToStaticMarkup`](https://react.dev/reference/react-dom/server/renderToStaticMarkup) from `react-dom/server` to generate HTML from that. I tried this a year ago and it failed (see my [issue](https://github.com/hashicorp/next-mdx-remote/issues/353)), but when I tried again recently I was able to get it to work! It seems like there's still some weirdness here: for some reason it works[^2] if I call `MDXRemote` as a function, but not a component, and I also have to replace the custom components I pass with built in DOM elements. But it's a start!
+
+## When to Generate
+
+Previously I just exported my RSS feed generation function and called it in `getStaticParams` so that it ran at build time, but that felt weirdly tied into Next.js. That code ran multiple times when running locally, and I didn't really want that, so I also wanted to try changing the feed generation code to run in a `prebuild` npm script.
+
+Honestly, this was tricker than I thought. I got caught in a rabbit hole of putting this code in `.js(x)`/`.ts(x)`/`.mjs` files, `commonjs` vs ESM imports, *dynamic imports*, and trying all sorts of incantations in my `tsconfig.json` and `package.json`. Certain combinations seemed to work okay, but I didn't like these weird constraints. Later I tried using [`tsx`](https://github.com/privatenumber/tsx), and it Just Worked™️ with TS and ESM imports!
+
+## How to generate
+
+So at this point, I had full-content feeds, but I didn't have my custom components, which are kind of the whole point of MDX! If I tried to pass them to the `MDXRemote` function (component), I kept getting errors. And, of course, it was quite a wild goose chase to resolve them. My first thought was to try to convert them from React components into regular JavaScript files, so of course, I installed `babel/preset-react` and, as you do, ran `npx babel --plugins @babel/plugin-transform-react-jsx-development`. Then I realized I'm already using TypeScript, and therefore `tsc`, so I tried doing the operation with `npx tsc path/to/file.tsx --jsx react`. But eventually I realized I didn't need to do any of this, and all of my custom MDX components work except for ones that return `<Image />` from `next/image`. So I'm getting to use all of my custom components, except without my `<Image />` wrapper. Oh well, maybe I'll figure that out down the line!
+
+I'm really happy with this setup, it even means I can include "client only" components in my RSS feed, like this:
+
+<Counter />
+
+Of course, the javascript required to make the component interactable won't run in your RSS reader, but it will on the actual website.
+
+[^1]: I know they're being rendered at build time because if I I `console.log('AHHHHHHHH')` in the actual component that mounts `<MDXRemote />`, I see several `AHHHHHHHH`s when doing `npm run build`.
+
+[^2]: One fun implementation detail: I needed to remove the frontmatter from the start of my MDX files before passing them to `MDXRemote`, so I wrote the world's worst frontmatter parser: <br />`source.replace(/---(.|\n)*---/, "")`

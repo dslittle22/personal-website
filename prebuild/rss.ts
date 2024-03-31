@@ -1,31 +1,27 @@
 import fs from "fs";
+import { MDXComponents } from "mdx/types";
 import { Feed } from "feed";
 import { get_all_posts, get_source_by_slug } from "../lib/mdx";
 import { relative_url } from "../lib/site_url";
 import { renderToString } from "react-dom/server";
-import { CustomComponents } from "@/components/Mdx";
+import { CustomMDXComponents, customMDXComponents } from "@/components/Mdx";
+import { MDXRemote } from "next-mdx-remote/rsc";
 
 async function generate_static_markup(slug: string) {
-  const MDXRemote = (await import("next-mdx-remote/rsc")).MDXRemote;
   const sourceWithFrontmatter = await get_source_by_slug(slug);
   const source = sourceWithFrontmatter.replace(/---(.|\n)*---/, "");
 
-  const components: CustomComponents = {
-    a: "a",
-    SmartLink: "em",
+  const customMDXComponentsRSS: CustomMDXComponents = {
+    ...customMDXComponents,
     SizedImage: "img",
-    Popout: "div",
   };
 
   const element = await MDXRemote({
     source,
-    // @ts-expect-error I'm passing dom element names instead of components
-    components,
+    components: customMDXComponentsRSS as MDXComponents,
   });
 
-  const static_markup = renderToString(element);
-
-  return static_markup;
+  return renderToString(element);
 }
 
 async function generate_rss_feed() {

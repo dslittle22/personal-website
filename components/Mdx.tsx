@@ -6,27 +6,26 @@ import SizedImage from "./SizedImage";
 import Popout from "./Popout";
 import remarkGfm from "remark-gfm";
 import rehypePrettyCode from "rehype-pretty-code";
+import Counter from "./Counter";
 
-type CustomComponent = string | ((params: any) => JSX.Element);
+type MDXComponentType = string | ((args: any) => JSX.Element);
 
-export type CustomComponents = {
-  a: CustomComponent;
-  SmartLink: CustomComponent;
-  SizedImage: CustomComponent;
-  Popout: CustomComponent;
-};
-
-const custom_components: CustomComponents = {
+export const customMDXComponents = {
   a: SmartLink,
   SmartLink,
   SizedImage,
   Popout,
+  Counter,
 };
 
-export type MDXProvidedComponents = typeof custom_components;
+export type CustomMDXComponents = {
+  [key in keyof typeof customMDXComponents]: MDXComponentType;
+};
+
+export type MDXProvidedComponents = CustomMDXComponents;
 
 export function useMDXComponents(): MDXProvidedComponents {
-  return custom_components;
+  return customMDXComponents;
 }
 
 const options = {
@@ -57,7 +56,7 @@ export default function Mdx(props: {
     <MDXRemote
       {...props}
       components={{
-        ...(custom_components as MDXComponents),
+        ...(customMDXComponents as MDXComponents),
         ...(props.components || {}),
       }}
       options={{
