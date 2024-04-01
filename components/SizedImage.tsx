@@ -18,7 +18,7 @@ export default function SizedImage({
   center,
   borderRadius: props_border_radius,
   ...props
-}: Props & ImageProps) {
+}: Props & Omit<ImageProps, "alt">) {
   const {
     alt,
     borderRadius: image_border_radius,
@@ -35,7 +35,9 @@ export default function SizedImage({
     borderRadius,
   };
 
-  const image_component = <Image {...image} style={imageStyle} {...props} />;
+  const image_component = (
+    <Image alt={alt} {...image} style={imageStyle} {...props} />
+  );
   if (!maxWidth && !maxHeight && !center) {
     return image_component;
   }
