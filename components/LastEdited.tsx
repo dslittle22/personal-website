@@ -1,5 +1,4 @@
 import { formatDate } from "@/lib/date";
-import React from "react";
 
 function LastEdited({ written, modified }: { written: Date; modified: Date }) {
   const formattedWritten = formatDate(written);

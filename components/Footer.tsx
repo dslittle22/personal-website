@@ -1,4 +1,3 @@
-import React from "react";
 import SmartLink from "./SmartLink";
 import styles from "@/styles/footer.module.scss";
 

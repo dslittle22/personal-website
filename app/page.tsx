@@ -41,7 +41,7 @@ export default async function Home() {
             compilers, and the web.
           </p>
         </div>
-        <SizedImage image_src="/senior-portrait.jpg" priority />
+        <SizedImage src="/senior-portrait.jpg" priority />
       </section>
       <section>
         <h3>

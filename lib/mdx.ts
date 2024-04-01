@@ -1,6 +1,4 @@
-const fs = require("fs").promises;
-import { readFileSync } from "fs";
-import { readdirSync } from "fs";
+import fs from "fs/promises";
 import { compileMDX } from "next-mdx-remote/rsc";
 
 export type Frontmatter = {
@@ -14,8 +12,8 @@ export type Frontmatter = {
 
 const blog_posts_path = "data/blog_posts";
 
-export function get_source_by_slug(slug: string) {
-  return readFileSync(`${blog_posts_path}/${slug}.mdx`, "utf-8");
+export async function get_source_by_slug(slug: string) {
+  return await fs.readFile(`${blog_posts_path}/${slug}.mdx`, "utf-8");
 }
 
 export async function get_last_modified_by_slug(slug: string) {
@@ -24,11 +22,15 @@ export async function get_last_modified_by_slug(slug: string) {
 }
 
 export async function get_post_by_slug(slug: string) {
-  let mdxSource: string = await fs.readFile(`${blog_posts_path}/${slug}.mdx`);
+  let mdxSource: string = await fs.readFile(
+    `${blog_posts_path}/${slug}.mdx`,
+    "utf-8"
+  );
   let { frontmatter, content } = await compileMDX({
     source: mdxSource,
     options: { parseFrontmatter: true },
   });
+
   if (frontmatter?.draft && process.env.LOCAL === "true") {
     frontmatter.title += " [draft]";
   }
@@ -50,7 +52,7 @@ export async function get_all_posts() {
     content: JSX.Element;
     frontmatter: Frontmatter;
   }[] = [];
-  const blogFilePaths = readdirSync(blog_posts_path);
+  const blogFilePaths = await fs.readdir(blog_posts_path);
   for (const path of blogFilePaths) {
     const { frontmatter, content } = await get_post_by_slug(path_to_slug(path));
 

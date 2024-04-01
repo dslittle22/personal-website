@@ -1,13 +1,36 @@
 import fs from "fs";
+import { MDXComponents } from "mdx/types";
 import { Feed } from "feed";
-import { get_all_posts } from "./mdx";
-import { generate_static_markup } from "@/components/GetStaticMarkup";
-import { relative_url } from "./site_url";
+import { get_all_posts, get_source_by_slug } from "../lib/mdx";
+import { relative_url } from "../lib/site_url";
+import { renderToString } from "react-dom/server";
+import { CustomMDXComponents, customMDXComponents } from "@/components/Mdx";
+import { MDXRemote } from "next-mdx-remote/rsc";
 
-export default async function generate_rss_feed() {
+async function generate_static_markup(slug: string) {
+  const sourceWithFrontmatter = await get_source_by_slug(slug);
+  const source = sourceWithFrontmatter.replace(/---(.|\n)*---/, "");
+
+  const customMDXComponentsRSS: CustomMDXComponents = {
+    ...customMDXComponents,
+    SizedImage: "img",
+  };
+
+  const element = await MDXRemote({
+    source,
+    components: customMDXComponentsRSS as MDXComponents,
+  });
+
+  return renderToString(element);
+}
+
+async function generate_rss_feed() {
   const site_url = relative_url;
+
   const feed = new Feed({
-    title: "Danny Little | Blog",
+    title: process.env.LOCAL
+      ? "(Localhost) Danny Little | Blog"
+      : "Danny Little | Blog",
     description: "Blog posts by Danny Little",
     link: site_url,
     id: `Danny Little | Blog`,
@@ -41,7 +64,7 @@ export default async function generate_rss_feed() {
         description,
         date: new Date(date),
         link: `${site_url}/blog/${slug}`,
-        // content: markup[slug],
+        content: markup[slug],
       });
     });
 
@@ -51,3 +74,5 @@ export default async function generate_rss_feed() {
   fs.writeFileSync("public/rss/atom.xml", feed.atom1());
   fs.writeFileSync("public/rss/feed.json", feed.json1());
 }
+
+generate_rss_feed();

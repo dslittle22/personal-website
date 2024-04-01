@@ -2,7 +2,7 @@ import SizedImage from "@/components/SizedImage";
 import SmartLink from "./SmartLink";
 
 export type Project = {
-  image_src: string;
+  src: string;
   title: string;
   description: string;
   href?: string;
@@ -24,7 +24,7 @@ export default function ProjectPreview({ project }: { project: Project }) {
         <br />
         <small>{project.description}</small>
       </div>
-      <SizedImage image_src={project.image_src} borderRadius={"10px"} />
+      <SizedImage src={project.src} borderRadius={"10px"} />
     </Parent>
   );
 }
