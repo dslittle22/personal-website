@@ -9,7 +9,7 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 
 async function generate_static_markup(slug: string) {
   const sourceWithFrontmatter = await get_source_by_slug(slug);
-  const source = sourceWithFrontmatter.replace(/---(.|\n)*---/, "");
+  const source = sourceWithFrontmatter.replace(/---(.|\n)*?---/, "");
 
   const customMDXComponentsRSS: CustomMDXComponents = {
     ...customMDXComponents,
@@ -53,7 +53,6 @@ async function generate_rss_feed() {
       frontmatter: { slug },
     } = posts[i];
     markup[slug] = await generate_static_markup(slug);
-    await generate_static_markup(slug);
   }
 
   posts
