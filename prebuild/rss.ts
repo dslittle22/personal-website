@@ -1,24 +1,17 @@
 import fs from "fs";
-import { MDXComponents } from "mdx/types";
 import { Feed } from "feed";
 import { get_all_posts, get_source_by_slug } from "../lib/mdx";
 import { relative_url } from "../lib/site_url";
 import { renderToString } from "react-dom/server";
-import { CustomMDXComponents, customMDXComponents } from "@/components/Mdx";
-import { MDXRemote } from "next-mdx-remote/rsc";
+import Mdx, { customMDXComponents } from "@/components/Mdx";
 
 async function generate_static_markup(slug: string) {
   const sourceWithFrontmatter = await get_source_by_slug(slug);
   const source = sourceWithFrontmatter.replace(/---(.|\n)*?---/, "");
 
-  const customMDXComponentsRSS: CustomMDXComponents = {
-    ...customMDXComponents,
-    SizedImage: "img",
-  };
-
-  const element = await MDXRemote({
+  const element = await Mdx({
     source,
-    components: customMDXComponentsRSS as MDXComponents,
+    isRss: true,
   });
 
   return renderToString(element);

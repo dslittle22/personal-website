@@ -1,3 +1,4 @@
+import React from "react";
 import { MDXComponents } from "mdx/types";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { Compatible } from "vfile";
@@ -47,25 +48,30 @@ const options = {
   },
 };
 
-export default function Mdx(props: {
+export default async function Mdx({
+  isRss = false,
+  source,
+  components = {},
+}: {
   components?: MDXComponents;
   source: Compatible;
+  isRss?: boolean;
 }) {
-  return (
-    // @ts-ignore
-    <MDXRemote
-      {...props}
-      components={{
-        ...(customMDXComponents as MDXComponents),
-        ...(props.components || {}),
-      }}
-      options={{
-        parseFrontmatter: true,
-        mdxOptions: {
-          remarkPlugins: [remarkGfm],
-          rehypePlugins: [[rehypePrettyCode, options]],
-        },
-      }}
-    />
-  );
+  const element = await MDXRemote({
+    source,
+    components: {
+      ...(customMDXComponents as MDXComponents),
+      ...components,
+      ...(isRss ? { SizedImage: "img" } : {}),
+    },
+    options: {
+      parseFrontmatter: true,
+      mdxOptions: {
+        remarkPlugins: [remarkGfm],
+        rehypePlugins: [[rehypePrettyCode, options]],
+      },
+    },
+  });
+
+  return element;
 }
