@@ -3,12 +3,13 @@ import BlogPostPreview from "@/components/BlogPostPreview";
 import { get_all_posts } from "@/lib/mdx";
 import ProjectsList from "@/components/ProjectsList";
 import SizedImage from "@/components/SizedImage";
+import isLocal from "@/lib/local";
 
 export default async function Home() {
   async function list_n_blog_posts(n: number) {
     const posts = await get_all_posts();
 
-    if (process.env.LOCAL === "true") {
+    if (isLocal()) {
       return posts.map(({ frontmatter }) => (
         <BlogPostPreview key={frontmatter.slug} frontmatter={frontmatter} />
       ));

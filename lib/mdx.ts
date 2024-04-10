@@ -1,5 +1,6 @@
 import fs from "fs/promises";
 import { compileMDX } from "next-mdx-remote/rsc";
+import isLocal from "./local";
 
 export type Frontmatter = {
   title: string;
@@ -31,7 +32,7 @@ export async function get_post_by_slug(slug: string) {
     options: { parseFrontmatter: true },
   });
 
-  if (frontmatter?.draft && process.env.LOCAL === "true") {
+  if (frontmatter?.draft && isLocal()) {
     frontmatter.title += " [draft]";
   }
   // const date = frontmatter.date as Date;

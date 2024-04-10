@@ -3,7 +3,8 @@ import { Feed } from "feed";
 import { get_all_posts, get_source_by_slug } from "../lib/mdx";
 import { relative_url } from "../lib/site_url";
 import { renderToString } from "react-dom/server";
-import Mdx, { customMDXComponents } from "@/components/Mdx";
+import Mdx from "@/components/Mdx";
+import isLocal from "@/lib/local";
 
 async function generate_static_markup(slug: string) {
   const sourceWithFrontmatter = await get_source_by_slug(slug);
@@ -21,7 +22,7 @@ async function generate_rss_feed() {
   const site_url = relative_url;
 
   const feed = new Feed({
-    title: process.env.LOCAL
+    title: isLocal()
       ? "(Localhost) Danny Little | Blog"
       : "Danny Little | Blog",
     description: "Blog posts by Danny Little",

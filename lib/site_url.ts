@@ -1,5 +1,7 @@
+import isLocal from "./local";
+
 let rel_url = "https://dannylittle.com";
-if (process.env.LOCAL === "true") {
+if (isLocal()) {
   rel_url = "localhost:3000";
 }
 export const relative_url = rel_url;

@@ -1,4 +1,5 @@
 import BlogPostPreview from "@/components/BlogPostPreview";
+import isLocal from "@/lib/local";
 import { get_all_posts } from "@/lib/mdx";
 import { Metadata } from "next/types";
 
@@ -8,7 +9,7 @@ export const metadata: Metadata = {
 
 async function list_blog_posts() {
   const posts = await get_all_posts();
-  if (process.env.LOCAL === "true") {
+  if (isLocal()) {
     return posts.map(({ frontmatter }) => (
       <BlogPostPreview key={frontmatter.slug} frontmatter={frontmatter} />
     ));
