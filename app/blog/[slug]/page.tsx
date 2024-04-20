@@ -23,7 +23,7 @@ export default async function Post({
       <h1 style={{ fontSize: "clamp(2rem, 1.5rem + 5vw, 4rem)" }}>
         {frontmatter.title}
       </h1>
-      {/* @ts-expect-error async component*/}
+      {/* @ts-ignore-error async component*/}
       <Mdx source={source} />
       <LastEdited written={frontmatter.date} modified={lastModified} />
     </>

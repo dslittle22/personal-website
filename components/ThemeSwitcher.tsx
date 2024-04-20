@@ -101,7 +101,7 @@ export default function ThemeSwitcher({
         </Tooltip>
         <Tooltip
           trigger={["hover"]}
-          overlay={<span>System Preference</span>}
+          overlay={<span>System</span>}
           mouseEnterDelay={0.075}
         >
           <div

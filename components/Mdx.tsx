@@ -1,4 +1,3 @@
-import React from "react";
 import { MDXComponents } from "mdx/types";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { Compatible } from "vfile";
@@ -68,7 +67,7 @@ export default async function Mdx({
       parseFrontmatter: true,
       mdxOptions: {
         remarkPlugins: [remarkGfm],
-        rehypePlugins: [[rehypePrettyCode, options]],
+        // rehypePlugins: [[rehypePrettyCode, options]],
       },
     },
   });
