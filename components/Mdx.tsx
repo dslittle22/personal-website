@@ -4,9 +4,10 @@ import { Compatible } from "vfile";
 import SmartLink from "./SmartLink";
 import SizedImage from "./SizedImage";
 import Popout from "./Popout";
-import remarkGfm from "remark-gfm";
-import rehypePrettyCode from "rehype-pretty-code";
 import Counter from "./Counter";
+import remarkGfm from "remark-gfm";
+
+import rehypePrettyCode from "rehype-pretty-code";
 
 type MDXComponentType = string | ((args: any) => JSX.Element);
 
@@ -67,7 +68,7 @@ export default async function Mdx({
       parseFrontmatter: true,
       mdxOptions: {
         remarkPlugins: [remarkGfm],
-        // rehypePlugins: [[rehypePrettyCode, options]],
+        rehypePlugins: [[rehypePrettyCode as any, options]],
       },
     },
   });
