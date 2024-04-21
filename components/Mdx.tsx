@@ -32,20 +32,6 @@ export function useMDXComponents(): MDXProvidedComponents {
 const options = {
   keepBackground: "false",
   theme: { dark: "github-dark", light: "github-light" },
-  // @ts-expect-error
-  onVisitLine(node) {
-    if (node.children.length === 0) {
-      node.children = [{ type: "text", value: " " }];
-    }
-  },
-  // @ts-expect-error
-  onVisitHighlightedLine(node) {
-    node.properties.className.push("highlighted");
-  },
-  // @ts-expect-error
-  onVisitHighlightedWord(node) {
-    node.properties.className = ["word"];
-  },
 };
 
 export default async function Mdx({
@@ -56,7 +42,7 @@ export default async function Mdx({
   components?: MDXComponents;
   source: Compatible;
   isRss?: boolean;
-}) {
+}): Promise<React.ReactNode> {
   const element = await MDXRemote({
     source,
     components: {
