@@ -55,6 +55,33 @@ body {
   // transition: background-color 400ms;
 }
 
+a.autolink:has(span.anchor-link-icon) {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  &:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 0.5rem;
+    visibility: visible;
+  }
+
+  span.anchor-link-icon {
+    visibility: hidden;
+    margin-left: -1em;
+    &:hover .anchor-link-icon {
+      visibility: visible !important;
+    }
+  }
+  &:hover {
+    & span.anchor-link-icon {
+      visibility: visible;
+    }
+  }
+}
+
 h1,
 h2,
 h3,
@@ -63,6 +90,11 @@ h5,
 h6 {
   color: var(--color-heading);
   font-family: var(--font-heading);
+
+  position: relative;
+  &:hover span.anchor-link-icon {
+    visibility: visible !important;
+  }
 }
 
 a,

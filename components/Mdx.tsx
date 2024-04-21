@@ -6,6 +6,8 @@ import SizedImage from "./SizedImage";
 import Popout from "./Popout";
 import Counter from "./Counter";
 import remarkGfm from "remark-gfm";
+import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import rehypeSlug from "rehype-slug";
 
 import rehypePrettyCode from "rehype-pretty-code";
 
@@ -54,7 +56,21 @@ export default async function Mdx({
       parseFrontmatter: true,
       mdxOptions: {
         remarkPlugins: [remarkGfm],
-        rehypePlugins: [[rehypePrettyCode as any, options]],
+        rehypePlugins: [
+          [rehypePrettyCode as any, options],
+          rehypeSlug,
+          [
+            rehypeAutolinkHeadings,
+            {
+              content: {
+                type: "element",
+                tagName: "span",
+                properties: { className: "anchor-link-icon" },
+                children: [{ type: "text", value: "#" }],
+              },
+            },
+          ],
+        ],
       },
     },
   });
