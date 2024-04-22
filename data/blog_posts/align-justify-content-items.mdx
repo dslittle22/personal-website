@@ -12,15 +12,15 @@ description: A review of four basic CSS Grid and Flexbox properties that confuse
 CSS Grid and Flexbox are very helpful tools that I employ often when making web applications. There are four properties that overlap in both Grid and Flexbox that I use often, but I usually have to look up what they do to find the exact properties and values I want to use. These four are:
 
 - `justify items`
-- `align items`
+- `align items`[^1]
 - `justify content`
-- `align content`
+- `align content`[^2]
 
 My intention here is that I (and hopefully others) can look at this page to quickly find the right property and values to get the intended layout. Hopefully it doesn't end up being as long as the aforementioned long pages.
 
 Also, a caveat: `justify-items` doesn't exist in Flexbox. Nonetheless, I'll discuss it here.
 
-## 1: justify-items / align-items[^1]
+## 1: justify-items / align-items
 
 These properties define where items within the grid / box sit in their container. `justify-items` situates things on the main axis, whereas `align-items` is on the cross axis. This means that by default, _align = vertical, justify = horizontal._
 
@@ -76,7 +76,7 @@ Both of our items are vertically aligned toward the end of their grid space. As 
 
 Also, you can set both values in one line by using the `place-items` property and separating the values with a slash (e.g. `center / center`).
 
-## 2: justify-content / align-content[^2]
+## 2: justify-content / align-content
 
 The last two properties change where items sit within the grid space allocated for them, but do not change the location of the grid space. If our content is smaller than our grid container, it would be nice to specify where the allocated space goes, not just the items within the space. Luckily, that's exactly what these next two properties do.
 

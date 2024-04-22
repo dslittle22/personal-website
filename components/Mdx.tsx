@@ -62,12 +62,7 @@ export default async function Mdx({
           [
             rehypeAutolinkHeadings,
             {
-              content: {
-                type: "element",
-                tagName: "span",
-                properties: { className: "anchor-link-icon" },
-                children: [{ type: "text", value: "#" }],
-              },
+              behavior: "wrap",
             },
           ],
         ],

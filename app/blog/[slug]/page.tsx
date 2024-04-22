@@ -20,7 +20,7 @@ export default async function Post({
 
   return (
     <>
-      <h1 style={{ fontSize: "clamp(2rem, 1.5rem + 5vw, 4rem)" }}>
+      <h1 style={{ fontSize: "clamp(2rem, 2rem + .25vw, 2.5rem)" }}>
         {frontmatter.title}
       </h1>
       {/* @ts-expect-error async component */}

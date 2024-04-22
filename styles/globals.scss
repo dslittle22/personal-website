@@ -1,12 +1,9 @@
+// set text and background varibles from theme
 body[data-theme="light"] {
   --color-background: hsl(50, 84%, 90%);
   --color-accent: hsl(185, 76%, 43%);
   --color-text: hsl(0, 0%, 35%);
   --color-heading: hsl(0, 0%, 20%);
-  pre[data-theme="dark"],
-  [data-rehype-pretty-code-title][data-theme="dark"] {
-    display: none;
-  }
 }
 
 body[data-theme="dark"] {
@@ -14,10 +11,6 @@ body[data-theme="dark"] {
   --color-text: hsl(50, 21%, 72%);
   --color-accent: hsl(185, 78%, 32%);
   --color-background: hsl(0, 0%, 15%);
-  pre[data-theme="light"],
-  [data-rehype-pretty-code-title][data-theme="light"] {
-    display: none;
-  }
 }
 
 *,
@@ -30,12 +23,7 @@ body[data-theme="dark"] {
 }
 
 body {
-  --edge-width: max(20px, calc((100% - 1300px) / 2));
-  --sidebar-width: 5fr;
-  --middle-width: minmax(0, 750px);
-
-  font-family: var(--font-prose);
-
+  // grid for header, main, and footer
   min-height: 100vh;
   display: grid;
 
@@ -45,41 +33,20 @@ body {
     "footer";
   grid-template-rows: auto 1fr auto;
 
+  // set main content grid variables, used below
+  // edge width is a min of 20px, but expands to fill the whole window
+  --edge-width: max(20px, calc((100% - 1300px) / 2));
+  // sidebar width is a min of 20px, but expands to fill the whole window
+  --sidebar-width: 1fr;
+  --middle-width: minmax(0, 750px);
+
+  font-family: var(--font-prose);
+
   background-color: var(--color-background);
   color: var(--color-text);
   font-size: clamp(15px, 15px + 0.25vw, 18px);
   line-height: 1.5;
   width: 100%;
-  // todo: check if these affect reload in prod!
-  // transition: color 400ms;
-  // transition: background-color 400ms;
-}
-
-a.autolink:has(span.anchor-link-icon) {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  &:after {
-    content: "";
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 0.5rem;
-    visibility: visible;
-  }
-
-  span.anchor-link-icon {
-    visibility: hidden;
-    margin-left: -1em;
-    &:hover .anchor-link-icon {
-      visibility: visible !important;
-    }
-  }
-  &:hover {
-    & span.anchor-link-icon {
-      visibility: visible;
-    }
-  }
 }
 
 h1,
@@ -91,9 +58,42 @@ h6 {
   color: var(--color-heading);
   font-family: var(--font-heading);
 
-  position: relative;
-  &:hover span.anchor-link-icon {
-    visibility: visible !important;
+  // selector for autolinked headings
+  & > a.autolink {
+    color: var(--color-heading);
+    background-image: linear-gradient(
+      var(--color-heading),
+      var(--color-heading)
+    );
+    &:hover,
+    :focus {
+      &:before {
+        opacity: 1;
+      }
+    }
+
+    position: relative;
+    // before element has the anchor link marker
+    &:before {
+      content: "#";
+      position: absolute;
+      top: -0.2rem;
+      left: -1.5rem;
+      opacity: 0;
+      transition: opacity 250ms;
+    }
+
+    // after element makes it so that you can move your mouse from the heading
+    // to the anchor link marker without it disappearing
+    &:after {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: -1.5rem;
+      width: 1.5rem;
+      opacity: 0.3;
+    }
   }
 }
 
@@ -141,16 +141,19 @@ ul + h6 {
 main {
   grid-area: main;
 
+  // make a 5 column grid!
   display: grid;
   align-content: start;
   grid-template-columns:
     var(--edge-width) var(--sidebar-width) var(--middle-width)
     var(--sidebar-width) var(--edge-width);
 
+  // all direct children go in the middle column by default
   & > * {
     grid-column: 3 / span 1;
   }
 
+  // .full-width will span the sidebars, not the edge
   & > *.full-width {
     grid-column: 2 / span 3;
   }
@@ -194,6 +197,8 @@ main {
 }
 
 .footnotes {
+  padding-top: 1rem;
+  margin-top: 2rem;
   font-size: smaller;
   border-top: 1px solid #30363d;
 }
@@ -206,13 +211,11 @@ main {
 }
 
 .popout {
-  // background-color: var(--color-background);
   background-image: linear-gradient(
     to bottom right,
     var(--color-accent),
     var(--color-background)
   );
-  // border: var(--color-accent) 2px solid;
   border-bottom: 5px groove var(--color-accent);
   border-right: 5px groove var(--color-accent);
   padding: 1rem;
