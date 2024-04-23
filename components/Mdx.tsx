@@ -10,6 +10,7 @@ import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeSlug from "rehype-slug";
 
 import rehypePrettyCode from "rehype-pretty-code";
+import { SerializeOptions } from "next-mdx-remote/dist/types";
 
 type MDXComponentType = string | ((args: any) => JSX.Element);
 
@@ -45,6 +46,24 @@ export default async function Mdx({
   source: Compatible;
   isRss?: boolean;
 }): Promise<React.ReactNode> {
+  const mdxOptions: SerializeOptions["mdxOptions"] = {
+    remarkPlugins: [remarkGfm],
+    rehypePlugins: [
+      [rehypePrettyCode as any, options],
+      ...(isRss ? [] : [rehypeSlug]),
+    ],
+  };
+
+  if (!isRss) {
+    mdxOptions.rehypePlugins?.push(rehypeSlug);
+    mdxOptions.rehypePlugins?.push([
+      rehypeAutolinkHeadings,
+      {
+        behavior: "wrap",
+      },
+    ]);
+  }
+
   const element = await MDXRemote({
     source,
     components: {
@@ -54,19 +73,7 @@ export default async function Mdx({
     },
     options: {
       parseFrontmatter: true,
-      mdxOptions: {
-        remarkPlugins: [remarkGfm],
-        rehypePlugins: [
-          [rehypePrettyCode as any, options],
-          rehypeSlug,
-          [
-            rehypeAutolinkHeadings,
-            {
-              behavior: "wrap",
-            },
-          ],
-        ],
-      },
+      mdxOptions,
     },
   });
 

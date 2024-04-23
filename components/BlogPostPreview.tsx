@@ -9,7 +9,8 @@ export default function BlogPostPreview({
 }) {
   return (
     <div key={slug}>
-      <SmartLink href={`/blog/${slug}`}>{title}</SmartLink>: {description}
+      <SmartLink href={`/blog/${slug}`}>{title}</SmartLink>
+      {description ? `: ${description}` : ""}
       <br />
       <small>Written on {formatDate(date)}</small>
     </div>
