@@ -9,11 +9,17 @@ import {
 } from "@/lib/mdx";
 import LastEdited from "@/components/LastEdited";
 
-export default async function Post({
-  params: { slug },
-}: {
-  params: { slug: string };
-}) {
+export default async function Post(
+  props: {
+    params: Promise<{ slug: string }>;
+  }
+) {
+  const params = await props.params;
+
+  const {
+    slug
+  } = params;
+
   const { frontmatter } = await get_post_by_slug(slug);
   const source = await get_source_by_slug(slug);
   const lastModified = await get_last_modified_by_slug(slug);
@@ -37,11 +43,17 @@ export async function generateStaticParams() {
   }));
 }
 
-export async function generateMetadata({
-  params: { slug },
-}: {
-  params: { slug: string };
-}): Promise<Metadata> {
+export async function generateMetadata(
+  props: {
+    params: Promise<{ slug: string }>;
+  }
+): Promise<Metadata> {
+  const params = await props.params;
+
+  const {
+    slug
+  } = params;
+
   const {
     frontmatter: { title, description },
   } = await get_post_by_slug(slug);

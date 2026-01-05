@@ -83,7 +83,7 @@ export default function RootLayout({
         />
       </head>
 
-      <body>
+      <body suppressHydrationWarning>
         <script
           dangerouslySetInnerHTML={{ __html: set_initial_theme }}
         ></script>

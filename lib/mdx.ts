@@ -2,6 +2,8 @@ import fs from "fs/promises";
 import { compileMDX } from "next-mdx-remote/rsc";
 import isLocal from "./local";
 
+import type { JSX } from "react";
+
 export type Frontmatter = {
   title: string;
   date: Date;

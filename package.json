@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "next dev",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "eslint .",
     "build": "next build",
     "prebuild": "npm run build:rss && npm run build:sitemap",
     "build:rss": "tsx ./prebuild/rss.ts",
@@ -14,16 +14,16 @@
   },
   "dependencies": {
     "@types/node": "^20.12.7",
-    "@types/react": "^18.2.79",
-    "@types/react-dom": "^18.2.25",
+    "@types/react": "19.2.7",
+    "@types/react-dom": "19.2.3",
     "dotenv": "^16.4.5",
     "feed": "^4.2.2",
     "globby": "^14.0.1",
-    "next": "^14.2.2",
+    "next": "16.1.1",
     "next-mdx-remote": "^4.4.1",
     "rc-tooltip": "^6.2.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
     "rehype-autolink-headings": "^7.1.0",
     "rehype-pretty-code": "^0.13.1",
     "rehype-prism-plus": "^2.0.0",
@@ -32,8 +32,12 @@
   },
   "devDependencies": {
     "eslint": "^9.39.2",
-    "eslint-config-next": "^14.2.2",
+    "eslint-config-next": "16.1.1",
     "sass": "^1.75.0",
     "tsx": "^4.7.2"
+  },
+  "overrides": {
+    "@types/react": "19.2.7",
+    "@types/react-dom": "19.2.3"
   }
 }

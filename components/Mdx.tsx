@@ -12,6 +12,8 @@ import rehypeSlug from "rehype-slug";
 import rehypePrettyCode from "rehype-pretty-code";
 import { SerializeOptions } from "next-mdx-remote/dist/types";
 
+import type { JSX } from "react";
+
 type MDXComponentType = string | ((args: any) => JSX.Element);
 
 export const customMDXComponents = {
