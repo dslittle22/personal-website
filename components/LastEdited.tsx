@@ -1,6 +1,12 @@
 import { formatDateString } from "@/lib/date";
 
-function LastEdited({ written, modified }: { written: Date; modified: Date }) {
+function LastEdited({
+  written,
+  modified,
+}: {
+  written: string;
+  modified: string;
+}) {
   const formattedWritten = formatDateString(written);
   const formattedModified = formatDateString(modified);
 

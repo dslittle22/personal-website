@@ -19,7 +19,7 @@ export async function get_source_by_slug(slug: string) {
 
 export async function get_last_modified_by_slug(slug: string) {
   const stat = await fs.stat(`${blog_posts_path}/${slug}.mdx`);
-  return new Date(stat.mtimeMs);
+  return stat.mtimeMs;
 }
 
 export async function get_post_by_slug(slug: string) {

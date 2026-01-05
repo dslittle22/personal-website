@@ -9,16 +9,12 @@ import {
 } from "@/lib/mdx";
 import LastEdited from "@/components/LastEdited";
 
-export default async function Post(
-  props: {
-    params: Promise<{ slug: string }>;
-  }
-) {
+export default async function Post(props: {
+  params: Promise<{ slug: string }>;
+}) {
   const params = await props.params;
 
-  const {
-    slug
-  } = params;
+  const { slug } = params;
 
   const { frontmatter } = await get_post_by_slug(slug);
   const source = await get_source_by_slug(slug);
@@ -29,9 +25,8 @@ export default async function Post(
       <h1 style={{ fontSize: "clamp(2rem, 2rem + .25vw, 2.5rem)" }}>
         {frontmatter.title}
       </h1>
-      {/* @ts-expect-error async component */}
       <Mdx source={source} />
-      <LastEdited written={frontmatter.date} modified={lastModified} />
+      <LastEdited written={frontmatter.date} modified={String(lastModified)} />
     </>
   );
 }
@@ -43,16 +38,12 @@ export async function generateStaticParams() {
   }));
 }
 
-export async function generateMetadata(
-  props: {
-    params: Promise<{ slug: string }>;
-  }
-): Promise<Metadata> {
+export async function generateMetadata(props: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
   const params = await props.params;
 
-  const {
-    slug
-  } = params;
+  const { slug } = params;
 
   const {
     frontmatter: { title, description },
