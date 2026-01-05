@@ -1,12 +1,10 @@
 import fs from "fs/promises";
-import { compileMDX } from "next-mdx-remote/rsc";
+import { getFrontmatter } from "next-mdx-remote-client/utils";
 import isLocal from "./local";
-
-import type { JSX } from "react";
 
 export type Frontmatter = {
   title: string;
-  date: Date;
+  date: string;
   author: string;
   description: string;
   slug: string;
@@ -29,20 +27,15 @@ export async function get_post_by_slug(slug: string) {
     `${blog_posts_path}/${slug}.mdx`,
     "utf-8"
   );
-  let { frontmatter, content } = await compileMDX({
-    source: mdxSource,
-    options: { parseFrontmatter: true },
-  });
+
+  const { frontmatter } = getFrontmatter<Frontmatter>(mdxSource);
 
   if (frontmatter?.draft && isLocal()) {
     frontmatter.title += " [draft]";
   }
-  // const date = frontmatter.date as Date;
-  // date.setDate(date.getDate() + 1);
-  // Frontmatter date gets moved back a day because of time zones
 
   return {
-    content,
+    source: mdxSource,
     frontmatter: {
       ...frontmatter,
       slug,
@@ -52,14 +45,13 @@ export async function get_post_by_slug(slug: string) {
 
 export async function get_all_posts() {
   const posts: {
-    content: JSX.Element;
     frontmatter: Frontmatter;
   }[] = [];
   const blogFilePaths = await fs.readdir(blog_posts_path);
   for (const path of blogFilePaths) {
-    const { frontmatter, content } = await get_post_by_slug(path_to_slug(path));
+    const { frontmatter } = await get_post_by_slug(path_to_slug(path));
 
-    posts.push({ content, frontmatter });
+    posts.push({ frontmatter });
   }
   return posts.sort((a, b) =>
     a.frontmatter.date > b.frontmatter.date ? -1 : 1

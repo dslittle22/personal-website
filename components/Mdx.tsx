@@ -1,6 +1,6 @@
 import { MDXComponents } from "mdx/types";
-import { MDXRemote } from "next-mdx-remote/rsc";
-import { Compatible } from "vfile";
+import { MDXRemote } from "next-mdx-remote-client/rsc";
+import type { MDXRemoteOptions } from "next-mdx-remote-client/rsc";
 import SmartLink from "./SmartLink";
 import SizedImage from "./SizedImage";
 import Popout from "./Popout";
@@ -8,9 +8,7 @@ import Counter from "./Counter";
 import remarkGfm from "remark-gfm";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeSlug from "rehype-slug";
-
 import rehypePrettyCode from "rehype-pretty-code";
-import { SerializeOptions } from "next-mdx-remote/dist/types";
 
 import type { JSX } from "react";
 
@@ -30,11 +28,7 @@ export type CustomMDXComponents = {
 
 export type MDXProvidedComponents = CustomMDXComponents;
 
-export function useMDXComponents(): MDXProvidedComponents {
-  return customMDXComponents;
-}
-
-const options = {
+const prettycodeOptions = {
   keepBackground: "false",
   theme: { dark: "github-dark", light: "github-light" },
 };
@@ -45,20 +39,16 @@ export default async function Mdx({
   components = {},
 }: {
   components?: MDXComponents;
-  source: Compatible;
+  source: string;
   isRss?: boolean;
-}): Promise<React.ReactNode> {
-  const mdxOptions: SerializeOptions["mdxOptions"] = {
+}) {
+  const mdxOptions: MDXRemoteOptions["mdxOptions"] = {
     remarkPlugins: [remarkGfm],
-    rehypePlugins: [
-      [rehypePrettyCode as any, options],
-      ...(isRss ? [] : [rehypeSlug]),
-    ],
+    rehypePlugins: [[rehypePrettyCode, prettycodeOptions]],
   };
 
   if (!isRss) {
-    mdxOptions.rehypePlugins?.push(rehypeSlug);
-    mdxOptions.rehypePlugins?.push([
+    mdxOptions.rehypePlugins!.push(rehypeSlug, [
       rehypeAutolinkHeadings,
       {
         behavior: "wrap",
@@ -66,10 +56,10 @@ export default async function Mdx({
     ]);
   }
 
-  const element = await MDXRemote({
+  return MDXRemote({
     source,
     components: {
-      ...(customMDXComponents as MDXComponents),
+      ...customMDXComponents,
       ...components,
       ...(isRss ? { SizedImage: "img" } : {}),
     },
@@ -78,6 +68,4 @@ export default async function Mdx({
       mdxOptions,
     },
   });
-
-  return element;
 }

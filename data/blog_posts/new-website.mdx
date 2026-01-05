@@ -11,7 +11,7 @@ description: A walkthrough of my new website, and exploring Next.js 13 and RSC
 
 I made a new website! I liked the last one, but I had this habit of not touching it for many months and then getting annoyed about all of the npm warnings when I tried to update it next. I had seen a lot on the internet about Next.js 13 React Server Components, so I thought I'd give those a whiff and put my site on the Next.js 13 beta.
 
-# The old
+## The old
 
 Overall, my website is simple. But I like it! In remaking it, I had the chance to reevalute many of the choices I made on v1.0. Some of those choices were pretty good, others less so. Here's some things about the remade site that I kept the same.
 
@@ -60,7 +60,7 @@ On the last website and this one, I've made a little wrapper component on the `n
 
 I have a dumb little animation when you hover on links. I cribbed it from somewhere on the internet I'll never be able to find. I love it. I also have a wrapper on the `next/link` component that makes it a `<Link>` if the url is internal and an `<a>` if it's external.
 
-# The new
+## The new
 
 My site doesn't really use any of the fancy new RSC or Next.js 13 features. Really, the only thing I did was change from Styled-Components to CSS modules, because Styled-Components had a little bit of a janky setup on both Next.js 12 and Next.js 13, and I'd rather use something built in to the framework. It was a little laborious rewriting all of the CSS for this site, but also educational! I learned about some new things like container queries and `:has`, which are both pretty cool. I also added a dark mode, with the help of CSS custom properties and [these](https://chriscoyier.net/2023/01/19/dark-mode-via-a-smallish-script-in-the-head-avoiding-fart/) [blogs](https://www.joshwcomeau.com/react/dark-mode/).
 

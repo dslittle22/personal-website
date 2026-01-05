@@ -1,5 +1,5 @@
 import SmartLink from "@/components/SmartLink";
-import { formatDate } from "@/lib/date";
+import { formatDateString } from "@/lib/date";
 import { Frontmatter } from "@/lib/mdx";
 
 export default function BlogPostPreview({
@@ -12,7 +12,7 @@ export default function BlogPostPreview({
       <SmartLink href={`/blog/${slug}`}>{title}</SmartLink>
       {description ? `: ${description}` : ""}
       <br />
-      <small>Written on {formatDate(date)}</small>
+      <small>Written on {formatDateString(date)}</small>
     </div>
   );
 }
