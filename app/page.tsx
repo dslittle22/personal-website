@@ -2,7 +2,7 @@ import SmartLink from "@/components/SmartLink";
 import BlogPostPreview from "@/components/BlogPostPreview";
 import { get_all_posts } from "@/lib/mdx";
 import ProjectsList from "@/components/ProjectsList";
-import SizedImage from "@/components/SizedImage";
+import Image from "next/image";
 import isLocal from "@/lib/local";
 
 export default async function Home() {
@@ -42,7 +42,14 @@ export default async function Home() {
             compilers, and the web.
           </p>
         </div>
-        <SizedImage src="/senior-portrait.jpg" priority />
+        <Image
+          src="/senior-portrait.jpg"
+          alt="A photo of me (Danny), taken by my brother James"
+          width={853}
+          height={853}
+          style={{ maxWidth: "100%", height: "auto" }}
+          priority
+        />
       </section>
       <section>
         <h3>

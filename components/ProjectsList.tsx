@@ -7,12 +7,18 @@ const projects: Project[] = [
     description: "A cli app that checks data integrity, written in Rust.",
     href: "https://github.com/dslittle22/bitwrought",
     src: "/bitwrought.png",
+    alt: "image of bitwrought cli app in a terminal",
+    width: 1682,
+    height: 858,
   },
   {
     title: "Subject Searcher",
     description:
       "A wrapper on Bowdoin's Classfinder, with massive speed and UX improvements.",
     src: "/subjectsearcher.png",
+    alt: "image of subject searcher, a wrapper on Bowdoin's classfinder",
+    width: 3566,
+    height: 1996,
   },
 
   {
@@ -20,6 +26,9 @@ const projects: Project[] = [
     description:
       "An interactive React implementation of Conway's Game of Life.",
     src: "/conway.png",
+    alt: "image of conway's game of life implementation",
+    width: 4208,
+    height: 2168,
     href: "https://conwaysgameoflife-react.netlify.app/",
   },
   {
@@ -27,18 +36,27 @@ const projects: Project[] = [
     description:
       "A simple task manager with database persistance and authentication.",
     src: "/simpletasks.png",
+    alt: "image of simpletasks web app",
+    width: 3452,
+    height: 1950,
     href: "https://simpletasksonline.netlify.app/",
   },
   {
     title: "Visual Countdown",
     href: "https://visual-countdown.netlify.app",
     src: "/visual-countdown.png",
+    alt: "image of visual countdown web app",
+    width: 650,
+    height: 838,
     description: "A site to visualize durations of time.",
   },
   {
     title: "Regex Tool",
     href: "https://regex-tool.netlify.app",
     src: "/regex-tool.png",
+    alt: "image of regex tool web app",
+    width: 705,
+    height: 846,
     description: "A site to use and test several common regex patterns.",
   },
 ];

@@ -2,9 +2,9 @@ import { MDXComponents } from "mdx/types";
 import { MDXRemote } from "next-mdx-remote-client/rsc";
 import type { MDXRemoteOptions } from "next-mdx-remote-client/rsc";
 import SmartLink from "./SmartLink";
-import SizedImage from "./SizedImage";
 import Popout from "./Popout";
 import Counter from "./Counter";
+import Image from "next/image";
 import remarkGfm from "remark-gfm";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeSlug from "rehype-slug";
@@ -18,7 +18,7 @@ type MDXComponentType = string | ((args: any) => JSX.Element);
 export const customMDXComponents = {
   a: SmartLink,
   SmartLink,
-  SizedImage,
+  Image,
   Popout,
   Counter,
 };
@@ -75,7 +75,7 @@ export default async function Mdx({
     components: {
       ...customMDXComponents,
       ...components,
-      ...(isRss ? { SizedImage: "img" } : {}),
+      ...(isRss ? { Image: "img" } : {}),
     },
     options: {
       parseFrontmatter: true,

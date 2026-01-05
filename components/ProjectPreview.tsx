@@ -1,11 +1,14 @@
-import SizedImage from "@/components/SizedImage";
+import Image from "next/image";
 import SmartLink from "./SmartLink";
 
 export type Project = {
   src: string;
+  alt: string;
   title: string;
   description: string;
   href?: string;
+  width: number;
+  height: number;
 };
 
 export default function ProjectPreview({ project }: { project: Project }) {
@@ -24,7 +27,13 @@ export default function ProjectPreview({ project }: { project: Project }) {
         <br />
         <small>{project.description}</small>
       </div>
-      <SizedImage src={project.src} borderRadius={"10px"} />
+      <Image
+        src={project.src}
+        alt={project.alt}
+        width={project.width}
+        height={project.height}
+        style={{ borderRadius: "10px", maxWidth: "100%", height: "auto" }}
+      />
     </Parent>
   );
 }

@@ -55,7 +55,7 @@ with this HTML:
 
 gives us:
 
-<SizedImage center="true" src="/blog/grid-1.png" />
+<Image src="/blog/grid-1.png" alt="CSS grid container with items" width={466} height={197} style={{margin: '0 auto', display: 'block'}} />
 
 Here's our starting point. We have an explicit grid with two items, which seem to stretch to fill their available space. Also, the text is in the top left corner of each item. If we add the line:
 
@@ -65,7 +65,7 @@ justify-items: center;
 
 then the `div`'s in our grid are horizontally centered, but vertically unaffected.
 
-<SizedImage center="true" src="/blog/grid-2.png" />
+<Image src="/blog/grid-2.png" alt="CSS grid container with horizontally centered items" width={468} height={198} style={{margin: '0 auto', display: 'block'}} />
 
 Or if we wanted to vertically align our items toward the end of their containers:
 
@@ -73,7 +73,7 @@ Or if we wanted to vertically align our items toward the end of their containers
 align-items: end;
 ```
 
-<SizedImage center="true" src="/blog/grid-3.png" />
+<Image src="/blog/grid-3.png" alt="CSS grid container with  each item at the bottom of its grid space" width={469} height={197} style={{margin: '0 auto', display: 'block'}} />
 
 Both of our items are vertically aligned toward the end of their grid space. As you might assume, both properties have the value `stretch` by default. You can see this at work in the last two pictures. When one axis is aligned, the other axis still stretches to fill the remaining.
 
@@ -95,15 +95,15 @@ Let's say we want to stack our items on the bottom of the grid. Well, we just tr
 align-content: end;
 ```
 
-<SizedImage center="true" src="/blog/grid-4.png" />
+<Image src="/blog/grid-4.png" alt="CSS grid container with both items stacked in the bottom of the container" width={464} height={194} style={{margin: '0 auto', display: 'block'}} />
 
 Instead of the content being being centered within their allocated grid space, that grid space itself has moved. That's a little confusing, so let's use Chrome dev tools to see this more clearly. Here's the grid with `align-items: end;`
 
-<SizedImage center="true" src="/blog/grid-5.png" />
+<Image src="/blog/grid-5.png" alt="CSS grid container with align-items: end, and dev tools" width={466} height={197} style={{margin: '0 auto', display: 'block'}} />
 
 And with `align-content: end;`
 
-<SizedImage center="true" src="/blog/grid-6.png" />
+<Image src="/blog/grid-6.png" alt="CSS grid container with align-content: end, and dev tools" width={465} height={195} style={{margin: '0 auto', display: 'block'}} />
 
 This clears up exactly what's going on. `align-items` changes where the items are within their allocated space (dotted lined boxes), but keeps this space stretched. `align-content`, on the other hand, changes where the space itself is.
 
@@ -115,7 +115,7 @@ To space evenly with the walls:
 align-content: space-evenly;
 ```
 
-<SizedImage center="true" src="/blog/grid-7.png" />
+<Image src="/blog/grid-7.png" alt="CSS grid container with space-evenly" width={466} height={195} style={{margin: '0 auto', display: 'block'}} />
 
 Or, to have items press up against the container:
 
@@ -123,7 +123,7 @@ Or, to have items press up against the container:
 align-content: space-between;
 ```
 
-<SizedImage center="true" src="/blog/grid-8.png" />
+<Image src="/blog/grid-8.png" alt="CSS grid container with space-between" width={466} height={197} style={{margin: '0 auto', display: 'block'}} />
 
 As with the first two properties, you can set values for these last two in one line by using the `place-content` property.
 
