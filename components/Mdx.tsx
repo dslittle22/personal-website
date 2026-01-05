@@ -9,6 +9,7 @@ import remarkGfm from "remark-gfm";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeSlug from "rehype-slug";
 import rehypePrettyCode from "rehype-pretty-code";
+import { getHighlighter } from "shiki";
 
 import type { JSX } from "react";
 
@@ -31,6 +32,19 @@ export type MDXProvidedComponents = CustomMDXComponents;
 const prettycodeOptions = {
   keepBackground: "false",
   theme: { dark: "github-dark", light: "github-light" },
+  onVisitLine(node: any) {
+    if (node.children.length === 0) {
+      node.children = [{ type: "text", value: " " }];
+    }
+  },
+  getHighlighter: async (options: any) => {
+    const highlighter = await getHighlighter(options);
+    await Promise.all([
+      highlighter.loadTheme("github-dark"),
+      highlighter.loadTheme("github-light"),
+    ]);
+    return highlighter;
+  },
 };
 
 export default async function Mdx({
